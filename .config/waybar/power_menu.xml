@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+  
+	<!-- Suspend ---------------------------------------------------------
+	<child>
+	  <object class="GtkMenuItem" id="suspend">
+	    <child>
+	      <object class="GtkLabel">
+	        <property name="label">Suspend  󰤁</property>
+	        <property name="margin-start">0</property>
+	        <property name="margin-end">23</property>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	-->
+
+	<!-- Hibernate -------------------------------------------------------
+	<child>
+	  <object class="GtkMenuItem" id="hibernate">
+	    <child>
+	      <object class="GtkLabel">
+	        <property name="label">Hibernate  󰋊</property>
+	        <property name="margin-start">0</property>
+	        <property name="margin-end">23</property>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	-->
+	    
+    <!-- Shutdown -------------------------------------------------------- -->
+    <child>
+      <object class="GtkMenuItem" id="shutdown">
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Shutdown  󰤆</property>
+            <property name="margin-start">0</property>
+            <property name="margin-end">23</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <!-- Switch User ---------------------------------------------------- -->
+    <child>
+      <object class="GtkMenuItem" id="switch_user">
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Switch User  </property>
+            <property name="margin-start">0</property>
+            <property name="margin-end">23</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    
+    <!-- Separator ------------------------------------------------------- -->
+    <child>
+      <object class="GtkSeparatorMenuItem"/>
+    </child>
+    
+    <!-- Reboot ---------------------------------------------------------- -->
+    <child>
+      <object class="GtkMenuItem" id="reboot">
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Reboot  󰜉</property>
+            <property name="margin-start">0</property>
+            <property name="margin-end">23</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    
+  </object>
+</interface>
