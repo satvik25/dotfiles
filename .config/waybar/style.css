@@ -126,14 +126,16 @@ button:not(.active):hover {
     background-color: #faf8f6;
     color: #000000;
 
-    color: #ffffff;
+/*  color: #9ebd9e;				*/
+    color: #cfcfc4;
 }
 
 #battery {
     background-color: #cfcfc4;
     color: #000000;
+
     
-    color: #9ebd9e;
+    color: #cfcfc4;
 }
 
 #battery.warning {
@@ -460,11 +462,11 @@ separator {
     background-color: transparent;
 }
 
-#clock {
-	margin-right: 7px;
-}
-
 tooltip * {
 	color: #9ebd9e;		
 	text-shadow: none;     /* optional cleanup */
+}
+
+#clock {
+	margin-right: 8px;
 }

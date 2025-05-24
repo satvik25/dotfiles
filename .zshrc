@@ -23,4 +23,9 @@ ytm() {
     --ozone-platform=wayland \
     >/dev/null 2>&1 &
 }
+
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS=@im=ibus
