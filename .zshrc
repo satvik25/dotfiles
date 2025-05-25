@@ -26,6 +26,5 @@ ytm() {
 
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-GTK_IM_MODULE=ibus
-QT_IM_MODULE=ibus
-XMODIFIERS=@im=ibus
+export EDITOR=micro
+export SYSTEMD_EDITOR=micro
