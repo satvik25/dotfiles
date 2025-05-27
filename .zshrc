@@ -25,6 +25,3 @@ ytm() {
 }
 
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-export EDITOR=micro
-export SYSTEMD_EDITOR=micro
