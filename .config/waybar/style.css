@@ -313,6 +313,7 @@ label:focus {
 }
 
 #idle_inhibitor {
+	font-size: 12px;
     background-color: #2d3436;
     color: #cfcfc4;
 
@@ -489,13 +490,13 @@ tooltip * {
 }
 
 #idle_inhibitor {
-  	margin: 8px 0px;
+  	margin: 8px -5px;
 }
 
-
+/*
 #custom-ibus {
 	padding: 0 4px 0 9px;
     border-radius: 6px;
     background-color: transparent;
 }
-
+*/
