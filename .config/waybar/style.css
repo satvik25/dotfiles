@@ -127,12 +127,12 @@ button:not(.active):hover {
     color: #000000;
 
 /*  color: #9ebd9e;				*/
-    color: #cfcfc4;
+    color: #faf8f6;
 }
 
 #battery {
-    background-color: #cfcfc4;
-    color: #000000;
+/*    background-color: #cfcfc4;	*/
+/*    color: #000000;		*/
 
     color: #cfcfc4;
 }
@@ -292,7 +292,15 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+/*  background: #00b093;	*/
+/*	background-color: #738678;	*/
+/*  color: #740864;		*/
+/*	color: #000000;		*/
+/*  padding: 0 5px;		*/
+/*  margin: 0 5px;		*/
+/*    min-width: 16px;	*/
+
+    color: #9ebd9e;
 }
 
 #tray > .passive {
@@ -347,7 +355,17 @@ label:focus {
 /*  margin: 0 5px;		*/
     min-width: 16px;
 
-    color: #9ebd9e
+    color: #9ebd9e;
+}
+
+#custom-ibus {
+/*  background: #00b093;	*/
+/*	background-color: #738678;	*/
+/*  color: #740864;		*/
+	color: #000000;
+/*  padding: 0 5px;		*/
+/*  margin: 0 5px;		*/
+    color: #9ebd9e;
 }
 
 #keyboard-state {
@@ -445,7 +463,6 @@ separator {
 #pulseaudio:hover,
 #wireplumber,
 #custom-media,
-#tray,
 #mode,
 #idle_inhibitor,
 #scratchpad,
@@ -453,6 +470,7 @@ separator {
 #mpd,
 #keyboard-state,
 #language,
+#custom-ibus,
 #workspaces button {
 /*  padding: 0 10px;	*/
 	padding: 0 5px;
@@ -469,3 +487,15 @@ tooltip * {
 #clock {
 	margin-right: 8px;
 }
+
+#idle_inhibitor {
+  	margin: 8px 0px;
+}
+
+
+#custom-ibus {
+	padding: 0 4px 0 9px;
+    border-radius: 6px;
+    background-color: transparent;
+}
+

@@ -21,7 +21,9 @@
     ],
     "modules-right": [
         "idle_inhibitor",
-		"hyprland/language",
+        "tray",
+        "custom/ibus",
+	//	"hyprland/language",	
         "backlight",
         "network",
         "pulseaudio",
@@ -33,7 +35,6 @@
         "battery",
         // "battery#bat2",
         "clock",
-        "tray",
 	    "custom/power"
     ],
     // Modules configuration
@@ -127,7 +128,7 @@
     	"tooltip": false        
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 18,
         "spacing": 10
     },
     "clock": {
@@ -183,6 +184,11 @@
     "hyprland/language": {
     	"format": "{shortDescription}"
     },
+	"custom/ibus": {
+	  "exec": "bash -c 'if pgrep -x ibus-daemon >/dev/null; then engine=$(ibus engine 2>/dev/null); if [[ \"$engine\" == \"xkb:in:eng:eng\" ]]; then echo \"en\"; elif [[ \"$engine\" == \"typing-booster\" ]]; then echo \"hi\"; fi; fi'",
+	  "interval": 1,
+	  "tooltip": false
+	},
     "battery": {
     	"interval": 5,
         "states": {
