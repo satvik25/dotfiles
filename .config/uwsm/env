@@ -2,3 +2,4 @@ export XCURSOR_THEME=WinSur-dark-cursors
 export XCURSOR_SIZE=24
 
 export IBUS_ENABLE_SYNC_MODE=1
+export IBUS_USE_PORTAL=1
