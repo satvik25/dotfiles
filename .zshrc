@@ -8,9 +8,11 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-chrome() {
-	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
-}
+alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# chrome() {
+#	 setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
+# }
 
 ytm() {
 	setsid google-chrome-stable \
@@ -24,4 +26,4 @@ ytm() {
     >/dev/null 2>&1 &
 }
 
-alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias ibus-restart='nohup /usr/lib/ibus/ibus-ui-gtk3 --enable-wayland-im --exec-daemon --daemon-args "--xim --panel disable" >/dev/null 2>&1 &' 
