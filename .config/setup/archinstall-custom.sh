@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 # --------------------------------------------------------------------
-#  Fully-automated Arch Linux install – Btrfs + LUKS + GRUB + Secure Boot
-#  ⚠  THIS WILL ERASE THE WHOLE DISK SET IN $DISK  ⚠
+#  Fully‑automated Arch Linux install – Btrfs + LUKS + GRUB + Secure Boot
+#  ⚠  THIS SCRIPT **ERASES** EVERYTHING ON THE DRIVE SET IN $DISK  ⚠
 # --------------------------------------------------------------------
 set -euo pipefail
 
-# ──────────────── USER-TUNEABLE VARIABLES ────────────────
+# ─────────────── USER‑TUNEABLE VARIABLES ────────────────
 DISK="/dev/sda"           # Target drive
 HOSTNAME="arch"           # Machine name
 USERNAME="7vik"           # First user
 TIMEZONE="Asia/Kolkata"   # System timezone
-LOCALE="en_IN.UTF-8"      # Default locale
-FONT="ter-120n"           # Console font (will be set immediately)
+LOCALE="en_GB.UTF-8"       # System language (British English)
+KEYMAP="us"               # Keyboard layout (US)
+FONT="ter-120n"           # Console font
 SWAP_SIZE="12G"           # Swapfile size
-# ──────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────
 
-# ————————————————— HELPER FUNCTIONS —————————————————
+# ——————————————— HELPER FUNCTIONS ———————————————
 msg() { printf '\e[1;32m==> %s\e[0m\n' "$*"; }
 need() { command -v "$1" &>/dev/null || { echo "Required: $1"; exit 1; }; }
 for cmd in sgdisk cryptsetup mkfs.fat mkfs.btrfs btrfs pacstrap genfstab arch-chroot; do need "$cmd"; done
@@ -30,8 +31,15 @@ partition_disk() {
 }
 
 encrypt_root() {
-  msg "Encrypting ROOT"
-  cryptsetup luksFormat --pbkdf pbkdf2 --label LUKS_ROOT "${DISK}2"
+  msg "Encrypting ROOT (you will be asked for a passphrase twice)"
+  # If a LUKS header already exists (e.g. from a previous failed run) wipe it first
+  if cryptsetup isLuks "${DISK}2" 2>/dev/null; then
+      msg "Existing LUKS header detected on ${DISK}2 – wiping it"
+      cryptsetup luksErase -f "${DISK}2"
+  fi
+  # --verify-passphrase guarantees a second confirmation prompt
+  cryptsetup luksFormat --pbkdf pbkdf2 --verify-passphrase --label LUKS_ROOT "${DISK}2"
+  # Opens with the same passphrase just provided
   cryptsetup open "${DISK}2" cryptroot
 }
 
@@ -54,8 +62,12 @@ mount_all() {
   msg "Mounting filesystems"
   mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper/cryptroot /mnt
   mkdir -p /mnt/{home,opt,srv,var/cache,var/log,var/spool,var/tmp,swap}
-  for s in home opt srv           ; do mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/$s; done
-  for s in cache log spool tmp    ; do mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/var/$s; done
+  for s in home opt srv; do
+      mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/$s
+  done
+  for s in cache log spool tmp; do
+      mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/var/$s
+  done
   mount -o noatime,ssd,compress=no,space_cache=v2,subvol=@swap /dev/mapper/cryptroot /mnt/swap
   mount --mkdir "${DISK}1" /mnt/efi
 }
@@ -79,27 +91,30 @@ install_base() {
 
 configure_chroot() {
   msg "Configuring inside chroot"
-  arch-chroot /mnt /bin/bash -eu <<'CHROOT'
-# ─── basic localisation ─────────────────────────────
-ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+  arch-chroot /mnt /bin/bash -eu <<CHROOT
+# ─── localisation ────────────────────────────
+ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 hwclock --systohc
-echo "LANG=en_IN.UTF-8" > /etc/locale.conf
-sed -i 's/^#en_IN.UTF-8 UTF-8/en_IN.UTF-8 UTF-8/' /etc/locale.gen
-locale-gen
-echo "FONT=ter-120n" > /etc/vconsole.conf
-echo "arch" > /etc/hostname
 
-# ─── enable multilib & update ──────────────────────
+echo "LANG=$LOCALE" > /etc/locale.conf
+sed -i "s/^#$LOCALE UTF-8/$LOCALE UTF-8/" /etc/locale.gen
+locale-gen
+
+echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
+
+echo "$HOSTNAME" > /etc/hostname
+
+# ─── enable multilib ─────────────────────────
 sed -i '/\[multilib\]/,/Include/s/^#//' /etc/pacman.conf
 pacman -Sy --noconfirm
 
-# ─── wireless regdom ───────────────────────────────
+# ─── wireless regdom ─────────────────────────
 sed -i 's/^#IN=/IN=/' /etc/conf.d/wireless-regdom
 
-# ─── initramfs ─────────────────────────────────────
+# ─── initramfs ───────────────────────────────
 mkinitcpio -P
 
-# ─── swap-related vars for GRUB cmdline ────────────
+# ─── swap offsets + GRUB cmdline ─────────────
 ROOT_UUID=$(blkid -s UUID -o value /dev/disk/by-label/ROOT)
 SWAP_OFFSET=$(btrfs inspect-internal map-swapfile -r /swap/swapfile | awk '/physical range/ {gsub(/-/, ""); print $3}')
 GRUB_LINE="cryptdevice=UUID=$ROOT_UUID:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=$ROOT_UUID resume_offset=$SWAP_OFFSET zswap.enabled=1 loglevel=3 quiet"
@@ -107,7 +122,7 @@ GRUB_LINE="cryptdevice=UUID=$ROOT_UUID:cryptroot:allow-discards root=/dev/mapper
 sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT=\"$GRUB_LINE\"|" /etc/default/grub
 sed -i 's/^#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK/' /etc/default/grub
 
-# ─── bootloader + Secure Boot ──────────────────────
+# ─── bootloader + Secure Boot ────────────────
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --modules="tpm" --disable-shim-lock
 grub-mkconfig -o /boot/grub/grub.cfg
 sbctl create-keys
@@ -116,25 +131,28 @@ sbctl sign -s /boot/vmlinuz-linux
 sbctl sign -s /efi/EFI/GRUB/grubx64.efi
 mkdir -p /efi/EFI/BOOT && cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
 
-# ─── user creation ─────────────────────────────────
-useradd -m -G wheel -s /bin/bash 7vik
+# ─── user setup ──────────────────────────────
+useradd -m -G wheel -s /bin/bash $USERNAME
+# Set temporary passwords (user must change on first login)
 echo "root:changeme" | chpasswd
-echo "7vik:changeme" | chpasswd
+echo "$USERNAME:changeme" | chpasswd
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
-# ─── networking stack ──────────────────────────────
+# ─── networking stack ────────────────────────
 systemctl enable iwd NetworkManager dnscrypt-proxy
-cat >/etc/iwd/main.conf <<EOL
+cat >/etc/iwd/main.conf <<'EOL'
 [General]
 EnableNetworkConfiguration=false
 EOL
-cat >>/etc/NetworkManager/NetworkManager.conf <<EOL
+
+cat >>/etc/NetworkManager/NetworkManager.conf <<'EOL'
 [main]
 dns=none
 
 [device]
 wifi.backend=iwd
 EOL
+
 sed -i "s|^#server_names =.*|server_names = ['adguard-dns-doh']|" /etc/dnscrypt-proxy/dnscrypt-proxy.toml
 sed -i "s/^#*require_dnssec.*/require_dnssec = true/" /etc/dnscrypt-proxy/dnscrypt-proxy.toml
 ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf
@@ -143,10 +161,10 @@ CHROOT
 }
 
 cleanup() {
-  msg "Finished – unmounting and reboot hint"
-  umount -Rl /mnt
-  swapoff -a
-  echo -e "\e[1;33mInstallation complete. Type 'reboot' once you leave the ISO.\e[0m"
+  msg "Finished – unmounting and advising reboot"
+  umount -Rl /mnt || true
+  swapoff -a || true
+  echo -e "\e[1;33mInstallation complete. Type 'reboot' to boot into your new system.\e[0m"
 }
 
 # ——————————————— MAIN FLOW ———————————————
