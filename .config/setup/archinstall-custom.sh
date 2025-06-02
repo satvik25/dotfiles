@@ -78,8 +78,15 @@ mount_all() {
 
 make_swapfile() {
   msg "Creating $SWAP_SIZE swapfile"
-  btrfs filesystem mkswapfile --size "$SWAP_SIZE" --uuid clear /mnt/swap/swapfile
-  swapon /mnt/swap/swapfile
+  if [[ -f /mnt/swap/swapfile ]]; then
+      msg "Swapfile already exists – skipping creation"
+  else
+      if ! btrfs filesystem mkswapfile --size "$SWAP_SIZE" --uuid clear /mnt/swap/swapfile; then
+          echo "ERROR: failed to create swapfile" >&2
+          exit 1
+      fi
+  fi
+  swapon /mnt/swap/swapfile || true
 }
 
 install_base() {
@@ -118,12 +125,14 @@ sed -i 's/^#IN=/IN=/' /etc/conf.d/wireless-regdom
 # ─── initramfs ───────────────────────────────
 mkinitcpio -P
 
-# ─── swap offsets + GRUB cmdline ─────────────
-LUKS_UUID=$(blkid -s UUID -o value ${DISK}2)
-ROOT_UUID=$(blkid -s UUID -o value /dev/mapper/cryptroot)
+# ─── swapfile (create if missing) + offsets ─────────
 if [[ ! -f /swap/swapfile ]]; then
-  echo "ERROR: /swap/swapfile not found – was swapfile creation step successful?" >&2
-  exit 1
+  echo "Creating swapfile inside chroot …"
+  btrfs filesystem mkswapfile --size $SWAP_SIZE --uuid clear /swap/swapfile
+  swapon /swap/swapfile
 fi
+
+LUKS_UUID=$(blkid -s UUID -o value /dev/disk/by-label/ROOT)
+ROOT_UUID=$(blkid -s UUID -o value /dev/mapper/cryptroot)
 SWAP_OFFSET=$(btrfs inspect-internal map-swapfile -r /swap/swapfile | awk '/physical range/ {gsub(/-/, ""); print $3}')
 GRUB_LINE="cryptdevice=UUID=$LUKS_UUID:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=$ROOT_UUID resume_offset=$SWAP_OFFSET zswap.enabled=1 loglevel=3 quiet"
