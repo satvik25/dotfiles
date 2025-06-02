@@ -110,7 +110,7 @@ echo "$HOSTNAME" > /etc/hostname
 
 # ─── enable multilib ─────────────────────────
 sed -i '/\[multilib\]/,/Include/s/^#//' /etc/pacman.conf
-pacman -Sy --noconfirm
+pacman -Syu --noconfirm
 
 # ─── wireless regdom ─────────────────────────
 sed -i 's/^#IN=/IN=/' /etc/conf.d/wireless-regdom
@@ -119,67 +119,11 @@ sed -i 's/^#IN=/IN=/' /etc/conf.d/wireless-regdom
 mkinitcpio -P
 
 # ─── swap offsets + GRUB cmdline ─────────────
-ROOT_UUID=$(blkid -s UUID -o value /dev/disk/by-label/ROOT)
+LUKS_UUID=$(blkid -s UUID -o value ${DISK}2)
+ROOT_UUID=$(blkid -s UUID -o value /dev/mapper/cryptroot)
+if [[ ! -f /swap/swapfile ]]; then
+  echo "ERROR: /swap/swapfile not found – was swapfile creation step successful?" >&2
+  exit 1
+fi
 SWAP_OFFSET=$(btrfs inspect-internal map-swapfile -r /swap/swapfile | awk '/physical range/ {gsub(/-/, ""); print $3}')
-GRUB_LINE="cryptdevice=UUID=$ROOT_UUID:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=$ROOT_UUID resume_offset=$SWAP_OFFSET zswap.enabled=1 loglevel=3 quiet"
-
-sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT=\"$GRUB_LINE\"|" /etc/default/grub
-sed -i 's/^#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK/' /etc/default/grub
-
-# ─── bootloader + Secure Boot ────────────────
-grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --modules="tpm" --disable-shim-lock
-grub-mkconfig -o /boot/grub/grub.cfg
-sbctl create-keys
-sbctl enroll-keys -m
-sbctl sign -s /boot/vmlinuz-linux
-sbctl sign -s /efi/EFI/GRUB/grubx64.efi
-mkdir -p /efi/EFI/BOOT && cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
-
-# ─── user setup ──────────────────────────────
-useradd -m -G wheel -s /bin/bash $USERNAME
-# Set temporary passwords (user must change on first login)
-echo "root:changeme" | chpasswd
-echo "$USERNAME:changeme" | chpasswd
-sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
-
-# ─── networking stack ────────────────────────
-systemctl enable iwd NetworkManager dnscrypt-proxy
-cat >/etc/iwd/main.conf <<'EOL'
-[General]
-EnableNetworkConfiguration=false
-EOL
-
-cat >>/etc/NetworkManager/NetworkManager.conf <<'EOL'
-[main]
-dns=none
-
-[device]
-wifi.backend=iwd
-EOL
-
-sed -i "s|^#server_names =.*|server_names = ['adguard-dns-doh']|" /etc/dnscrypt-proxy/dnscrypt-proxy.toml
-sed -i "s/^#*require_dnssec.*/require_dnssec = true/" /etc/dnscrypt-proxy/dnscrypt-proxy.toml
-ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf
-systemctl restart iwd NetworkManager dnscrypt-proxy
-CHROOT
-}
-
-cleanup() {
-  msg "Finished – unmounting and advising reboot"
-  umount -Rl /mnt || true
-  swapoff -a || true
-  echo -e "\e[1;33mInstallation complete. Type 'reboot' to boot into your new system.\e[0m"
-}
-
-# ——————————————— MAIN FLOW ———————————————
-setfont "$FONT"
-timedatectl set-ntp true
-partition_disk
-encrypt_root
-format_fs
-create_subvols
-mount_all
-make_swapfile
-install_base
-configure_chroot
-cleanup
+GRUB_LINE="cryptdevice=UUID=$LUKS_UUID:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=$ROOT_UUID resume_offset=$SWAP_OFFSET zswap.enabled=1 loglevel=3 quiet"
