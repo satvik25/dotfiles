@@ -1,27 +1,19 @@
 #!/usr/bin/env bash
-# --------------------------------------------------------------------
-#  Fully‑automated Arch Linux install – Btrfs + LUKS + GRUB + Secure Boot
-#  ⚠  THIS SCRIPT **ERASES** EVERYTHING ON THE DRIVE SET IN $DISK  ⚠
-# --------------------------------------------------------------------
 set -euo pipefail
 
-# ─────────────── USER‑TUNEABLE VARIABLES ────────────────
-DISK="/dev/sda"           # Target drive
-HOSTNAME="arch"           # Machine name
-USERNAME="7vik"           # First user
-TIMEZONE="Asia/Kolkata"   # System timezone
-LOCALE="en_GB.UTF-8"       # System language (British English)
-KEYMAP="us"               # Keyboard layout (US)
-FONT="ter-120n"           # Console font
-SWAP_SIZE="12G"           # Swapfile size
-# ─────────────────────────────────────────────────────────
+DISK="/dev/sda"
+HOSTNAME="arch"
+USERNAME="7vik"
+TIMEZONE="Asia/Kolkata"
+LOCALE="en_GB.UTF-8"
+KEYMAP="us"
+FONT="ter-120n"
+SWAP_SIZE="12G"
 
-# ——————————————— HELPER FUNCTIONS ———————————————
-msg() { printf '\e[1;32m==> %s\e[0m\n' "$*"; }
 need() { command -v "$1" &>/dev/null || { echo "Required: $1"; exit 1; }; }
-for cmd in sgdisk cryptsetup mkfs.fat mkfs.btrfs btrfs pacstrap genfstab arch-chroot; do need "$cmd"; done
+for c in sgdisk cryptsetup mkfs.fat mkfs.btrfs btrfs pacstrap genfstab arch-chroot; do need "$c"; done
+msg() { printf '\e[1;32m==> %s\e[0m\n' "$*"; }
 
-# ——————————————— INSTALL STEPS ———————————————
 partition_disk() {
   msg "Partitioning $DISK"
   sgdisk --zap-all "$DISK"
@@ -31,20 +23,16 @@ partition_disk() {
 }
 
 encrypt_root() {
-  msg "Encrypting ROOT – you’ll be prompted for a passphrase even when the script is piped"
-
-  # Read passphrase directly from the live TTY, independent of how the script is launched
+  msg "Encrypting ROOT"
   while true; do
-      read -r -s -p "Enter new LUKS passphrase: " LUKS_PW < /dev/tty; echo
-      read -r -s -p "Confirm passphrase: "         LUKS_PW2 < /dev/tty; echo
-      if [[ "$LUKS_PW" == "$LUKS_PW2" && -n "$LUKS_PW" ]]; then break; fi
-      echo "Passphrases didn’t match — try again." >&2
+    read -r -s -p "Enter new LUKS passphrase: " L1 < /dev/tty; echo
+    read -r -s -p "Confirm passphrase: "         L2 < /dev/tty; echo
+    [[ "$L1" == "$L2" && -n "$L1" ]] && break
+    echo "Passphrases didn’t match" >&2
   done
-
-  # Format and open using the passphrase from the variable, piped via stdin
-  printf '%s' "$LUKS_PW" | cryptsetup luksFormat --batch-mode --pbkdf pbkdf2 --label LUKS_ROOT --key-file - "${DISK}2"
-  printf '%s' "$LUKS_PW" | cryptsetup open --key-file - "${DISK}2" cryptroot
-  unset LUKS_PW LUKS_PW2
+  printf '%s' "$L1" | cryptsetup luksFormat --batch-mode --pbkdf pbkdf2 --label LUKS_ROOT --key-file - "${DISK}2"
+  printf '%s' "$L1" | cryptsetup open --key-file - "${DISK}2" cryptroot
+  unset L1 L2
 }
 
 format_fs() {
@@ -63,36 +51,28 @@ create_subvols() {
 }
 
 mount_all() {
-  msg "Mounting filesystems"
+  msg "Mounting subvolumes"
   mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper/cryptroot /mnt
   mkdir -p /mnt/{home,opt,srv,var/cache,var/log,var/spool,var/tmp,swap}
   for s in home opt srv; do
-      mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/$s
+    mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/$s
   done
   for s in cache log spool tmp; do
-      mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/var/$s
+    mount -o noatime,ssd,compress=zstd,space_cache=v2,discard=async,subvol=@$s /dev/mapper/cryptroot /mnt/var/$s
   done
   mount -o noatime,ssd,compress=no,space_cache=v2,subvol=@swap /dev/mapper/cryptroot /mnt/swap
   mount --mkdir "${DISK}1" /mnt/efi
 }
 
 make_swapfile() {
-  msg "Creating $SWAP_SIZE swapfile"
-  if [[ -f /mnt/swap/swapfile ]]; then
-      msg "Swapfile already exists – skipping creation"
-  else
-      if ! btrfs filesystem mkswapfile --size "$SWAP_SIZE" --uuid clear /mnt/swap/swapfile; then
-          echo "ERROR: failed to create swapfile" >&2
-          exit 1
-      fi
-  fi
+  msg "Creating swapfile"
+  [[ -f /mnt/swap/swapfile ]] || btrfs filesystem mkswapfile --size "$SWAP_SIZE" --uuid clear /mnt/swap/swapfile
   swapon /mnt/swap/swapfile || true
 }
 
 install_base() {
   msg "Installing base system"
-  pacstrap -K /mnt \
-    base linux-zen linux-lts linux-firmware intel-ucode \
+  pacstrap -K /mnt base linux-zen linux-lts linux-firmware intel-ucode \
     sbctl util-linux btrfs-progs grub-btrfs inotify-tools snapper \
     terminus-font sudo micro reflector zsh vlock man-db man-pages \
     brightnessctl playerctl iwd networkmanager dnscrypt-proxy \
@@ -101,38 +81,84 @@ install_base() {
 }
 
 configure_chroot() {
-  msg "Configuring inside chroot"
-  arch-chroot /mnt /bin/bash -eu <<CHROOT
-# ─── localisation ────────────────────────────
-ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
+  msg "Configuring base system inside chroot"
+  arch-chroot /mnt /bin/bash -eu <<'CHROOT'
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 hwclock --systohc
-
-echo "LANG=$LOCALE" > /etc/locale.conf
-sed -i "s/^#$LOCALE UTF-8/$LOCALE UTF-8/" /etc/locale.gen
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+sed -i "s/^# *en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/" /etc/locale.gen
 locale-gen
-
-echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
-
-echo "$HOSTNAME" > /etc/hostname
-
-# ─── enable multilib ─────────────────────────
+echo -e "KEYMAP=us\nFONT=ter-120n" > /etc/vconsole.conf
+echo "arch" > /etc/hostname
 sed -i '/\[multilib\]/,/Include/s/^#//' /etc/pacman.conf
-pacman -Syu --noconfirm
-
-# ─── wireless regdom ─────────────────────────
+pacman -Sy --noconfirm
 sed -i 's/^#IN=/IN=/' /etc/conf.d/wireless-regdom
-
-# ─── initramfs ───────────────────────────────
 mkinitcpio -P
+CHROOT
+}
 
-# ─── swapfile (create if missing) + offsets ─────────
-if [[ ! -f /swap/swapfile ]]; then
-  echo "Creating swapfile inside chroot …"
-  btrfs filesystem mkswapfile --size $SWAP_SIZE --uuid clear /swap/swapfile
-  swapon /swap/swapfile
-fi
-
+configure_bootloader() {
+  msg "Setting up GRUB"
+  arch-chroot /mnt /bin/bash -eu <<'CHROOT'
 LUKS_UUID=$(blkid -s UUID -o value /dev/disk/by-label/ROOT)
-ROOT_UUID=$(blkid -s UUID -o value /dev/mapper/cryptroot)
 SWAP_OFFSET=$(btrfs inspect-internal map-swapfile -r /swap/swapfile | awk '/physical range/ {gsub(/-/, ""); print $3}')
-GRUB_LINE="cryptdevice=UUID=$LUKS_UUID:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=$ROOT_UUID resume_offset=$SWAP_OFFSET zswap.enabled=1 loglevel=3 quiet"
+sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT=\"cryptdevice=UUID=${LUKS_UUID}:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=${LUKS_UUID} resume_offset=${SWAP_OFFSET} zswap.enabled=1 loglevel=3 quiet\"|" /etc/default/grub
+sed -i 's/^#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK/' /etc/default/grub
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --modules="tpm" --disable-shim-lock
+grub-mkconfig -o /boot/grub/grub.cfg
+mkdir -p /efi/EFI/BOOT && cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
+CHROOT
+}
+}
+
+add_user() {
+  msg "Adding user $USERNAME"
+  arch-chroot /mnt /bin/bash -eu <<CHROOT
+useradd -m -G wheel -s /bin/bash $USERNAME
+passwd $USERNAME
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+CHROOT
+}
+
+configure_network() {
+  msg "Configuring networking"
+  arch-chroot /mnt /bin/bash -eu <<'CHROOT'
+systemctl enable iwd NetworkManager dnscrypt-proxy
+mkdir -p /etc/iwd
+printf "[General]\nEnableNetworkConfiguration=false\n" > /etc/iwd/main.conf
+mkdir -p /etc/NetworkManager
+cat >/etc/NetworkManager/NetworkManager.conf <<'EOF'
+[main]
+dns=none
+
+[device]
+wifi.backend=iwd
+EOF
+sed -i "s|^#*require_dnssec.*|require_dnssec = true|" /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+if ! grep -q "server_names = \['adguard-dns-doh'" /etc/dnscrypt-proxy/dnscrypt-proxy.toml; then
+  sed -i "/^#.*server_names *=/a server_names = ['adguard-dns-doh']" /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+fi
+ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf
+CHROOT
+}
+
+main() {
+  setfont "$FONT"
+  timedatectl set-ntp true
+  partition_disk
+  encrypt_root
+  format_fs
+  create_subvols
+  mount_all
+  make_swapfile
+  install_base
+  configure_chroot
+  configure_bootloader
+  add_user
+  configure_network
+  umount -Rl /mnt
+  swapoff -a || true
+  msg "Done – reboot when ready"
+}
+
+main
