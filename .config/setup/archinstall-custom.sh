@@ -33,12 +33,6 @@ partition_disk() {
 encrypt_root() {
   msg "Encrypting ROOT – you’ll be prompted for a passphrase even when the script is piped"
 
-  # Wipe any existing LUKS header first
-  if cryptsetup isLuks "${DISK}2" 2>/dev/null; then
-      msg "Existing LUKS header detected on ${DISK}2 – wiping it"
-      cryptsetup luksErase -f "${DISK}2"
-  fi
-
   # Read passphrase directly from the live TTY, independent of how the script is launched
   while true; do
       read -r -s -p "Enter new LUKS passphrase: " LUKS_PW < /dev/tty; echo
@@ -48,7 +42,7 @@ encrypt_root() {
   done
 
   # Format and open using the passphrase from the variable, piped via stdin
-  printf '%s' "$LUKS_PW" | cryptsetup luksFormat --pbkdf pbkdf2 --label LUKS_ROOT --key-file - "${DISK}2"
+  printf '%s' "$LUKS_PW" | cryptsetup luksFormat --batch-mode --pbkdf pbkdf2 --label LUKS_ROOT --key-file - "${DISK}2"
   printf '%s' "$LUKS_PW" | cryptsetup open --key-file - "${DISK}2" cryptroot
   unset LUKS_PW LUKS_PW2
 }
