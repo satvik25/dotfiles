@@ -73,7 +73,7 @@ make_swapfile() {
 install_base() {
   msg "Installing base system"
   pacstrap -K /mnt base linux-zen linux-lts linux-firmware intel-ucode \
-    sbctl util-linux btrfs-progs grub-btrfs inotify-tools snapper \
+    util-linux btrfs-progs grub-btrfs inotify-tools snapper \
     terminus-font sudo micro reflector zsh vlock man-db man-pages \
     brightnessctl playerctl iwd networkmanager dnscrypt-proxy \
     bluez bluez-utils cups wireless-regdb grub efibootmgr
@@ -106,7 +106,8 @@ sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT=\"cryptdevic
 sed -i 's/^#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK/' /etc/default/grub
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --modules="tpm" --disable-shim-lock
 grub-mkconfig -o /boot/grub/grub.cfg
-mkdir -p /efi/EFI/BOOT && cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
+mkdir -p /efi/EFI/BOOT
+cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
 CHROOT
 }
 
