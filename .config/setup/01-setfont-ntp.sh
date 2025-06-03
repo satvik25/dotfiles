@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 1-archinstall-basics.sh - set console font and enable NTP
+# 01-setfont-ntp.sh - set console font and enable NTP
 
 set -euo pipefail
 
