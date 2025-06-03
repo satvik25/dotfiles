@@ -28,7 +28,7 @@ done
 # Encrypt & open mapper
 printf '%s' "$L1" | \
   cryptsetup luksFormat --batch-mode --type luks2 --pbkdf pbkdf2 \
-    --label ROOTFS --key-file - "$PART"
+    --label "$LABEL" --key-file - "$PART"
 
 printf '%s' "$L1" | \
   cryptsetup open --key-file - "$PART" "$MAPPER_NAME"
