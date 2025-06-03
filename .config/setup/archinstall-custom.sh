@@ -97,24 +97,6 @@ mkinitcpio -P
 CHROOT
 }
 
-configure_bootloader() {
-  msg "Setting up GRUB"
-  arch-chroot /mnt /bin/bash -eu <<'CHROOT'
-LUKS_UUID=$(blkid -s UUID -o value /dev/disk/by-label/ROOT)
-if [[ -f /swap/swapfile ]]; then
-  SWAP_OFFSET=$(btrfs inspect-internal map-swapfile -r /swap/swapfile 2>/dev/null | awk '/physical range/ {gsub(/-/, ""); print $3}')
-else
-  echo "Swapfile not found, cannot calculate resume_offset" >&2
-  SWAP_OFFSET=0
-fi
-sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT=\"cryptdevice=UUID=${LUKS_UUID}:cryptroot:allow-discards root=/dev/mapper/cryptroot resume=UUID=${LUKS_UUID} resume_offset=${SWAP_OFFSET} zswap.enabled=1 loglevel=3 quiet\"|" /etc/default/grub
-sed -i 's/^#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK/' /etc/default/grub
-grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --modules="tpm" --disable-shim-lock
-grub-mkconfig -o /boot/grub/grub.cfg
-mkdir -p /efi/EFI/BOOT && cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
-CHROOT
-}
-
 add_user() {
   msg "Adding user $USERNAME"
   arch-chroot /mnt /bin/bash -eu <<CHROOT
@@ -157,11 +139,8 @@ main() {
   make_swapfile
   install_base
   configure_chroot
-  configure_bootloader
   add_user
   configure_network
-  umount -Rl /mnt
-  swapoff -a || true
   msg "Done – reboot when ready"
 }
 
