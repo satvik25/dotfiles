@@ -36,4 +36,4 @@ printf '%s' "$L1" | \
 # Clear passphrase from memory
 unset L1 L2
 
-echo "[SUCCESS] $PART_ROOT is now encrypted and available at /dev/mapper/${MAPPER_NAME}."
+echo "[SUCCESS] $PART_ROOT encrypted. Available at /dev/mapper/${MAPPER_NAME}."
