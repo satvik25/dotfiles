@@ -114,7 +114,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 mkdir -p /efi/EFI/BOOT && cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
 CHROOT
 }
-}
 
 add_user() {
   msg "Adding user $USERNAME"
