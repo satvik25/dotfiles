@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# 2-archinstall-partition.sh - wipe and partition /dev/sda
+set -euo pipefail
+
+DISK=/dev/sda
+
+# Delete all partitions on the disk
+sgdisk --zap-all "$DISK"
+
+# Create EFI system partition
+sgdisk -n1:0:+1G -t1:ef00 -c1:BOOT "$DISK"
+
+# Create root partition using the remaining space
+sgdisk -n2:0:0 -t2:8304 -c2:ROOT "$DISK"
+
+# Inform the kernel of partition table changes
+partprobe "$DISK"
