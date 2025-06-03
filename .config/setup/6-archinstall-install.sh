@@ -24,4 +24,4 @@ pacstrap -K /mnt "${PACKAGES[@]}"
 # Generate filesystem table
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo -e "\033[32m[SUCCESS]\033[0m Arch installed."
+echo -e "\033[32m[SUCCESS]\033[0m Arch installed. Chroot manually with arch-chroot /mnt."
