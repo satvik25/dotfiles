@@ -9,7 +9,7 @@ else
   PART="${DISK}2"
 fi
 MAPPER_NAME=cryptroot
-LABEL=ROOTFS
+LABEL_ROOT=ROOTFS
 
 # Abort if the device is already mapped
 if lsblk -no NAME | grep -q "^${MAPPER_NAME}$"; then
@@ -28,7 +28,7 @@ done
 # Encrypt & open mapper
 printf '%s' "$L1" | \
   cryptsetup luksFormat --batch-mode --type luks2 --pbkdf pbkdf2 \
-    --label "$LABEL" --key-file - "$PART"
+    --label "$LABEL_ROOT" --key-file - "$PART"
 
 printf '%s' "$L1" | \
   cryptsetup open --key-file - "$PART" "$MAPPER_NAME"
