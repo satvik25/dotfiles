@@ -25,7 +25,7 @@ for subvol in @ "${SUBVOLS[@]}" @swap; do
 done
 umount /mnt
 
-echo -e "\033[32m[SUCCESS]\033[0m Subvolumes created successfully."
+echo -e "\033[32m[SUCCESS]\033[0m Subvolumes created."
 
 # Mount root
 mount -o "${BTRFS_OPTS},subvol=@" "/dev/mapper/${MAPPER_NAME}" /mnt
@@ -45,12 +45,12 @@ done
 mount -o "${SWAP_OPTS},subvol=@swap" \
       "/dev/mapper/${MAPPER_NAME}" /mnt/swap
 
-echo -e "\033[32m[SUCCESS]\033[0m Subvolumes mounted successfully."
+echo -e "\033[32m[SUCCESS]\033[0m Subvolumes mounted."
 
 # Mount ESP
 mount --mkdir "${PART_BOOT}" /mnt/efi
 
-echo -e "\033[32m[SUCCESS]\033[0m ESP mounted successfully."
+echo -e "\033[32m[SUCCESS]\033[0m ESP mounted."
 
 # Create swapfile
 btrfs filesystem mkswapfile --size "${SWAP_SIZE}" --uuid clear /mnt/swap/swapfile
