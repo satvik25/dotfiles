@@ -5,7 +5,7 @@ set -euo pipefail
 export PS4='+ $(date "+%T") ${BASH_SOURCE}:${LINENO}: '
 set -x
 
-DISK=/dev/sda
+DISK=${DISK:-/dev/sda}
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_BOOT="${DISK}p1"
 else
