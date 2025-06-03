@@ -4,9 +4,9 @@ set -euo pipefail
 
 DISK=/dev/sda
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
-  PART="${DISK}p2"
+  PART_ROOT="${DISK}p2"
 else
-  PART="${DISK}2"
+  PART_ROOT="${DISK}2"
 fi
 MAPPER_NAME=cryptroot
 LABEL_ROOT=ROOTFS
@@ -28,12 +28,12 @@ done
 # Encrypt & open mapper
 printf '%s' "$L1" | \
   cryptsetup luksFormat --batch-mode --type luks2 --pbkdf pbkdf2 \
-    --label "$LABEL_ROOT" --key-file - "$PART"
+    --label "$LABEL_ROOT" --key-file - "$PART_ROOT"
 
 printf '%s' "$L1" | \
-  cryptsetup open --key-file - "$PART" "$MAPPER_NAME"
+  cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
 
 # Clear passphrase from memory
 unset L1 L2
 
-echo "[SUCCESS] $PART is now encrypted and available at /dev/mapper/${MAPPER_NAME}."
+echo "[SUCCESS] $PART_ROOT is now encrypted and available at /dev/mapper/${MAPPER_NAME}."
