@@ -2,10 +2,10 @@
 # 5-archinstall-mount.sh – create subvolumes, mount filesystem, set up swap
 set -euo pipefail
 
-export PS4='+ $(date "+%T") ${BASH_SOURCE}:${LINENO}: '
+export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
-DISK=${DISK:-/dev/sda}
+DISK=/dev/sda
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_BOOT="${DISK}p1"
 else
