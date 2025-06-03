@@ -21,13 +21,7 @@ PACKAGES=(
 
 # Install packages
 pacstrap -K /mnt "${PACKAGES[@]}"
-
-echo -e "\033[32m[SUCCESS]\033[0m ARCH INSTALLED."
-
-export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
-set -x
-
 # Generate filesystem table
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo -e "\033[32m[SUCCESS]\033[0m FSTAB GENERATED."
+echo -e "\033[32m[SUCCESS]\033[0m Arch installed."
