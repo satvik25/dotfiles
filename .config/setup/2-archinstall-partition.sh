@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 2-archinstall-partition.sh - wipe and partition /dev/sda
+# 2-archinstall-partition.sh - wipe and partition disk
 set -euo pipefail
 
 DISK=/dev/sda
