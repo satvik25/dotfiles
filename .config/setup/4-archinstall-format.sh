@@ -17,3 +17,5 @@ mkfs.fat -F 32 -n "$LABEL_BOOT" "$PART"
 
 # Format the decrypted LUKS container as Btrfs
 mkfs.btrfs -L "$LABEL_CONTAINER" /dev/mapper/${MAPPER_NAME}
+
+echo "Disk formatted successfully."
