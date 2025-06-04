@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# 7-archinstall-setup.sh - Basic System Setup
+set -euo pipefail
+export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
+set -x
+
+# Time
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+hwclock --systohc
+# Language
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+sed -i '/^#\s*en_GB.UTF-8 UTF-8/s/^#//' /etc/locale.gen
+locale-gen
+# Font
+echo "FONT=ter-120n" > /etc/vconsole.conf
+# Hostname
+echo "arch" > /etc/hostname
+# Root Password
+# LATER!
+# 32-bit Repos
+sed -i '/^\s*#\s*\[multilib\]/,/^$/{s/^\s*#\s*//}' /etc/pacman.conf
+# Wireless Regulatory Domain
+sed -i 's/^#\?\s*WIRELESS_REGDOM=.*/WIRELESS_REGDOM="IN"/' /etc/conf.d/wireless-regdom
+# Regenerate initramfs
+mkinitcpio -P
+
+echo -e "\033[32m[SUCCESS]\033[0m System set up."
