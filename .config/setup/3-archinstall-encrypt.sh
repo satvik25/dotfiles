@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # 3-archinstall-encrypt.sh - encrypt root partition
 set -euo pipefail
+export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
+set -x
 
 DISK=/dev/sda
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
