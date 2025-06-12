@@ -24,7 +24,7 @@ MPOINTS=( home opt srv var/cache var/log var/spool tmp )
 
 # Open mapper
 read -r -s -p "Enter LUKS passphrase: " PASS < /dev/tty; echo
-printf '%s\n' "$PASS" | cryptsetup open /dev/sda2 cryptroot --type luks --key-file -
+printf '%s\n' "$PASS" | cryptsetup open /dev/sda2 cryptroot  --key-file -
 unset PASS
 
 # Mount root
