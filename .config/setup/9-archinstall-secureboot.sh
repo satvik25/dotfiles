@@ -14,17 +14,7 @@ echo "sbctl keys created and enrolled."
 # Sign vmlinuz-linux
   sbctl sign -s /boot/vmlinuz-linux-zen
   sbctl sign -s /boot/vmlinuz-linux-lts
-  echo "Signed /boot/vmlinuz-linux."
-else
-  echo "Warning: /boot/vmlinuz-linux not found." >&2
-fi
-
-# Sign GRUB EFI binary
   sbctl sign -s /efi/EFI/GRUB/grubx64.efi
-  echo "Signed /efi/EFI/GRUB/grubx64.efi."
-else
-  echo "Warning: grubx64.efi not found, skipping." >&2
-fi
 
 # 9. Create fallback boot path
 mkdir -p /efi/EFI/BOOT
