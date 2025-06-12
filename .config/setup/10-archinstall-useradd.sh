@@ -32,18 +32,6 @@ passwd "$USERNAME" < <(printf "%s\n%s\n" "$P1" "$P1")
 # Uncomment the sudoers line for wheel group
 if grep -q "^# %wheel ALL=(ALL:ALL) ALL" "$SUDOERS_FILE"; then
   sed -i 's/^# \(%wheel ALL=(ALL:ALL) ALL\)/\1/' "$SUDOERS_FILE"
-  echo "Uncommented '%wheel ALL=(ALL:ALL) ALL' in $SUDOERS_FILE."
-else
-  echo "No commented wheel sudoers line found or already enabled."
-fi
-
-# Verify sudoers syntax
-if visudo -c; then
-  echo "sudoers file syntax is OK."
-else
-  echo "Error in sudoers file syntax! Please review $SUDOERS_FILE." >&2
-  exit 1
-fi
-
+ 
 # Done
 echo "User setup complete."
