@@ -12,7 +12,8 @@ echo "sbctl keys created and enrolled."
 
 # 8. Sign kernel and GRUB EFI binary for Secure Boot
 # Sign vmlinuz-linux
-  sbctl sign -s /boot/vmlinuz-linux
+  sbctl sign -s /boot/vmlinuz-linux-zen
+  sbctl sign -s /boot/vmlinuz-linux-lts
   echo "Signed /boot/vmlinuz-linux."
 else
   echo "Warning: /boot/vmlinuz-linux not found." >&2
