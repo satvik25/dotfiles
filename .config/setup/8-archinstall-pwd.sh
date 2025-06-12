@@ -4,18 +4,17 @@ set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
-# Prompt user to set root password
+# Read password securely from terminal
 while true; do
-    read -s -p "Enter new root password: " ROOT_PW1
-    echo
-    read -s -p "Confirm root password: " ROOT_PW2
-    echo
+    read -s -p "Enter new root password: " ROOT1 < /dev/tty; echo
+    read -s -p "Confirm root password: " ROOT2 < /dev/tty; echo
 
-    if [[ "$ROOT_PW1" == "$ROOT_PW2" ]]; then
-        echo "root:$ROOT_PW1" | chpasswd
-        echo "Root password set successfully."
+    if [[ "$ROOT1" == "$ROOT2" ]]; then
         break
     else
-        echo "Passwords do not match. Please try again."
+        echo "Passwords do not match. Try again." > /dev/tty
     fi
 done
+
+# Set password
+passwd root < <(printf "%s\n%s\n" "$ROOT1" "$ROOT1")
