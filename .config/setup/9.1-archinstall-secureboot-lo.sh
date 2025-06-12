@@ -7,9 +7,6 @@ set -x
 # Sign GRUB EFI binary
   sbctl sign -s /efi/EFI/GRUB/grubx64.efi
   echo "Signed /efi/EFI/GRUB/grubx64.efi."
-else
-  echo "Warning: grubx64.efi not found, skipping." >&2
-fi
 
 # 9. Create fallback boot path
 mkdir -p /efi/EFI/BOOT
