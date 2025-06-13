@@ -42,7 +42,37 @@ fi
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# UFW
+# Firewall
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
+
+# Create firewall service unit
+sudo tee /etc/systemd/system/ufw-blocklist.service > /dev/null << 'EOF'
+[Unit]
+Description=Update UFW Blocklist
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/update-ufw-blocklist.sh
+EOF
+
+# Create firewall timer
+sudo tee /etc/systemd/system/ufw-blocklist.timer > /dev/null << 'EOF'
+[Unit]
+Description=Run UFW Blocklist Updater Daily
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=24h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+# Reload systemd and enable timer
+sudo chmod +x /usr/local/bin/update-ufw-blocklist.sh
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable --now ufw-blocklist.timer
