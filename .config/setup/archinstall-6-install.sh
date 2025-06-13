@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 6-archinstall-install.sh - install packages and set up system
+# Install packages and set up system
 set -euo pipefail
 
 PACKAGES=(
