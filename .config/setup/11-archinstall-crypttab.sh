@@ -11,14 +11,19 @@ MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 
 # Enter Password
 read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
+KEYFILE=$(mktemp)
+printf '%s\n' "$PASS1" > "$KEYFILE"
 
 # 1. Enroll LUKS key slot into TPM2
 echo "[*] Enrolling LUKS key for ${PART_ROOT} into TPM2..."
-printf '%s\n' "$PASS1" \
-  | systemd-cryptenroll "${PART_ROOT}" -d - \
-      --tpm2-device=auto --tpm2-pcrs=0+7
-      
+systemd-cryptenroll "${ROOT_PART}" \
+  --unlock-key-file="$KEYFILE" \
+  --tpm2-device=auto \
+  --tpm2-pcrs=0+7
+
 echo "[*] LUKS key enrolled successfully."
+
+shred --remove "$KEYFILE"
 
 # 2. Register encrypted root in initramfs crypttab
 echo "[*] Adding entry to ${CRYPTTAB_INIT_RAMFS}..."
