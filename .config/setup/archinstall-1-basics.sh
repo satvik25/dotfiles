@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Set console font and enable NTP
+# Set console font
 set -euo pipefail
 
 setfont ter-120n
-timedatectl set-ntp true
