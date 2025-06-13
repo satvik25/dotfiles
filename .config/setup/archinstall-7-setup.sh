@@ -7,6 +7,7 @@ set -x
 # Time
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 hwclock --systohc
+timedatectl set-ntp true
 # Language
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 sed -i '/^#\s*en_GB.UTF-8 UTF-8/s/^#//' /etc/locale.gen
