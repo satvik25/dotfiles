@@ -48,9 +48,3 @@ mount "${PART_BOOT}" /mnt/efi
 swapon /mnt/swap/swapfile
 
 echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted."
-
-# If it’s already open, bail out
-#if [ -e "/dev/mapper/${MAPPER_NAME}" ]; then
-#  echo "✖ /dev/mapper/${MAPPER_NAME} is already open."
-#  exit 1
-#fi
