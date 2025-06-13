@@ -6,8 +6,8 @@ set -x
 
 root_uuid=$(blkid -s UUID -o value /dev/sda2)
 crypt_uuid=$(blkid -s UUID -o value /dev/mapper/cryptroot)
-# [FIX IT] offset is not getting printed
-offset=$(btrfs inspect-internal map-swapfile -r /swap/swapfile | awk '/offset/ {print $2}')
+# [FIX ATTEMPTED] Check if offset is getting printed. Rewrite this line if not.
+offset=$(btrfs inspect-internal map-swapfile -r /swap/swapfile)
 
 # Set parameters
 sed -i 's/^#\?GRUB_ENABLE_CRYPTODISK=.*/GRUB_ENABLE_CRYPTODISK=y/' /etc/default/grub
