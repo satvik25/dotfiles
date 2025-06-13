@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
-# 10-archinstall-useradd.sh - Add User
+# Add user(s)
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
-# Configuration
 USERNAME="7vik"
 SHELL_PATH="/bin/bash"
 GROUPS="wheel"
 SUDOERS_FILE="/etc/sudoers"
 
-# Create the user with home directory, wheel group, and specified shell
+# Create user(s)
   useradd -m -G "$GROUPS" -s "$SHELL_PATH" "$USERNAME"
   echo "User '$USERNAME' created and added to groups: $GROUPS."
 
-# Read password securely from terminal
+# Set user(s) password
 while true; do
     read -s -p "Enter new password for $USERNAME: " P1 < /dev/tty; echo
     read -s -p "Confirm password: " P2 < /dev/tty; echo
@@ -26,12 +25,12 @@ while true; do
     fi
 done
 
-# Feed passwords to passwd via /dev/tty-compatible input
 passwd "$USERNAME" < <(printf "%s\n%s\n" "$P1" "$P1")
-  
-# Uncomment the sudoers line for wheel group
+
+unset P1 P2
+
+# Add user(s) to sudo
 if grep -q "^# %wheel ALL=(ALL:ALL) ALL" "$SUDOERS_FILE"; then
   sed -i 's/^# \(%wheel ALL=(ALL:ALL) ALL\)/\1/' "$SUDOERS_FILE"
- 
-# Done
-echo "User setup complete."
+
+echo -e "\033[32m[SUCCESS]\033[0m User(s) "$USERNAME" added."
