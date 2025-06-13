@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 3-archinstall-encrypt.sh - encrypt root partition
+# 3-archinstall-encrypt.sh - Encrypt root partition
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
