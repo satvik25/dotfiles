@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 5.1-archinstall-mount-only.sh – Mount filesystem only
+# Mount filesystem only
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
