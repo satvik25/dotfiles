@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 5-archinstall-mount.sh – Create subvolumes, mount filesystem, set up swap
+# Create subvolumes, mount filesystem, set up swap
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
