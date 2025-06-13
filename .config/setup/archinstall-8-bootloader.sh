@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bootloader
+# Bootloader setup
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
