@@ -1,17 +1,6 @@
 #!/bin/bash
 # Install packages
-
-# yay
-install_aur_helper() {
-    if ! command -v yay &> /dev/null; then
-        echo "Installing yay AUR helper..."
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        cd /tmp/yay
-        makepkg -si --noconfirm
-        cd -
-        rm -rf /tmp/yay
-    fi
-}
+set -euo pipefail
 
 # Official packages
 OFFICIAL_PACKAGES=(
@@ -88,6 +77,18 @@ AUR_PACKAGES=(
 	"ttf-quicksand-variable"
 	"ulauncher-git"
 )
+
+# yay
+install_aur_helper() {
+    if ! command -v yay &> /dev/null; then
+        echo "Installing yay AUR helper..."
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        cd /tmp/yay
+        makepkg -si --noconfirm
+        cd -
+        rm -rf /tmp/yay
+    fi
+}
 
 # Install
 sudo pacman -S --noconfirm --needed "${OFFICIAL_PACKAGES[@]}"
