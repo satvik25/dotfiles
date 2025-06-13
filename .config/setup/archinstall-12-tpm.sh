@@ -23,6 +23,20 @@ MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 #   exit 1
 # fi
 
+# User warning for Secure Boot
+read -r -p "Warning: Proceed if Secure Boot is enabled. Continue? (Y/n) " answer
+answer=${answer:-Y}
+
+case "$answer" in
+    [Yy])
+        echo "Proceeding…"
+        ;;
+    *)
+        echo "Aborting."
+        exit 1
+        ;;
+esac
+
 # Enroll TPM key
 read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
 KEYFILE=$(mktemp)
