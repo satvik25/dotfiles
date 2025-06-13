@@ -2,6 +2,7 @@
 # Install packages and set up system
 set -euo pipefail
 
+# Note: intel-ucode is device-specific package 
 PACKAGES=(
   # Core
   base linux-zen linux-lts linux-firmware intel-ucode
