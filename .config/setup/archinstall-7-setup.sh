@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 7-archinstall-setup.sh - Basic System Setup
+# Basic system setup
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
