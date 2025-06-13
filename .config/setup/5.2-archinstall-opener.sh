@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DEVICE="/dev/sda2"
+DISK=/dev/sda
+if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
+  PART_ROOT="${DISK}p2"
+else
+  PART_ROOT="${DISK}2"
+fi
 MAPPER_NAME="cryptroot"
 
 # If it’s already open, bail out
@@ -11,12 +16,11 @@ if [ -e "/dev/mapper/${MAPPER_NAME}" ]; then
 fi
 
 # Prompt for passphrase (no echo)
-read -r -s -p "Enter LUKS passphrase for ${DEVICE}: " PASS < /dev/tty
-echo
+read -r -s -p "Enter new LUKS passphrase: " L1 < /dev/tty; echo
 
 # Open the encrypted device
-printf '%s\n' "$PASS" \
-  | cryptsetup open -d - "$DEVICE" "$MAPPER_NAME"
+printf '%s' "$L1" | \
+  cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
 
 # Clear passphrase variable from memory
 unset PASS
