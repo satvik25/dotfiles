@@ -7,6 +7,8 @@ set -x
 systemctl enable iwd NetworkManager dnscrypt-proxy
 
 # Configure iwd
+mkdir -p /etc/iwd
+touch /etc/iwd/main.conf
 cat >> /etc/iwd/main.conf <<-EOF
 
 [General]
