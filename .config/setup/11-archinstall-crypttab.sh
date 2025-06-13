@@ -24,6 +24,7 @@ systemd-cryptenroll "${PART_ROOT}" \
 
 echo "[*] LUKS key enrolled successfully."
 
+unset "$PASS1"
 shred --remove "$KEYFILE"
 
 # 2. Register encrypted root in initramfs crypttab
