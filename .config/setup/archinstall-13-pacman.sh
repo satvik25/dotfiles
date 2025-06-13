@@ -17,14 +17,14 @@ OFFICIAL_PACKAGES=(
         wl-clipboard copyq \
 	udiskie \
 	# Utilities
- 	pfetch kitty mc \
+ 	kitty mc \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
     	# Language
  	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
      	# Development
- 	base-devel git yay openssh
+ 	base-devel git openssh
  	# Extras
  	# gst-libav wireplumber pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire iio-sensor-proxy mpd
 )
@@ -41,7 +41,9 @@ AUR_PACKAGES=(
     	hyprland-per-window-layout ulauncher-git \
   	# Browser
    	google-chrome \
-	# Extras
+	# Utilities
+ 	pfetch
+ 	# Extras
  	# preload
 )
 
