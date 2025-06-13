@@ -10,7 +10,6 @@ systemctl enable iwd NetworkManager dnscrypt-proxy
 mkdir -p /etc/iwd
 touch /etc/iwd/main.conf
 cat >> /etc/iwd/main.conf <<-EOF
-
 [General]
 EnableNetworkConfiguration=false
 EOF
@@ -40,6 +39,6 @@ else
 fi
 
 sed -i 's|^#\s*require_dnssec\s*=.*|require_dnssec = true|' "$DNSC"
-ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf
 
 echo -e "\033[32m[SUCCESS]\033[0m Network configured."
+echo "Symlink after booting up with ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf"
