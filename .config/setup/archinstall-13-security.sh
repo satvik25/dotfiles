@@ -19,3 +19,30 @@ fi
 
 mkinitcpio -P
 
+#Update GRUB
+if grep -q '^GRUB_CMDLINE_LINUX_DEFAULT=' /etc/default/grub; then
+  sudo sed -i \
+    's@^\(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*\)\"@\1 apparmor=1 security=apparmor"@' \
+    /etc/default/grub
+  echo "[*] Added apparmor=1 security=apparmor to GRUB_CMDLINE_LINUX_DEFAULT"
+else
+  echo '[WARN] GRUB_CMDLINE_LINUX_DEFAULT not found; appending new line'
+  echo 'GRUB_CMDLINE_LINUX_DEFAULT="apparmor=1 security=apparmor"' | sudo tee -a /etc/default/grub
+fi
+
+if grep -q '^GRUB_CMDLINE_LINUX=' /etc/default/grub; then
+  sudo sed -i \
+    's@^\(GRUB_CMDLINE_LINUX="[^"]*\)\"@\1 lsm=landlock,lockdown,yama,integrity,apparmor,bpf"@' \
+    /etc/default/grub
+  echo "[*] Added lsm=landlock,lockdown,yama,integrity,apparmor,bpf to GRUB_CMDLINE_LINUX"
+else
+  echo '[WARN] GRUB_CMDLINE_LINUX not found; appending new line'
+  echo 'GRUB_CMDLINE_LINUX="lsm=landlock,lockdown,yama,integrity,apparmor,bpf"' | sudo tee -a /etc/default/grub
+fi
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# UFW
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw enable
