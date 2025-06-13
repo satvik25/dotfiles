@@ -8,6 +8,7 @@ PART_ROOT="/dev/sda2"
 CRYPTTAB_INIT_RAMFS="/etc/crypttab.initramfs"
 MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 
+# Enroll TPM key
 read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
 KEYFILE=$(mktemp)
 echo -n "$PASS1" > "$KEYFILE"
@@ -21,6 +22,7 @@ systemd-cryptenroll "${PART_ROOT}" \
 unset "$PASS1"
 shred --remove "$KEYFILE"
 
+# Create crypttab initramfs
 mkdir -p "$(dirname \"${CRYPTTAB_INIT_RAMFS}\")"
 touch "${CRYPTTAB_INIT_RAMFS}"
 echo "cryptroot ${PART_ROOT} - tpm2-device=auto" >> "${CRYPTTAB_INIT_RAMFS}"
