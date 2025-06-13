@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 5.1-archinstall-mount-only.sh – mount filesystem only
+# 5.1-archinstall-mount-only.sh – Mount filesystem only
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
@@ -23,8 +23,8 @@ SUBVOLS=( @home @opt @srv @cache @log @spool @tmp )
 MPOINTS=( home opt srv var/cache var/log var/spool tmp )
 
 # Open mapper
-read -r -s -p "Enter new LUKS passphrase: " L1 < /dev/tty; echo
-printf '%s' "$L1" | \
+read -r -s -p "Enter new LUKS passphrase: " PASS < /dev/tty; echo
+printf '%s' "$PASS" | \
   cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
 unset PASS
 
@@ -48,3 +48,4 @@ mount "${PART_BOOT}" /mnt/efi
 swapon /mnt/swap/swapfile
 
 echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted."
+echo -e "\033[32m[SUCCESS]\033[0m Chroot manually with arch-chroot /mnt."
