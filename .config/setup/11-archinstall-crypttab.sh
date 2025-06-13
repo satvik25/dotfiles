@@ -15,7 +15,7 @@ read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tt
 # 1. Enroll LUKS key slot into TPM2
 echo "[*] Enrolling LUKS key for ${PART_ROOT} into TPM2..."
 printf '%s\n' "$PASS1" \
-  | systemd-cryptenroll "${ROOT_PART}" -d - \
+  | systemd-cryptenroll "${PART_ROOT}" -d - \
       --tpm2-device=auto --tpm2-pcrs=0+7
       
 echo "[*] LUKS key enrolled successfully."
