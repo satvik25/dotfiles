@@ -12,7 +12,8 @@ MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 # Enter Password
 read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
 KEYFILE=$(mktemp)
-printf '%s\n' "$PASS1" > "$KEYFILE"
+echo -n "$PASS1" > "$KEYFILE"
+chmod 400 "$KEYFILE"
 
 # 1. Enroll LUKS key slot into TPM2
 echo "[*] Enrolling LUKS key for ${PART_ROOT} into TPM2..."
