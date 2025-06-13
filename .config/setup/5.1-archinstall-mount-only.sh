@@ -23,8 +23,9 @@ SUBVOLS=( @home @opt @srv @cache @log @spool @tmp )
 MPOINTS=( home opt srv var/cache var/log var/spool tmp )
 
 # Open mapper
-read -r -s -p "Enter LUKS passphrase: " PASS < /dev/tty; echo
-printf '%s\n' "$PASS" | cryptsetup open -d  - /dev/sda2 cryptroot
+read -r -s -p "Enter new LUKS passphrase: " L1 < /dev/tty; echo
+printf '%s' "$L1" | \
+  cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
 unset PASS
 
 # Mount root
@@ -47,3 +48,9 @@ mount "${PART_BOOT}" /mnt/efi
 swapon /mnt/swap/swapfile
 
 echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted."
+
+# If it’s already open, bail out
+#if [ -e "/dev/mapper/${MAPPER_NAME}" ]; then
+#  echo "✖ /dev/mapper/${MAPPER_NAME} is already open."
+#  exit 1
+#fi
