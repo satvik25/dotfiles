@@ -39,6 +39,7 @@ else
 fi
 
 sed -i 's|^#\s*require_dnssec\s*=.*|require_dnssec = true|' "$DNSC"
+sed -i 's|^require_dnssec\s*=\s*false|require_dnssec = true|' "$DNSC"
 
 echo -e "\033[32m[SUCCESS]\033[0m Network configured."
 echo "Symlink after booting up with ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf"
