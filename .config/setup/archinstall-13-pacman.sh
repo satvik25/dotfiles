@@ -4,78 +4,45 @@ set -euo pipefail
 
 # Official packages
 OFFICIAL_PACKAGES=(
-	"aspell"
-	"base-devel"
-	"copyq"
-	"curl"
-	"git"
-	"gst-libav"
-	"hspell"
-	"hunspell"
-	"hypridle"
-	"hyprland"
-	"hyprlock"
-	"hyprpolkitagent"
-	"hyprsunset"
-	"ibus"
-	"ibus-typing-booster"
-	"iio-sensor-proxy"
-	"inotify-tools"
-	"intel-media-driver"
-	"intel-ucode"
-	"iwd"
-	"kbd"
-	"kitty"
-	"lib32-pipewire"
-	"libvoikko"
-	"mc"
-	"mesa"
-	"mpd"
-	"nftables"
-	"noto-fonts"
-	"noto-fonts-cjk"
-	"noto-fonts-extra"
-	"nuspell"
-	"openssh"
-	"otf-font-awesome"
-	"pfetch"
-	"pipewire"
-	"pipewire-alsa"
-	"pipewire-jack"
-	"pipewire-pulse"
-	"qt5-wayland"
-	"swaync"
-	"swww"
-	"ttf-nerd-fonts-symbols"
-	"ttf-opensans"
-	"ttf-roboto"
-	"udiskie"
-	"ufw"
-	"uwsm"
-	"vulkan-intel"
-	"waybar"
-	"wireless-regdb"
-	"wireplumber"
-	"wl-clipboard"
-	"xdg-desktop-portal"
-	"xdg-desktop-portal-gtk"
-	"xdg-desktop-portal-hyprland"
-	"yay"
+ 	# Video (Drivers)
+  	intel-media-driver libva-intel-driver mesa vulkan-intel \
+   	# Audio
+ 	pipewire \
+  	# Security
+   	ufw nftables \
+	#DE
+	hyprland hyprpolkitagent hypridle hyprlock hyprsunset \
+	uwsm qt5-wayland qt6-wayland waybar swww swaync \
+ 	xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
+        wl-clipboard copyq \
+	udiskie \
+	# Utilities
+ 	pfetch kitty mc \
+   	# Fonts
+  	noto-fonts noto-fonts-cjk noto-fonts-extra \
+	otf-font-awesome ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
+    	# Language
+ 	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
+     	# Development
+ 	base-devel git yay openssh
+ 	# Extras
+ 	# gst-libav wireplumber pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire iio-sensor-proxy mpd
 )
 
 # AUR packages
 AUR_PACKAGES=(
-    "google-chrome"
-    "apparmor"
-	"hunspell-hi"
-	"hyprland-per-window-layout"
-	"ibus-m17n"
-	"otf-openmoji"
-	"preload"
-	"ttf-cutive-mono"
-	"ttf-ms-fonts"
-	"ttf-quicksand-variable"
-	"ulauncher-git"
+	# Fonts
+ 	ttf-cutive-mono ttf-quicksand-variable ttf-ms-fonts otf-openmoji \
+  	# Language
+   	ibus-m17n hunspell-hi \
+  	# Security
+  	apparmor \
+   	# DE
+    	hyprland-per-window-layout ulauncher-git \
+  	# Browser
+   	google-chrome \
+	# Extras
+ 	# preload
 )
 
 # yay
