@@ -9,6 +9,20 @@ PART_ROOT="/dev/sda2"
 CRYPTTAB_INIT_RAMFS="/etc/crypttab.initramfs"
 MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 
+# Check for Secure Boot
+S1=$(
+  sbctl status \
+    | sed -r $'s/\x1b\\[[0-9;]*m//g' \
+    | grep -i '^Secure Boot:'
+)
+S2=$(printf '%s\n' "$S1" \
+  | grep -oEi 'Enabled|Disabled')
+
+if [[ "$S2" != "Enabled" ]]; then
+  echo "Enable Secure Boot in UEFI Settings before running this script!" >&2
+  exit 1
+fi
+
 # Enroll TPM key
 read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
 KEYFILE=$(mktemp)
