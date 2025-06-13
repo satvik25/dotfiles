@@ -94,3 +94,5 @@ install_aur_helper() {
 sudo pacman -S --noconfirm --needed "${OFFICIAL_PACKAGES[@]}"
 install_aur_helper
 yay -S --noconfirm --needed "${AUR_PACKAGES[@]}"
+
+echo -e "\033[32m[SUCCESS]\033[0m Packages installed."
