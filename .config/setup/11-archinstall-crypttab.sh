@@ -9,10 +9,15 @@ PART_ROOT="/dev/sda2"
 CRYPTTAB_INIT_RAMFS="/etc/crypttab.initramfs"
 MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 
+# Enter Password
+read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
+
 # 1. Enroll LUKS key slot into TPM2
 echo "[*] Enrolling LUKS key for ${PART_ROOT} into TPM2..."
-systemd-cryptenroll "${PART_ROOT}" --tpm2-device=auto --tpm2-pcrs=0+7
-
+printf '%s\n' "$PASS1" \
+  | systemd-cryptenroll "${ROOT_PART}" -d - \
+      --tpm2-device=auto --tpm2-pcrs=0+7
+      
 echo "[*] LUKS key enrolled successfully."
 
 # 2. Register encrypted root in initramfs crypttab
