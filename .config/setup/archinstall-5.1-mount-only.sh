@@ -47,5 +47,4 @@ mount "${PART_BOOT}" /mnt/efi
 # Activate swapfile
 swapon /mnt/swap/swapfile
 
-echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted."
-echo -e "\033[32m[SUCCESS]\033[0m Chroot manually with arch-chroot /mnt."
+echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted. Chroot manually with arch-chroot /mnt."
