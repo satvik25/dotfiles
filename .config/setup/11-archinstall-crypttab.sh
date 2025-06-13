@@ -16,7 +16,7 @@ printf '%s\n' "$PASS1" > "$KEYFILE"
 
 # 1. Enroll LUKS key slot into TPM2
 echo "[*] Enrolling LUKS key for ${PART_ROOT} into TPM2..."
-systemd-cryptenroll "${ROOT_PART}" \
+systemd-cryptenroll "${PART_ROOT}" \
   --unlock-key-file="$KEYFILE" \
   --tpm2-device=auto \
   --tpm2-pcrs=0+7
