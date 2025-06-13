@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 4-archinstall-format.sh - format partitions
+# 4-archinstall-format.sh - Format partitions
 set -euo pipefail
 
 DISK=/dev/sda
