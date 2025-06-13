@@ -25,4 +25,4 @@ printf '%s' "$L1" | \
 # Clear passphrase variable from memory
 unset PASS
 
-echo "✔ Opened ${DEVICE} as /dev/mapper/${MAPPER_NAME}"
+echo "✔ Opened ${PART_ROOT} as /dev/mapper/${MAPPER_NAME}"
