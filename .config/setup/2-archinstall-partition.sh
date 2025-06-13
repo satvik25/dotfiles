@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 2-archinstall-partition.sh - wipe and partition disk
+# 2-archinstall-partition.sh - Partition disk
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
