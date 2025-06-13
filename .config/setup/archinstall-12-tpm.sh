@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # TPM setup
+# ENABLE SECURE BOOT IN UEFI SETTINGS BEFORE RUNNING THIS SCRIPT!
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
