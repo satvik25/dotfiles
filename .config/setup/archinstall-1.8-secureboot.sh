@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
-# Secure Boot setup
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
+# Secure Boot setup 
+
+# Generate and enroll keys
 sbctl create-keys
 sbctl enroll-keys -m
 
+# Sign necessary files
 sbctl sign -s /boot/vmlinuz-linux-zen
 sbctl sign -s /boot/vmlinuz-linux-lts
 sbctl sign -s /efi/EFI/GRUB/grubx64.efi
