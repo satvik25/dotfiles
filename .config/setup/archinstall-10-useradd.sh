@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# Add user(s)
 set -euo pipefail
 
+# Add user(s)
+
+# Set parameters
 USERNAME="7vik"
 SHELL_PATH="/bin/bash"
 GROUP="wheel"
