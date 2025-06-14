@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
-# TPM setup
 # ENABLE SECURE BOOT IN UEFI SETTINGS BEFORE RUNNING THIS SCRIPT!
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
-PART_ROOT="/dev/sda2"
-CRYPTTAB_INIT_RAMFS="/etc/crypttab.initramfs"
-MKINITCPIO_CONF="/etc/mkinitcpio.conf"
+# TPM setup
+
+# Set parameters
+DISK=/dev/sda
+if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
+  PART_ROOT="${DISK}p2"
+else
+  PART_ROOT="${DISK}2"
+fi
 
 # Check for Secure Boot
 # S1=$(
@@ -53,21 +58,22 @@ if [ "$ENROLL_TPM" = true ]; then
 fi
 
 # Create crypttab initramfs
-mkdir -p "$(dirname \"${CRYPTTAB_INIT_RAMFS}\")"
-touch "${CRYPTTAB_INIT_RAMFS}"
-echo "cryptroot ${PART_ROOT} - tpm2-device=auto" >> "${CRYPTTAB_INIT_RAMFS}"
+mkdir -p "$(dirname /etc/crypttab.initramfs)"
+touch /etc/crypttab.initramfs
+echo "cryptroot ${PART_ROOT} - tpm2-device=auto" >> /etc/crypttab.initramfs
 
 # Define mkinitcpio hooks
 HOOKS_LINE='HOOKS=(systemd autodetect microcode modconf kms block keyboard sd-vconsole sd-encrypt resume filesystems fsck)'
 
-if grep -q '^HOOKS=' "${MKINITCPIO_CONF}"; then
-    sed -i "/^HOOKS=/c\\${HOOKS_LINE}" "${MKINITCPIO_CONF}"
+if grep -q '^HOOKS=' /etc/mkinitcpio.conf; then
+    sed -i "/^HOOKS=/c\\${HOOKS_LINE}" /etc/mkinitcpio.conf
     echo "[*] HOOKS line updated to: ${HOOKS_LINE}"
 else
-    echo "WARNING: No HOOKS= line found in ${MKINITCPIO_CONF}. Appending manually."
-    echo -e "\n${HOOKS_LINE}" >> "${MKINITCPIO_CONF}"
+    echo "WARNING: No HOOKS= line found. Appending manually."
+    echo -e "\n${HOOKS_LINE}" >> /etc/mkinitcpio.conf
 fi
 
+# Generate initramfs
 mkinitcpio -P
 
-echo -e "\033[32m[SUCCESS]\033[0m TPM setup."
+echo -e "\033[32m[SUCCESS]\033[0m TPM set up."
