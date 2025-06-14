@@ -19,9 +19,10 @@ sudo mount -o subvolid=5 /dev/mapper/cryptroot /mnt
 sudo btrfs subvolume create /mnt/@snapshots
 sudo umount /mnt
 sudo mkdir -p /.snapshots
-sudo mount -o subvol=@snapshots,compress=zstd,noatime \
+sudo mount -o noatime,ssd,compress=zstd,subvol=@snapshots \
      /dev/mapper/cryptroot /.snapshots
      
-/dev/mapper/cryptroot  /.snapshots  btrfs  subvol=@snapshots,compress=zstd,noatime  0  0
+echo '/dev/mapper/cryptroot /.snapshots btrfs noatime,ssd,compress=zstd,subvol=@snapshots 0 0' \
+  | sudo tee -a /etc/fstab
 
 sudo snapper -c root create-config /
