@@ -25,9 +25,9 @@ SUBVOLS=( @home @opt @srv @cache @log @spool @tmp )
 MPOINTS=( home opt srv var/cache var/log var/spool tmp )
 
 # Open mapper
-read -r -s -p "Enter new LUKS passphrase: " PASS < /dev/tty; echo
-printf '%s' "$PASS" | cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
-unset PASS
+read -r -s -p "Enter LUKS passphrase: " P1 < /dev/tty; echo
+printf '%s' "$P1" | cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
+unset P1
 
 # Mount root
 mount -o "${BTRFS_OPTS},subvol=@" "/dev/mapper/${MAPPER_NAME}" /mnt
