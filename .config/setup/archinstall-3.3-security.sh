@@ -23,6 +23,34 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
 
+## Create firewall rules
+sudo tee /usr/local/bin/update-ufw-blocklist.sh > /dev/null << 'EOF'
+#!/bin/bash
+
+# FireHOL Level 1 blocklist
+BLOCKLIST_URL="https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset"
+
+# Temporary file to hold IPs
+TMP_FILE="/tmp/firehol_blocklist.txt"
+
+# UFW comment tag to track entries
+UFW_TAG="auto-blocklist"
+
+# Download the latest list
+curl -s "$BLOCKLIST_URL" -o "$TMP_FILE" || exit 1
+
+# Remove existing rules tagged as 'auto-blocklist'
+ufw status numbered | grep "$UFW_TAG" | tac | while read -r line; do
+	RULE_NUM=$(echo "$line" | awk -F'[][]' '{print $2}')
+	ufw --force delete "$RULE_NUM"
+done
+
+# Add new rules
+grep -vE '^\s*$|^#' "$TMP_FILE" | while read -r ip; do
+    ufw deny from "$ip" comment "$UFW_TAG"
+done
+EOF
+
 ## Create firewall service unit
 sudo tee /etc/systemd/system/ufw-blocklist.service > /dev/null << 'EOF'
 [Unit]
