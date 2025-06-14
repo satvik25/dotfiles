@@ -7,7 +7,7 @@ set -x
 git clone --bare git@github.com:satvik25/dotfiles.git $HOME/.dotfiles
 
 # Create alias
-alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+echo "alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
 
 # Checkout to home directory
 dots checkout
