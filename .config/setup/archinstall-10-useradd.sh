@@ -4,12 +4,12 @@ set -euo pipefail
 
 USERNAME="7vik"
 SHELL_PATH="/bin/bash"
-GROUPS="wheel"
+GROUP="wheel"
 SUDOERS_FILE="/etc/sudoers"
 
 # Create user(s)
 # [FIX IT] 7vik not added to wheel group
-useradd -m -G "$GROUPS" -s "$SHELL_PATH" "$USERNAME"
+useradd -m -G "$GROUP" -s "$SHELL_PATH" "$USERNAME"
 
 # Set user(s) password
 while true; do
