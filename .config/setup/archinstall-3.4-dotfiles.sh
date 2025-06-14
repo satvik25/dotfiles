@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Check for pre-existing dotfiles directory
 if [[ -d "$HOME/.dotfiles" ]]; then
-  read -rp "$HOME/.dotfiles already exists. Delete it? [y/N] " answer
+  read -rp "$HOME/.dotfiles already exists. Delete it? [y/N] " answer < /dev/tty
   case "$answer" in
     [yY])  rm -rf "$HOME/.dotfiles" ;;
     *)     echo "Aborting."; exit 1 ;;
