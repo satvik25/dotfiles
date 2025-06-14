@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# Install packages and set up system
 set -euo pipefail
 
-# Note: intel-ucode is device-specific package 
+# Install packages and set up system
+
+echo -e "\033[31mDevice-specific packages:\033[0m intel-ucode"
+
+# List packages
 PACKAGES=(
   # Core
   base linux-zen linux-lts linux-firmware intel-ucode
@@ -22,6 +25,7 @@ PACKAGES=(
 
 # Install packages
 pacstrap -K /mnt "${PACKAGES[@]}"
+
 # Generate filesystem table
 genfstab -U /mnt >> /mnt/etc/fstab
 
