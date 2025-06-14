@@ -14,7 +14,9 @@ fi
 git clone --bare https://github.com/satvik25/dotfiles.git $HOME/.dotfiles
 
 # Create alias
-alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dots() { 
+  /usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+}
 
 # Checkout to home directory
 dots checkout --force
