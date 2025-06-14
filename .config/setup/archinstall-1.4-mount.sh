@@ -39,13 +39,11 @@ done
 
 # Mount subvolumes
 for i in "${!SUBVOLS[@]}"; do
-  mount -o "${BTRFS_OPTS},subvol=${SUBVOLS[$i]}" \
-        "/dev/mapper/${MAPPER_NAME}" "/mnt/${MPOINTS[$i]}"
+  mount -o "${BTRFS_OPTS},subvol=${SUBVOLS[$i]}" "/dev/mapper/${MAPPER_NAME}" "/mnt/${MPOINTS[$i]}"
 done
 
 # Mount swap
-mount -o "${SWAP_OPTS},subvol=@swap" \
-      "/dev/mapper/${MAPPER_NAME}" /mnt/swap
+mount -o "${SWAP_OPTS},subvol=@swap" "/dev/mapper/${MAPPER_NAME}" /mnt/swap
 
 echo -e "\033[32m[SUCCESS]\033[0m Subvolumes mounted."
 
