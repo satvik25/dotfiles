@@ -1,6 +1,7 @@
 #!/bin/bash
-# Install packages
 set -euo pipefail
+
+# Install packages
 
 # Official packages
 OFFICIAL_PACKAGES=(
