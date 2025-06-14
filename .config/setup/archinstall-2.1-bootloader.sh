@@ -19,7 +19,7 @@ resume=UUID='"$crypt_uuid"' resume_offset='"$offset_val"' \\\
 zswap.enabled=1 \\\
 loglevel=3 quiet"' \
 /etc/default/grub
-  
+
 echo -e "\033[32m[SUCCESS]\033[0m GRUB config updated."
 
 # Install GRUB
