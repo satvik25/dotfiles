@@ -41,7 +41,8 @@ exec zsh
 # ssh -T git@github.com
 
 # Usage
-# Set remote with dots config --global push.autoSetupRemote true
-# Update tracked files with dots add -u or Add new files to track with dots add <xyz>
+# Set remote with dots config --global push.autoSetupRemote true.
+# Update tracked files with dots add -u or Add new files to track with dots add <xyz>.
 # dots commit -m "VERSION_NAME"
 # dots push
+# Update local dotfiles with dots pull --rebase origin master and then dots push if newer changes made to repo from another machine.
