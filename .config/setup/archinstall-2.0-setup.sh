@@ -39,7 +39,7 @@ passwd root < <(printf "%s\n%s\n" "$P1" "$P1")
 sed -i '/^\s*#\s*\[multilib\]/,/^$/{s/^\s*#\s*//}' /etc/pacman.conf
 
 # Wireless Regulatory Domain
-sed -i 's/^#\?\s*WIRELESS_REGDOM=.*/WIRELESS_REGDOM="IN"/' /etc/conf.d/wireless-regdom
+sed -i '/^#\s*WIRELESS_REGDOM="IN"/ s/^#\s*//' /etc/conf.d/wireless-regdom
 
 # Regenerate initramfs
 mkinitcpio -P
