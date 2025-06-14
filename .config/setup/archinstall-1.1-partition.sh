@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Partition disk
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
+
+# Partition disk
 
 DISK=/dev/sda
 
