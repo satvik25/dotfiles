@@ -5,6 +5,7 @@ set -x
 
 # Partition disk
 
+# Set parameters
 DISK=/dev/sda
 
 # Delete all partitions on the disk
