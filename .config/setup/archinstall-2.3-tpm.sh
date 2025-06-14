@@ -14,7 +14,7 @@ else
   PART_ROOT="${DISK}2"
 fi
 
-# Check for Secure Boot
+# Automatic check for Secure Boot
 # S1=$(
 #   sbctl status \
 #     | sed -r $'s/\x1b\\[[0-9;]*m//g' \
@@ -76,4 +76,4 @@ fi
 # Generate initramfs
 mkinitcpio -P
 
-echo -e "\033[32m[SUCCESS]\033[0m TPM set up."
+echo -e "\033[32m[SUCCESS]\033[0m TPM set."
