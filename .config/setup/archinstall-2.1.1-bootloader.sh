@@ -18,5 +18,5 @@ sed -i '/^#\?GRUB_CMDLINE_LINUX_DEFAULT=/c\
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID='"$root_uuid"':cryptroot:allow-discards root=/dev/mapper/cryptroot \\\
 resume=UUID='"$crypt_uuid"' resume_offset='"$offset_val"' \\\
 zswap.enabled=1 \\\
-loglevel=3 quiet"' \
+loglevel=3 quiet"'" \
 /etc/default/grub
