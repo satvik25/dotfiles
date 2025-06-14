@@ -24,7 +24,7 @@ MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 # fi
 
 # User warning for Secure Boot
-read -r -p "Warning: Proceed if Secure Boot is enabled. Continue? (Y/n) " answer
+read -r -p "Warning: Enroll TPM if Secure Boot is enabled. Continue? (Y/n) " answer
 answer=${answer:-Y}
 
 case "$answer" in
