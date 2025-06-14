@@ -22,4 +22,7 @@ dots checkout --force
 # Curb noise
 dots config --local status.showUntrackedFiles no
 
-echo -e "\033[32m[SUCCESS]\033[0m Dotfiles restored. Manually \033[31msource ~/.zshrc\033[0m"
+echo -e "\033[32m[SUCCESS]\033[0m Dotfiles restored."
+
+# Update shell
+exec zsh
