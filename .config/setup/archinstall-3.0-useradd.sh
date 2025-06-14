@@ -4,9 +4,9 @@ set -euo pipefail
 # Add user(s)
 
 # Set parameters
-USERNAME="7vik"
-SHELL_PATH="/bin/bash"
 GROUP="wheel"
+SHELL_PATH="/bin/bash"
+USERNAME="7vik"
 
 # Create user(s)
 useradd -m -G "$GROUP" -s "$SHELL_PATH" "$USERNAME"
