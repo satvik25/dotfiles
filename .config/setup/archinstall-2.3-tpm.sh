@@ -29,27 +29,28 @@ answer=${answer:-Y}
 
 case "$answer" in
     [Yy])
-        echo "Proceeding…"
+        ENROLL_TPM=true
         ;;
     *)
-        echo "Aborting."
-        exit 1
+        ENROLL_TPM=false
         ;;
 esac
 
 # Enroll TPM key
-read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " PASS1 < /dev/tty; echo
-KEYFILE=$(mktemp)
-echo -n "$PASS1" > "$KEYFILE"
-chmod 400 "$KEYFILE"
-
-systemd-cryptenroll "${PART_ROOT}" \
-  --unlock-key-file="$KEYFILE" \
-  --tpm2-device=auto \
-  --tpm2-pcrs=0+7
-
-unset "$PASS1"
-shred --remove "$KEYFILE"
+if [ "$ENROLL_TPM" = true ]; then
+    read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " L1 < /dev/tty; echo
+    KEYFILE=$(mktemp)
+    echo -n "$L1" > "$KEYFILE"
+    chmod 400 "$KEYFILE"
+    
+    systemd-cryptenroll "${PART_ROOT}" \
+      --unlock-key-file="$KEYFILE" \
+      --tpm2-device=auto \
+      --tpm2-pcrs=0+7
+    
+    unset "$L1"
+    shred --remove "$KEYFILE"
+fi
 
 # Create crypttab initramfs
 mkdir -p "$(dirname \"${CRYPTTAB_INIT_RAMFS}\")"
