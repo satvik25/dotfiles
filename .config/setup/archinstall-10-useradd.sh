@@ -8,9 +8,8 @@ GROUPS="wheel"
 SUDOERS_FILE="/etc/sudoers"
 
 # Create user(s)
-# [FIX IT] 7vik not added to wheel group 
-  useradd -m -G "$GROUPS" -s "$SHELL_PATH" "$USERNAME"
-  echo "User '$USERNAME' created and added to groups: $GROUPS."
+# [FIX IT] 7vik not added to wheel group
+useradd -m -G wheel -s "$SHELL_PATH" "$USERNAME"
 
 # Set user(s) password
 while true; do
