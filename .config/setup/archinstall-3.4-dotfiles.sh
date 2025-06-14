@@ -4,7 +4,7 @@ export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
 # Clone dotfiles repo
-git clone --bare git@github.com:satvik25/dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/satvik25/dotfiles.git $HOME/.dotfiles
 
 # Create alias
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
