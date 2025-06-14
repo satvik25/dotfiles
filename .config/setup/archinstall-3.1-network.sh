@@ -27,6 +27,7 @@ wifi.backend=iwd
 EOF
 
 # Configure dnscrypt-proxy
+## Set parameters
 DNSC=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 LN=$(grep -n 'server_names' "$DNSC" | head -n1 | cut -d: -f1 || echo "")
 
