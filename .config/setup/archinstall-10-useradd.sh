@@ -33,5 +33,6 @@ unset P1 P2
 # Add user(s) to sudo
 if grep -q "^# %wheel ALL=(ALL:ALL) ALL" "$SUDOERS_FILE"; then
   sed -i 's/^# \(%wheel ALL=(ALL:ALL) ALL\)/\1/' "$SUDOERS_FILE"
+fi
 
 echo -e "\033[32m[SUCCESS]\033[0m User(s) "$USERNAME" added."
