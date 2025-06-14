@@ -6,14 +6,7 @@ set -x
 # Set up snapshots
 
 # Set parameters
-DISK=/dev/sda
-if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
-  PART_BOOT="${DISK}p1"
-else
-  PART_BOOT="${DISK}1"
-fi
 MAPPER_NAME="cryptroot"
-
 SNAPSHOT_OPTS="noatime,compress=zstd"
 
 # Mount root and create snapshots subvolume
