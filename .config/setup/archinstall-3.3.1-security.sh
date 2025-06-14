@@ -5,10 +5,8 @@ set -x
 
 # Configure security
 
-# Enable security services
-sudo systemctl enable --now apparmor auditd nftables ufw
-
 # Update GRUB
-sed -i \
-  's|^\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"|\1 apparmor=1 security=apparmor"|' \
-  /etc/default/grub
+sed -z -i '
+  s/^\(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*\)"/\1 \\
+apparmor=1 security=apparmor"/
+' /etc/default/grub
