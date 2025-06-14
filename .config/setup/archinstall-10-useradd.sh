@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Add user(s)
 set -euo pipefail
-export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
-set -x
 
 USERNAME="7vik"
 SHELL_PATH="/bin/bash"
