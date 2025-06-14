@@ -14,16 +14,15 @@ offset_val=$(btrfs inspect-internal map-swapfile -r /swap/swapfile)
 # Update GRUB options
 sed -i 's/^#\?GRUB_ENABLE_CRYPTODISK=.*/GRUB_ENABLE_CRYPTODISK=y/' /etc/default/grub
 
-sed -i \
-  's|^#\?GRUB_CMDLINE_LINUX_DEFAULT=.*|\
-GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID='"$root_uuid"':cryptroot:allow-discards \
-root=/dev/mapper/cryptroot \
-resume=UUID='"$crypt_uuid"' \
-resume_offset='"$offset_val"' \
-zswap.enabled=1 \
-loglevel=3 \
-quiet"|' \
-  /etc/default/grub
+sed -i '/^#\?GRUB_CMDLINE_LINUX_DEFAULT=/c\
+GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID='"$root_uuid"':cryptroot:allow-discards" \\\
+root=/dev/mapper/cryptroot \\\
+resume=UUID='"$crypt_uuid"' \\\
+resume_offset='"$offset_val"' \\\
+zswap.enabled=1 \\\
+loglevel=3 \\\
+quiet"' \
+/etc/default/grub
   
 echo -e "\033[32m[SUCCESS]\033[0m GRUB config updated."
 
