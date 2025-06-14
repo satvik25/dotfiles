@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Configure networking 
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
+# Configure networking 
+
+# Enable network services
 systemctl enable iwd NetworkManager dnscrypt-proxy
 
 # Configure iwd
@@ -27,19 +29,22 @@ EOF
 # Configure dnscrypt-proxy
 DNSC=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 LN=$(grep -n 'server_names' "$DNSC" | head -n1 | cut -d: -f1 || echo "")
-# Remove existing server_names lines
+
+## Remove existing server_names lines
 if [[ -n "$LN" ]]; then
   sed -i "${LN}d" "$DNSC"
 fi
-# Insert our server_names line at the same line number, or before listen_addresses if none found
+
+## Insert our server_names line at the same line number, or before listen_addresses if none found
 if [[ -n "$LN" ]]; then
   sed -i "${LN}i server_names = ['adguard-dns-doh']" "$DNSC"
 else
   sed -i "/^listen_addresses/ i server_names = ['adguard-dns-doh']" "$DNSC"
 fi
 
+## Set secure DNS
 sed -i 's|^#\s*require_dnssec\s*=.*|require_dnssec = true|' "$DNSC"
 sed -i 's|^require_dnssec\s*=\s*false|require_dnssec = true|' "$DNSC"
 
 echo -e "\033[32m[SUCCESS]\033[0m Network configured."
-echo "Symlink after booting up with ln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf"
+echo "Symlink after booting up with \033[31mln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf\033[0m"
