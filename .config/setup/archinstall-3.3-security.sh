@@ -9,8 +9,8 @@ set -x
 sudo systemctl enable --now apparmor auditd nftables ufw
 
 # Update GRUB
-sed -i \
-  's|^\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"|\1 apparmor=1 security=apparmor"|' \
+sed -z -E -i \
+  's|(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*)(")|\1 \\\napparmor=1 security=apparmor\2|' \
   /etc/default/grub
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
