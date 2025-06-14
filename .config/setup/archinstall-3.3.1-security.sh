@@ -6,4 +6,6 @@ set -x
 # Configure security
 
 # Update GRUB
-sed -z -i 's/^\(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*"\)/\1 \\\napparmor=1 security=apparmor"/' /etc/default/grub
+sed -z -i \
+  's|\(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*\)\("|\1 \\\napparmor=1 security=apparmor\2|' \
+  /etc/default/grub
