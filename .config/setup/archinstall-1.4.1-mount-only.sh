@@ -7,19 +7,16 @@ set -x
 
 # Set parameters
 DISK=/dev/sda
-
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_BOOT="${DISK}p1"
 else
   PART_BOOT="${DISK}1"
 fi
-
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_ROOT="${DISK}p2"
 else
   PART_ROOT="${DISK}2"
 fi
-
 MAPPER_NAME="cryptroot"
 
 BTRFS_OPTS="noatime,ssd,compress=zstd,discard=async"
