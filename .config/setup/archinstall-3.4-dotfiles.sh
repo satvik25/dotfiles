@@ -12,6 +12,3 @@ dots checkout
 
 # Curb noise
 dots config --local status.showUntrackedFiles no
-
-# Persist alias
-echo "alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
