@@ -17,7 +17,10 @@ git clone --bare https://github.com/satvik25/dotfiles.git $HOME/.dotfiles
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Checkout to home directory
-dots checkout
+dots checkout --force
 
 # Curb noise
 dots config --local status.showUntrackedFiles no
+
+# Update zshrc
+source ~/.zshrc
