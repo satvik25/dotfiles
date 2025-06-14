@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Create subvolumes, mount filesystem, set up swap
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
+# Create subvolumes, mount filesystem, set up swap
+
+# Set parameters
 DISK=/dev/sda
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_BOOT="${DISK}p1"
