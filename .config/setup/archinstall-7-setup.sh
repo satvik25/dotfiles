@@ -20,17 +20,17 @@ echo "arch" > /etc/hostname
 # Root Password
 # Read Password
 while true; do
-    read -s -p "Enter new root password: " ROOT1 < /dev/tty; echo
-    read -s -p "Confirm root password: " ROOT2 < /dev/tty; echo
+    read -s -p "Enter new root password: " P1 < /dev/tty; echo
+    read -s -p "Confirm root password: " P2 < /dev/tty; echo
 
-    if [[ "$ROOT1" == "$ROOT2" ]]; then
+    if [[ "$P1" == "$P2" ]]; then
         break
     else
         echo "Passwords do not match. Try again." > /dev/tty
     fi
 done
 # Set Password
-passwd root < <(printf "%s\n%s\n" "$ROOT1" "$ROOT1")
+passwd root < <(printf "%s\n%s\n" "$P1" "$P1")
 
 # 32-bit Repos
 sed -i '/^\s*#\s*\[multilib\]/,/^$/{s/^\s*#\s*//}' /etc/pacman.conf
