@@ -52,3 +52,5 @@ sudo chmod +x /usr/local/bin/update-ufw-blocklist.sh
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable --now ufw-blocklist.timer
+
+echo -e "\033[32m[SUCCESS]\033[0m Security config complete."
