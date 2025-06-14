@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Encrypt root partition
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
+# Encrypt root partition
+
+# Set parameters
 DISK=/dev/sda
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_ROOT="${DISK}p2"
