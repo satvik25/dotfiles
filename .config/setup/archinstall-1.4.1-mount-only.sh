@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Mount filesystem only
 set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
+# Mount filesystem only
+
+# Set parameters
 DISK=/dev/sda
 if [[ "$DISK" =~ nvme[0-9]n[0-9]$ ]]; then
   PART_BOOT="${DISK}p1"
