@@ -99,21 +99,9 @@ btrfs subvolume set-default "$NEW_ID" "$MNT"
 umount "$MNT"
 rmdir "$MNT"
 
-# Confirm GRUB menu works
-# Ensure correct grub-btrfs dynamic snapshots script exists
-cat << 'EOF' | sudo tee /etc/grub.d/41_snapshots-btrfs > /dev/null
-#!/bin/sh
-set -e
-if [ -f /boot/grub/btrfs.cfg ]; then
-    echo "source /boot/grub/btrfs.cfg"
-fi
-EOF
-
-# Make it executable (in case permissions got lost/restored)
-sudo chmod +x /etc/grub.d/41_snapshots-btrfs
-
 # Regenerate GRUB configuration
 # echo "Regenerating GRUB configuration"
 # grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "Restore complete. System reset to snapshot $SNAP_NUM. Takes effect on next reboot."
+echo "Regenerate GRUB config and reboot after booting up."
