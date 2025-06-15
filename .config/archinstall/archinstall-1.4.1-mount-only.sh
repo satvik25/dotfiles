@@ -40,6 +40,7 @@ done
 
 # Mount swap and snapshots
 mount -o "${SWAP_OPTS},subvol=@swap" "/dev/mapper/${MAPPER_NAME}" /mnt/swap
+mount -o "${SNAPSHOT_OPTS},subvol=@snapshots" "/dev/mapper/${MAPPER_NAME}" /mnt/.snapshots
 
 # Mount ESP
 mount "${PART_BOOT}" /mnt/efi
@@ -47,4 +48,4 @@ mount "${PART_BOOT}" /mnt/efi
 # Activate swapfile
 swapon /mnt/swap/swapfile
 
-echo -e "\033[32m[SUCCESS]\033[0m Arch installed. Chroot manually with \033[31march-chroot /mnt.\033[0m"
+echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted. Chroot manually with \033[31march-chroot /mnt.\033[0m"
