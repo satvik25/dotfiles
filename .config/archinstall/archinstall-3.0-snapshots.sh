@@ -22,7 +22,7 @@ NUMBER_LIMIT_IMPORTANT="10"
 EOF
 
 # Set @ as default subvolume
-btrfs subvolume set-default "$(btrfs subvolume list -o / | awk '/ path @$/ {print $2}')" /
+btrfs subvolume set-default "$(btrfs subvolume list / | awk '{if ($(NF) == "@") print $2}')" /
 
 # Enable GRUB snapshots menu and generate config
 sudo systemctl enable grub-btrfsd.service
