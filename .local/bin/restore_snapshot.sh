@@ -82,6 +82,18 @@ for subvol in "${SUBVOLS[@]}"; do
     fi
 done
 
+
+
+# Always back up .snapshots separately to avoid loss after rollback
+SNAPSHOTS_BAK_NAME=".snapshots-bak-$(date +%F-%H%M%S)"
+if [[ -d "$MNT/@/.snapshots" ]]; then
+  echo "Backing up .snapshots as $SNAPSHOTS_BAK_NAME"
+  mv "$MNT/@/.snapshots" "$MNT/$SNAPSHOTS_BAK_NAME"
+else
+  echo "No .snapshots directory found in current @"
+fi
+
+
 # Delete old root subvolume @
 echo "Deleting old root subvolume @"
 btrfs subvolume delete "$MNT/@"
@@ -90,16 +102,22 @@ btrfs subvolume delete "$MNT/@"
 echo "Recreating @ from snapshot $SNAP_NUM"
 btrfs subvolume snapshot "$SNAP_PATH" "$MNT/@"
 
+
+
+# Restore the .snapshots directory if backup exists
+if [[ -d "$MNT/$SNAPSHOTS_BAK_NAME" ]]; then
+  echo "Restoring .snapshots directory to new @"
+  mv "$MNT/$SNAPSHOTS_BAK_NAME" "$MNT/@/.snapshots"
+else
+  echo "No .snapshots backup found to restore"
+fi
+
+
+
 # Set default to the new @
 NEW_ID=$(btrfs subvolume list "$MNT" | awk '/ path @$/ {print $2}')
 echo "New '@' subvolume ID: $NEW_ID"
 btrfs subvolume set-default "$NEW_ID" "$MNT"
-
-# Restore newer .snapshots directory if backed up earlier
-if [[ -d "$MNT/@oldroot-*/.snapshots" ]]; then
-    echo "Restoring .snapshots from backup..."
-    rsync -a --delete "$MNT/@oldroot-*/.snapshots/" "$MNT/@/.snapshots/"
-fi
 
 # Cleanup
 umount "$MNT"
