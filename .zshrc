@@ -10,9 +10,11 @@ compinit
 
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# chrome() {
-#	 setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
-# }
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
+chrome() {
+	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
+}
 
 ytm() {
 	setsid google-chrome-stable \
@@ -25,7 +27,3 @@ ytm() {
     --ozone-platform=wayland \
     >/dev/null 2>&1 &
 }
-
-alias ibus-restart='nohup /usr/lib/ibus/ibus-ui-gtk3 --enable-wayland-im --exec-daemon --daemon-args "--xim --panel disable" >/dev/null 2>&1 &'
-
-alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
