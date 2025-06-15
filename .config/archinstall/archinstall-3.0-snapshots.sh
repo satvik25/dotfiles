@@ -5,6 +5,5 @@ set -x
 
 # Set up snapshots
 
-# Set up snapper
 btrfs subvolume set-default "$(btrfs subvolume list -o / | awk '/ path @$/ {print $2}')" /
 snapper -c root create-config /
