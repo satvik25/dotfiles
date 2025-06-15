@@ -26,4 +26,6 @@ ytm() {
     >/dev/null 2>&1 &
 }
 
-alias ibus-restart='nohup /usr/lib/ibus/ibus-ui-gtk3 --enable-wayland-im --exec-daemon --daemon-args "--xim --panel disable" >/dev/null 2>&1 &' 
+alias ibus-restart='nohup /usr/lib/ibus/ibus-ui-gtk3 --enable-wayland-im --exec-daemon --daemon-args "--xim --panel disable" >/dev/null 2>&1 &'
+
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
