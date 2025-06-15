@@ -119,5 +119,5 @@ done
 umount "$MNT"
 rmdir "$MNT"
 
-echo "Restore complete. System reset to snapshot $SNAP_NUM. Takes effect on next reboot."
-echo "Preferable to regenerate GRUB config (with update-grub) on next reboot."
+echo -e "\033[32m[Restore complete.]\033[0m System reset to snapshot \033[32m$SNAP_NUM\033[0m. Takes effect on next reboot."
+echo "Preferable to regenerate GRUB config (with \033[31mupdate-grub\033[0m) on next reboot."
