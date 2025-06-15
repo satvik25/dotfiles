@@ -51,6 +51,15 @@ else
   echo "Skipping backup of current @"
 fi
 
+# Backup the .snapshots directory from old root (@)
+ROOT="/tmp/btrfs/@"
+SNAPSHOT_BACKUP="/tmp/btrfs_snapshots_backup"
+
+if [[ -d "$ROOT/.snapshots" ]]; then
+    echo "Backing up .snapshots from $ROOT..."
+    cp -a "$ROOT/.snapshots" "$SNAPSHOT_BACKUP"
+fi
+
 # Verify snapshot exists
 SNAP_PATH="$MNT/@snapshots/$SNAP_NUM/snapshot"
 if [[ ! -d "$SNAP_PATH" ]]; then
@@ -67,8 +76,8 @@ echo "Snapshot ID: $SNAP_ID"
 echo "Setting default subvolume to snapshot $SNAP_ID"
 btrfs subvolume set-default "$SNAP_ID" "$MNT"
 
+
 # Delete subvolumes inside old root @ so it could be deleted
-ROOT="/tmp/btrfs/@"
 SUBVOLS=(
   "$ROOT/var/lib/portables"
   "$ROOT/var/lib/machines"
@@ -94,6 +103,15 @@ btrfs subvolume snapshot "$SNAP_PATH" "$MNT/@"
 NEW_ID=$(btrfs subvolume list "$MNT" | awk '/ path @$/ {print $2}')
 echo "New '@' subvolume ID: $NEW_ID"
 btrfs subvolume set-default "$NEW_ID" "$MNT"
+
+# Restore the .snapshots directory into the new @
+if [[ -d "$SNAPSHOT_BACKUP" ]]; then
+    echo "Restoring .snapshots to new @ subvolume..."
+    cp -an "$SNAPSHOT_BACKUP" "$ROOT"
+    # (the -n prevents overwrite of existing files, adjust if you prefer -a for force overwrite)
+    # Clean up
+    rm -rf "$SNAPSHOT_BACKUP"
+fi
 
 # Cleanup
 umount "$MNT"
