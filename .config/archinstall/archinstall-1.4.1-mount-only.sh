@@ -40,7 +40,6 @@ done
 
 # Mount swap and snapshots
 mount -o "${SWAP_OPTS},subvol=@swap" "/dev/mapper/${MAPPER_NAME}" /mnt/swap
-mount -o "${SNAPSHOT_OPTS},subvol=@snapshots" "/dev/mapper/${MAPPER_NAME}" /mnt/.snapshots
 
 # Mount ESP
 mount "${PART_BOOT}" /mnt/efi
