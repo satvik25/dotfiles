@@ -95,6 +95,12 @@ NEW_ID=$(btrfs subvolume list "$MNT" | awk '/ path @$/ {print $2}')
 echo "New '@' subvolume ID: $NEW_ID"
 btrfs subvolume set-default "$NEW_ID" "$MNT"
 
+# Restore newer .snapshots directory if backed up earlier
+if [[ -d "$MNT/@oldroot-*/.snapshots" ]]; then
+    echo "Restoring .snapshots from backup..."
+    rsync -a --delete "$MNT/@oldroot-*/.snapshots/" "$MNT/@/.snapshots/"
+fi
+
 # Cleanup
 umount "$MNT"
 rmdir "$MNT"
