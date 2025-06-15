@@ -5,5 +5,27 @@ set -x
 
 # Set up snapshots
 
+# Create snapper root config
+cat <<EOF > /etc/snapper/configs/root
+SUBVOLUME="/"
+ALLOW_USERS="root"
+TIMELINE_CREATE="no"
+TIMELINE_CLEANUP="yes"
+TIMELINE_LIMIT_HOURLY="24"
+TIMELINE_LIMIT_DAILY="7"
+TIMELINE_LIMIT_WEEKLY="0"
+TIMELINE_LIMIT_MONTHLY="0"
+TIMELINE_LIMIT_YEARLY="0"
+NUMBER_CLEANUP="yes"
+NUMBER_LIMIT="50"
+NUMBER_LIMIT_IMPORTANT="10"
+EOF
+
+# Set @ as default subvolume
 btrfs subvolume set-default "$(btrfs subvolume list -o / | awk '/ path @$/ {print $2}')" /
-snapper -c root create-config /
+
+# Enable GRUB snapshots menu and generate config
+sudo systemctl enable grub-btrfsd.service
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+echo -e "\033[32m[SUCCESS]\033[0m Added snapshot capability."
