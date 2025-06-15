@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# restore_snapshot.sh - Roll back current root to a specified Btrfs/Snapper snapshot
-# Usage: Run this script from any booted snapshot (with sudo or as root).
-
 set -euo pipefail
 
-# Ensure script is run as root
+# Restore system from snapshot
+# Usage: GRUB > Snapshots sub-menu > Choose snapshot > sudo ./.local/bin/restore_snapshot.sh
+
+# Check root status
 if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root. Use sudo or run as root." >&2
+  echo "Run with sudo." >&2
   exit 1
 fi
 
-# Determine current snapshot number from mount
+# Get current snapshot number
 DEV_RAW=$(findmnt -no SOURCE /)
 if [[ "$DEV_RAW" =~ @snapshots/([0-9]+)/snapshot ]]; then
   CUR_SNAP=${BASH_REMATCH[1]}
@@ -24,17 +24,17 @@ if [[ -n "$CUR_SNAP" ]]; then
   if [[ ! "$USE_CUR" =~ ^[Nn]$ ]]; then
     SNAP_NUM=$CUR_SNAP
   else
-    read -rp "Enter the Snapper snapshot number you want to restore: " SNAP_NUM
+    read -rp "Enter the snapshot number you want to restore: " SNAP_NUM
   fi
 else
-  read -rp "Enter the Snapper snapshot number you want to restore: " SNAP_NUM
+  read -rp "Enter the snapshot number you want to restore: " SNAP_NUM
 fi
 
 echo "Selected snapshot: $SNAP_NUM"
 
-# Determine Btrfs device (strip any mount options suffix)
+# Determine btrfs device
 DEV=${DEV_RAW%%[*}
-echo "Using Btrfs device: $DEV"
+# echo "Using btrfs device: $DEV"
 
 # Mount top-level
 MNT="/tmp/btrfs"
@@ -42,22 +42,13 @@ mkdir -p "$MNT"
 mount -o subvolid=0 "$DEV" "$MNT"
 
 # Ask whether to backup current @
-read -rp "Do you want to backup the current root subvolume '@'? [y/N]: " BACKUP_ANSWER
+read -rp "Backup current root subvolume @? [y/N]: " BACKUP_ANSWER
 if [[ "$BACKUP_ANSWER" =~ ^[Yy]$ ]]; then
   BACKUP_NAME="@oldroot-$(date +%F-%H%M)"
   echo "Creating safety backup of current @ as $BACKUP_NAME"
   btrfs subvolume snapshot "$MNT/@" "$MNT/$BACKUP_NAME"
 else
   echo "Skipping backup of current @"
-fi
-
-# Backup the .snapshots directory from old root (@)
-ROOT="/tmp/btrfs/@"
-SNAPSHOT_BACKUP="/tmp/btrfs_snapshots_backup"
-
-if [[ -d "$ROOT/.snapshots" ]]; then
-    echo "Backing up .snapshots from $ROOT..."
-    cp -a "$ROOT/.snapshots" "$SNAPSHOT_BACKUP"
 fi
 
 # Verify snapshot exists
@@ -68,14 +59,13 @@ if [[ ! -d "$SNAP_PATH" ]]; then
   exit 1
 fi
 
-# Find the subvolume ID of the chosen snapshot
+# Get the subvolume ID of the chosen snapshot
 SNAP_ID=$(btrfs subvolume list "$MNT" | awk -v path="@snapshots/$SNAP_NUM/snapshot" '$0 ~ path {print $2}')
 echo "Snapshot ID: $SNAP_ID"
 
-# Point default to snapshot
+# Set snapshot as default subvolume temporarily so old root @ could be deleted
 echo "Setting default subvolume to snapshot $SNAP_ID"
 btrfs subvolume set-default "$SNAP_ID" "$MNT"
-
 
 # Delete subvolumes inside old root @ so it could be deleted
 SUBVOLS=(
@@ -91,35 +81,43 @@ for subvol in "${SUBVOLS[@]}"; do
     fi
 done
 
-# Delete old root subvolume '@'
-echo "Deleting old root subvolume '@'"
+# Delete old root subvolume @
+echo "Deleting old root subvolume @"
 btrfs subvolume delete "$MNT/@"
 
 # Recreate @ from the chosen snapshot
 echo "Recreating @ from snapshot $SNAP_NUM"
 btrfs subvolume snapshot "$SNAP_PATH" "$MNT/@"
 
-# Set default to the new '@'
+# Set default to the new @
 NEW_ID=$(btrfs subvolume list "$MNT" | awk '/ path @$/ {print $2}')
 echo "New '@' subvolume ID: $NEW_ID"
 btrfs subvolume set-default "$NEW_ID" "$MNT"
 
-# Restore the .snapshots directory into the new @
-if [[ -d "$SNAPSHOT_BACKUP" ]]; then
-    echo "Restoring .snapshots to new @ subvolume..."
-    cp -an "$SNAPSHOT_BACKUP" "$ROOT"
-    # (the -n prevents overwrite of existing files, adjust if you prefer -a for force overwrite)
-    # Clean up
-    rm -rf "$SNAPSHOT_BACKUP"
-fi
+# Restore GRUB snapshots submenu entries
+btrfs subvolume list -o / | grep '/.snapshots/[0-9]\+/snapshot$' | while read -r line; do
+    SNAPNUM=$(echo "$line" | grep -o '/.snapshots/[0-9]\+/snapshot$' | grep -o '[0-9]\+')
+    SNAPDIR="/.snapshots/$SNAPNUM"
+    if [[ ! -d "$SNAPDIR" ]]; then
+        echo "Relinking orphaned snapshot $SNAPNUM..."
+        mkdir -p "$SNAPDIR"
+        cat > "$SNAPDIR/info.xml" <<EOF
+<?xml version="1.0"?>
+<snapshot>
+  <type>single</type>
+  <num>$SNAPNUM</num>
+  <date>$(date -u +"%Y-%m-%d %H:%M:%S")</date>
+  <cleanup>false</cleanup>
+  <description>Relinked orphaned snapshot</description>
+  <user>root</user>
+</snapshot>
+EOF
+    fi
+done
 
 # Cleanup
 umount "$MNT"
 rmdir "$MNT"
-
-# Regenerate GRUB configuration
-# echo "Regenerating GRUB configuration"
-# grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "Restore complete. System reset to snapshot $SNAP_NUM. Takes effect on next reboot."
 echo "Preferable to regenerate GRUB config (with update-grub) on next reboot."
