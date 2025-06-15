@@ -1,4 +1,4 @@
-# Hyprland (uwsm-managed) auto-start
+# Hyprland (uwsm-managed) autostart
 export PATH="$HOME/.local/bin:$PATH"
 
 if uwsm check may-start; then
