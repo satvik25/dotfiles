@@ -19,8 +19,8 @@ else
 fi
 MAPPER_NAME="cryptroot"
 
-BTRFS_OPTS="noatime,ssd,compress=zstd,discard=async"
-SWAP_OPTS="noatime,ssd,compress=no,space_cache=v2"
+BTRFS_OPTS="noatime,compress=zstd,discard=async"
+SWAP_OPTS="noatime,compress=no"
 SUBVOLS=( @home @opt @srv @cache @log @spool @tmp )
 MPOINTS=( home opt srv var/cache var/log var/spool tmp )
 
