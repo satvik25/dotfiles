@@ -68,6 +68,7 @@ echo "Setting default subvolume to snapshot $SNAP_ID"
 btrfs subvolume set-default "$SNAP_ID" "$MNT"
 
 # Delete subvolumes inside old root @ so it could be deleted
+ROOT="/tmp/btrfs/@"
 SUBVOLS=(
   "$ROOT/var/lib/portables"
   "$ROOT/var/lib/machines"
