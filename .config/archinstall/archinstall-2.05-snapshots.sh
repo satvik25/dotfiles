@@ -25,7 +25,7 @@ EOF
 btrfs subvolume set-default "$(btrfs subvolume list / | awk '{if ($(NF) == "@") print $2}')" /
 
 # Enable GRUB snapshots menu and generate config
-sudo systemctl enable grub-btrfsd.service
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+systemctl enable grub-btrfsd.service
+grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -e "\033[32m[SUCCESS]\033[0m Added snapshot capability."
