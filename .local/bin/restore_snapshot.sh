@@ -67,6 +67,21 @@ echo "Snapshot ID: $SNAP_ID"
 echo "Setting default subvolume to snapshot $SNAP_ID"
 btrfs subvolume set-default "$SNAP_ID" "$MNT"
 
+# Delete subvolumes inside old root @ so it could be deleted
+ROOT="/tmp/btrfs/@"
+SUBVOLS=(
+  "$ROOT/var/lib/portables"
+  "$ROOT/var/lib/machines"
+)
+for subvol in "${SUBVOLS[@]}"; do
+    if btrfs subvolume show "$subvol" &>/dev/null; then
+        echo "Deleting subvolume: $subvol"
+        btrfs subvolume delete "$subvol"
+    else
+        echo "No subvolume found at: $subvol"
+    fi
+done
+
 # Delete old root subvolume '@'
 echo "Deleting old root subvolume '@'"
 btrfs subvolume delete "$MNT/@"
