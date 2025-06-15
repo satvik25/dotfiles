@@ -104,4 +104,4 @@ rmdir "$MNT"
 # grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "Restore complete. System reset to snapshot $SNAP_NUM. Takes effect on next reboot."
-echo "Regenerate GRUB config and reboot after booting up."
+echo "Preferable to regenerate GRUB config (with update-grub) on next reboot."
