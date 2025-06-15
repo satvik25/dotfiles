@@ -26,7 +26,6 @@ mount "/dev/mapper/${MAPPER_NAME}" /mnt
 for subvol in @ "${SUBVOLS[@]}" @swap @snapshots; do
   btrfs subvolume create "/mnt/${subvol}"
 done
-mkdir -p /mnt/.snapshots
 umount /mnt
 
 echo -e "\033[32m[SUCCESS]\033[0m Subvolumes created."
@@ -35,7 +34,7 @@ echo -e "\033[32m[SUCCESS]\033[0m Subvolumes created."
 mount -o "${BTRFS_OPTS},subvol=@" "/dev/mapper/${MAPPER_NAME}" /mnt
 
 # Create subvolume mountpoints
-for mp in "${MPOINTS[@]}" swap; do
+for mp in "${MPOINTS[@]}" swap .snapshots; do
   mkdir -p "/mnt/${mp}"
 done
 
