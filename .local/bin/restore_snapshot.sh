@@ -95,27 +95,6 @@ NEW_ID=$(btrfs subvolume list "$MNT" | awk '/ path @$/ {print $2}')
 echo "New '@' subvolume ID: $NEW_ID"
 btrfs subvolume set-default "$NEW_ID" "$MNT"
 
-# Restore GRUB snapshots submenu entries
-btrfs subvolume list -o / | grep '/.snapshots/[0-9]\+/snapshot$' | while read -r line; do
-    SNAPNUM=$(echo "$line" | grep -o '/.snapshots/[0-9]\+/snapshot$' | grep -o '[0-9]\+')
-    SNAPDIR="/.snapshots/$SNAPNUM"
-    if [[ ! -d "$SNAPDIR" ]]; then
-        echo "Relinking orphaned snapshot $SNAPNUM..."
-        mkdir -p "$SNAPDIR"
-        cat > "$SNAPDIR/info.xml" <<EOF
-<?xml version="1.0"?>
-<snapshot>
-  <type>single</type>
-  <num>$SNAPNUM</num>
-  <date>$(date -u +"%Y-%m-%d %H:%M:%S")</date>
-  <cleanup>false</cleanup>
-  <description>Relinked orphaned snapshot</description>
-  <user>root</user>
-</snapshot>
-EOF
-    fi
-done
-
 # Cleanup
 umount "$MNT"
 rmdir "$MNT"
