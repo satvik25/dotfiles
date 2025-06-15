@@ -16,15 +16,17 @@ MAPPER_NAME="cryptroot"
 
 BTRFS_OPTS="noatime,compress=zstd,discard=async"
 SWAP_OPTS="noatime,compress=no"
+SNAPSHOT_OPTS="noatime,compress=zstd"
 SUBVOLS=( @home @opt @srv @cache @log @spool @tmp )
 MPOINTS=( home opt srv var/cache var/log var/spool tmp )
 SWAP_SIZE=12g
 
 # Create subvolumes
 mount "/dev/mapper/${MAPPER_NAME}" /mnt
-for subvol in @ "${SUBVOLS[@]}" @swap; do
+for subvol in @ "${SUBVOLS[@]}" @swap @snapshots; do
   btrfs subvolume create "/mnt/${subvol}"
 done
+mkdir -p /mnt/.snapshots
 umount /mnt
 
 echo -e "\033[32m[SUCCESS]\033[0m Subvolumes created."
@@ -42,8 +44,9 @@ for i in "${!SUBVOLS[@]}"; do
   mount -o "${BTRFS_OPTS},subvol=${SUBVOLS[$i]}" "/dev/mapper/${MAPPER_NAME}" "/mnt/${MPOINTS[$i]}"
 done
 
-# Mount swap
+# Mount swap and snapshots
 mount -o "${SWAP_OPTS},subvol=@swap" "/dev/mapper/${MAPPER_NAME}" /mnt/swap
+mount -o "${SNAPSHOT_OPTS},subvol=@snapshots" "/dev/mapper/${MAPPER_NAME}" /mnt/.snapshots
 
 echo -e "\033[32m[SUCCESS]\033[0m Subvolumes mounted."
 
