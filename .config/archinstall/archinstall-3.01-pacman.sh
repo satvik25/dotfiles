@@ -61,6 +61,7 @@ install_aur_helper() {
 }
 
 # Install
+sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed "${OFFICIAL_PACKAGES[@]}"
 install_aur_helper
 yay -S --noconfirm --needed "${AUR_PACKAGES[@]}"
