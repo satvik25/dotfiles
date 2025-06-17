@@ -20,7 +20,9 @@ zswap.enabled=1 \\\
 loglevel=3 quiet"' \
 /etc/default/grub
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m GRUB config updated."
+set -x
 
 # Install GRUB
 grub-install \
@@ -33,4 +35,5 @@ grub-install \
 # Generate GRUB config
 grub-mkconfig -o /boot/grub/grub.cfg
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m GRUB installed."
