@@ -12,7 +12,7 @@ units=(
   p11-kit-server.socket
   wireplumber.service
   pipewire-pulse.socket
-  mpd.socket
+  # mpd.socket
 )
 
 for u in "${units[@]}"; do
