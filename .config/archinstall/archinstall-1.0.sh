@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Pre chroot
-# Run with curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.0.sh" | bash
+# Start with curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.0.sh" | bash
 
 curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.01-basics.sh" | bash
 curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.02-partition.sh" | bash
