@@ -29,7 +29,7 @@ fi
 # fi
 
 # User warning for Secure Boot
-read -r -p "Warning: Enroll TPM if Secure Boot is enabled. Continue? (Y/n) " answer
+read -r -p "Warning: Enroll TPM if Secure Boot is enabled. Continue? (Y/n) " answer < /dev/tty
 answer=${answer:-Y}
 
 case "$answer" in
