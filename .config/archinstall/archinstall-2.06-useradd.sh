@@ -32,8 +32,8 @@ unset P1 P2
 set -x
 
 # Add user(s) to sudo
-if grep -q "^# %wheel ALL=(ALL:ALL) ALL" "$/etc/sudoers"; then
-  sed -i 's/^# \(%wheel ALL=(ALL:ALL) ALL\)/\1/' "$/etc/sudoers"
+if grep -q "^# %wheel ALL=(ALL:ALL) ALL" /etc/sudoers; then
+  sed -i 's/^# \(%wheel ALL=(ALL:ALL) ALL\)/\1/' /etc/sudoers
 fi
 
 set +x
