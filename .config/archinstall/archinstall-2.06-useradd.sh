@@ -6,12 +6,11 @@ set -x
 # Add user(s)
 
 # Set parameters
-GROUP="wheel"
 SHELL_PATH="/bin/zsh"
 USERNAME="7vik"
 
 # Create user(s)
-useradd -m -G "$GROUP" -s "$SHELL_PATH" "$USERNAME"
+useradd -m -G wheel -s "$SHELL_PATH" "$USERNAME"
 
 # Set user(s) password
 set +x
