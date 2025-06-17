@@ -50,4 +50,4 @@ sed -i 's|^require_dnssec\s*=\s*false|require_dnssec = true|' "$DNSC"
 set +x
 echo -e "\033[32m[SUCCESS]\033[0m Network configured."
 echo -e "Symlink after booting up with \033[31mln -sf /run/dnscrypt-proxy/resolv.conf /etc/resolv.conf\033[0m"
-echo -e "Boot up and run the \033[31mnext batch\033[0m of scripts."
+echo -e "Boot up and run the \033[31mnext [3.0] batch\033[0m of scripts."
