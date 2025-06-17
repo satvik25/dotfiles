@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
+set -x
 
 # Partition disk
 
@@ -18,4 +20,5 @@ sgdisk -n2:0:0 -t2:8304 -c2:ROOT "$DISK"
 # Inform the kernel of partition table changes
 partprobe "$DISK"
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m $DISK partitioned."
