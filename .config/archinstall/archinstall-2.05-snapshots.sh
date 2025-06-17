@@ -6,7 +6,7 @@ set -x
 # Set up snapshots
 
 # Create snapper root config
-cat <<EOF > /etc/snapper/configs/root
+sudo tee /etc/snapper/configs/root > /dev/null <<EOF
 SUBVOLUME="/"
 ALLOW_USERS="root"
 TIMELINE_CREATE="no"
@@ -22,11 +22,11 @@ NUMBER_LIMIT_IMPORTANT="10"
 EOF
 
 # Set @ as default subvolume
-btrfs subvolume set-default "$(btrfs subvolume list / | awk '{if ($(NF) == "@") print $2}')" /
+sudo btrfs subvolume set-default "$(btrfs subvolume list / | awk '{if ($(NF) == "@") print $2}')" /
 
 # Enable GRUB snapshots menu and generate config
-systemctl enable grub-btrfsd.service
-grub-mkconfig -o /boot/grub/grub.cfg
+sudo systemctl enable grub-btrfsd.service
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 set +x
 echo -e "\033[32m[SUCCESS]\033[0m Added snapshot capability."
