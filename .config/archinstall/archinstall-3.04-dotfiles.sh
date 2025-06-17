@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage
-# Set remote with dots config --global push.autoSetupRemote true.
-# Update tracked files with dots add -u or Add new files to track with dots add <xyz>.
-# dots commit -m "VERSION_NAME"
-# dots push
-# Update local dotfiles with dots pull --rebase origin master and then dots push if newer changes made to repo from another machine.
-
 # SSH authentication
 # ssh-keygen -t ed25519 -C "your-email@example.com"
 # eval "$(ssh-agent -s)"
@@ -15,6 +8,13 @@ set -euo pipefail
 # ssh-add -l
 # Paste output of cat ~/.ssh/id_ed25519.pub to GitHub ▸ Settings ▸ SSH and GPG keys ▸ New SSH key → paste → Add key.
 # ssh -T git@github.com
+
+# Usage
+# Set remote with dots config --global push.autoSetupRemote true.
+# Update tracked files with dots add -u or Add new files to track with dots add <xyz>.
+# dots commit -m "VERSION_NAME"
+# dots push
+# Update local dotfiles with dots pull --rebase origin master and then dots push if newer changes made to repo from another machine.
 
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
