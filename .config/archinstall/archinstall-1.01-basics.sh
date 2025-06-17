@@ -7,25 +7,24 @@ setfont ter-120n
 
 echo "Font set."
 
-
-
-
-# Use ls to list backlight device names
+# List backlight device
 BACKLIGHT_DIR="/sys/class/backlight/$(ls /sys/class/backlight | head -n1)"
 
+# If no backlight device found
 if [[ -z "$BACKLIGHT_DIR" || ! -e "$BACKLIGHT_DIR/max_brightness" ]]; then
-    echo "❌ Failed to find usable backlight device."
+    echo "Failed to set brightness."
     exit 1
 fi
 
+# Find max brightness
 MAX_BRIGHTNESS=$(cat "$BACKLIGHT_DIR/max_brightness")
 
-# Try setting brightness to max
+# Set brightness to max
 if echo "$MAX_BRIGHTNESS" | tee "$BACKLIGHT_DIR/brightness" > /dev/null; then
-    echo "✅ Brightness set to 100% using device: $(basename "$BACKLIGHT_DIR")"
+    echo "Brightness set to 100%."
 else
-    echo "❌ Failed to set brightness. Try running this script as root."
+    echo "Failed to set brightness."
     exit 1
 fi
 
-echo "Brightness set to 100%."
+echo -e "\033[32m[SUCCESS]\033[0m Basics configured."
