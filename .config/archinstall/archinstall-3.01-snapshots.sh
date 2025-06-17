@@ -14,6 +14,7 @@ snapper -c root create-config /
 umount /.snapshots 2>/dev/null || true
 rm -rf /.snapshots
 rm -f /etc/snapper/configs/root
+systemctl disable --now snapper-timeline.timer
 ## Create own snapper config
 mkdir -p /.snapshots
 mount /.snapshots
