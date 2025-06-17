@@ -8,7 +8,7 @@ OFFICIAL_PACKAGES=(
  	# Video (Drivers)
   	intel-media-driver libva-intel-driver mesa vulkan-intel \
    	# Audio
- 	pipewire \
+ 	pipewire wireplumber pipewire-pulse \
   	# Security
    	ufw nftables \
 	#DE
@@ -27,7 +27,7 @@ OFFICIAL_PACKAGES=(
      	# Development
  	base-devel git openssh
  	# Extras
- 	# gst-libav wireplumber pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire iio-sensor-proxy mpd
+ 	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
 )
 
 # AUR packages
