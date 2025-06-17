@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Install packages and set up system
 
-echo -e "\033[31mDevice-specific packages:\033[0m intel-ucode"
+echo -e "\033[33mDevice-specific packages:\033[0m intel-ucode"
 
 # List packages
 PACKAGES=(
