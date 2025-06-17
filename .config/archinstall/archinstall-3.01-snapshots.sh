@@ -6,6 +6,7 @@ set -x
 # Set up snapshots
 
 # Create snapper root config
+sudo snapper -c root create-config /
 sudo tee /etc/snapper/configs/root > /dev/null <<EOF
 SUBVOLUME="/"
 ALLOW_USERS="root"
