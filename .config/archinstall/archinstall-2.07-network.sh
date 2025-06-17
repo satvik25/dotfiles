@@ -3,7 +3,8 @@ set -euo pipefail
 export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
-# Configure networking 
+# Configure networking
+# Note: Common troubleshooting tip: sudo ip route add default via 192.168.1.1 dev wlan0
 
 # Enable network services
 systemctl enable iwd NetworkManager dnscrypt-proxy
