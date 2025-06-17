@@ -14,3 +14,5 @@ curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/a
 curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.04-format.sh" | bash
 curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.05-mount.sh" | bash
 curl -fsSL "https://raw.githubusercontent.com/satvik25/dotfiles/master/.config/archinstall/archinstall-1.06-install.sh" | bash
+
+echo -e "Chroot manually with \033[31march-chroot /mnt.\033[0m"
