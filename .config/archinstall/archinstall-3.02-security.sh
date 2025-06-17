@@ -6,25 +6,25 @@ set -x
 # Configure security
 
 # Enable security services
-sudo systemctl enable --now apparmor auditd nftables ufw
+systemctl enable --now apparmor auditd nftables ufw
 
 # Update GRUB
-sudo sed -z -E -i \
+sed -z -E -i \
   's|(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*)(")|\1 \\\napparmor=1 security=apparmor\2|' \
   /etc/default/grub
 
-sudo bash -c 'printf "\nlsm=landlock,lockdown,yama,integrity,apparmor,bpf\n" >> /etc/default/grub'
+bash -c 'printf "\nlsm=landlock,lockdown,yama,integrity,apparmor,bpf\n" >> /etc/default/grub'
 
 ## Generate GRUB config
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # Firewall
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw enable
+ufw default deny incoming
+ufw default allow outgoing
+ufw enable
 
 ## Create firewall rules
-sudo tee /usr/local/bin/update-ufw-blocklist.sh > /dev/null << 'EOF'
+tee /usr/local/bin/update-ufw-blocklist.sh > /dev/null << 'EOF'
 #!/bin/bash
 
 # FireHOL Level 1 blocklist
@@ -52,7 +52,7 @@ done
 EOF
 
 ## Create firewall service unit
-sudo tee /etc/systemd/system/ufw-blocklist.service > /dev/null << 'EOF'
+tee /etc/systemd/system/ufw-blocklist.service > /dev/null << 'EOF'
 [Unit]
 Description=Update UFW Blocklist
 
@@ -62,7 +62,7 @@ ExecStart=/usr/local/bin/update-ufw-blocklist.sh
 EOF
 
 ## Create firewall timer
-sudo tee /etc/systemd/system/ufw-blocklist.timer > /dev/null << 'EOF'
+tee /etc/systemd/system/ufw-blocklist.timer > /dev/null << 'EOF'
 [Unit]
 Description=Run UFW Blocklist Updater Daily
 
@@ -76,10 +76,10 @@ WantedBy=timers.target
 EOF
 
 ## Enable firewall rules and reload
-sudo chmod +x /usr/local/bin/update-ufw-blocklist.sh
-sudo systemctl daemon-reexec
-sudo systemctl daemon-reload
-sudo systemctl enable --now ufw-blocklist.timer
+chmod +x /usr/local/bin/update-ufw-blocklist.sh
+systemctl daemon-reexec
+systemctl daemon-reload
+systemctl enable --now ufw-blocklist.timer
 
 set +x
 echo -e "\033[32m[SUCCESS]\033[0m Security config complete."
