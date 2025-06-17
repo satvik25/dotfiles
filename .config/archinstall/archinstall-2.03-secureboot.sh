@@ -18,4 +18,5 @@ sbctl sign -s /efi/EFI/GRUB/grubx64.efi
 mkdir -p /efi/EFI/BOOT
 cp /efi/EFI/GRUB/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m Secure Boot set."
