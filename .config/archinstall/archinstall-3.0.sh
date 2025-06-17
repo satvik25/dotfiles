@@ -23,7 +23,7 @@ case "$answer" in
         echo -e "\033[32m[CONGRATULATIONS!]\033[0m \033[34mArch set up.\033[0m"
         ;;
     *)
-        echo "Choose A or B."
+        echo -e "\033[31m[Incorrect Input]\033[0m Choose either A or B."
         exit 1
         ;;
 esac
