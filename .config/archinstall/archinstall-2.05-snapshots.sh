@@ -4,7 +4,6 @@ export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
 # Set up snapshots
-# Common troubleshooting tip: Config might not get generated.
 
 # Set up snapper root config
 ## Delete own .snapshots directory
