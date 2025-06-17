@@ -42,6 +42,7 @@ case "$answer" in
 esac
 
 # Enroll TPM key
+set +x
 if [ "$ENROLL_TPM" = true ]; then
     read -r -s -p "Enter current LUKS passphrase for ${PART_ROOT}: " L1 < /dev/tty; echo
     KEYFILE=$(mktemp)
@@ -56,6 +57,7 @@ if [ "$ENROLL_TPM" = true ]; then
     unset "$L1"
     shred --remove "$KEYFILE"
 fi
+set -x
 
 # Create crypttab initramfs
 mkdir -p "$(dirname /etc/crypttab.initramfs)"
@@ -76,4 +78,5 @@ fi
 # Generate initramfs
 mkinitcpio -P
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m TPM set."
