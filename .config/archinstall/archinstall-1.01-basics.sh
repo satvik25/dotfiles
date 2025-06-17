@@ -7,19 +7,26 @@ setfont ter-120n
 
 echo "Font set."
 
-# Find the backlight device
-BACKLIGHT_DIR=$(find /sys/class/backlight/ -maxdepth 1 -type d | grep -v '/sys/class/backlight/$' | head -n1)
+#!/usr/bin/env bash
 
-# If no device is found
+# Find the first backlight device
+BACKLIGHT_DIR=$(find /sys/class/backlight/ -mindepth 1 -maxdepth 1 -type d | head -n1)
+
+# Check if we found any backlight device
 if [[ -z "$BACKLIGHT_DIR" ]]; then
-    echo "Failed to set brightness."
+    echo "❌ Failed to find backlight device."
     exit 1
 fi
 
-# Get the max brightness
+# Get max brightness value
 MAX_BRIGHTNESS=$(cat "$BACKLIGHT_DIR/max_brightness")
 
-# Set brightness to max
-echo "$MAX_BRIGHTNESS" | sudo tee "$BACKLIGHT_DIR/brightness" > /dev/null
+# Try setting brightness to max
+if echo "$MAX_BRIGHTNESS" | tee "$BACKLIGHT_DIR/brightness" > /dev/null; then
+    echo "✅ Brightness set to 100% using device: $(basename "$BACKLIGHT_DIR")"
+else
+    echo "❌ Failed to set brightness. Need root?"
+    exit 1
+fi
 
 echo "Brightness set to 100%."
