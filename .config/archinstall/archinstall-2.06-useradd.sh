@@ -7,7 +7,7 @@ set -x
 
 # Set parameters
 GROUP="wheel"
-SHELL_PATH="/bin/bash"
+SHELL_PATH="/bin/zsh"
 USERNAME="7vik"
 
 # Create user(s)
