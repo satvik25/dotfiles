@@ -22,6 +22,7 @@ echo "FONT=ter-120n" > /etc/vconsole.conf
 echo "arch" > /etc/hostname
 
 # Root Password
+set +x
 while true; do
     read -s -p "Enter new root password: " P1 < /dev/tty; echo
     read -s -p "Confirm root password: " P2 < /dev/tty; echo
@@ -34,6 +35,7 @@ while true; do
 done
 
 passwd root < <(printf "%s\n%s\n" "$P1" "$P1")
+set -x
 
 # 32-bit Repos
 sed -i '/^\s*#\s*\[multilib\]/,/^$/{s/^\s*#\s*//}' /etc/pacman.conf
@@ -44,4 +46,5 @@ sed -i '/^#\s*WIRELESS_REGDOM="IN"/ s/^#\s*//' /etc/conf.d/wireless-regdom
 # Regenerate initramfs
 mkinitcpio -P
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m System set up."
