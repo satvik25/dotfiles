@@ -4,9 +4,21 @@ export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
 set -x
 
 # Set up snapshots
+# Common troubleshooting tip: Config might not get generated.
 
-# Create snapper root config
+# Set up snapper root config
+## Delete own .snapshots directory
+sudo umount /.snapshots 2>/dev/null || true
+sudo rm -rf /.snapshots
+## Create and remove automatic snapper root config
 sudo snapper -c root create-config /
+sudo umount /.snapshots 2>/dev/null || true
+sudo rm -rf /.snapshots
+sudo rm -f /etc/snapper/configs/root
+## Create own snapper config
+sudo mkdir -p /.snapshots
+sudo mount /.snapshots
+sudo mkdir -p /etc/snapper/configs
 sudo tee /etc/snapper/configs/root > /dev/null <<EOF
 SUBVOLUME="/"
 ALLOW_USERS="root"
