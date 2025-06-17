@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
-set -x
 
 # Mount filesystem only
 
@@ -30,6 +28,9 @@ read -r -s -p "Enter LUKS passphrase: " L1 < /dev/tty; echo
 printf '%s' "$L1" | cryptsetup open --key-file - "$PART_ROOT" "$MAPPER_NAME"
 unset L1
 
+export PS4='+ ${BASH_SOURCE:-$0}:${LINENO}: '
+set -x
+
 # Mount root
 mount -o "${BTRFS_OPTS},subvol=@" "/dev/mapper/${MAPPER_NAME}" /mnt
 
@@ -48,4 +49,5 @@ mount "${PART_BOOT}" /mnt/efi
 # Activate swapfile
 swapon /mnt/swap/swapfile
 
+set +x
 echo -e "\033[32m[SUCCESS]\033[0m Filesystem mounted. Chroot manually with \033[31march-chroot /mnt.\033[0m"
