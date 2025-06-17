@@ -5,8 +5,8 @@ set -euo pipefail
 
 # Prompt for profile / dotfiles
 echo -e "\033[35m[Choose]\033[0m"
-echo "[A] Configure system profile"
-echo "[B] Restore dotfiles"
+echo -e "\033[35m[A]\033[0m Configure system profile"
+echo -e "\033[35m[B]\033[0m Restore dotfiles"
 read -r -p "A or B?" answer < /dev/tty
 case "$answer" in
     [Aa])
