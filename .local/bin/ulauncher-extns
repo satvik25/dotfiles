@@ -7,6 +7,7 @@ mkdir -p "$EXT_DIR"
 # List of extensions
 EXTENSIONS=(
   "https://github.com/melianmiko/ulauncher-bluetoothd"
+  "https://github.com/melianmiko/ulauncher-nmcli"
 )
 
 # Clone extensions locally
