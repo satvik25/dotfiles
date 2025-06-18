@@ -35,7 +35,7 @@ INFO_COLOR=$(printf "\033[38;2;158;189;158m")    		# Green
 RESET=$(printf "\033[0m")
 
 ## Color persisent text
-PROMPT="  %{$PROMPT_CHAR_COLOR%}${PROMPT_SYMBOL} %{$RESET%}"
+PROMPT="  %{$PROMPT_CHAR_COLOR%}${PROMPT_SYMBOL}  %{$RESET%}"
 RPROMPT="%{$HOST_COLOR%}%n %{$RESET%}%{$DIR_COLOR%}%~ %{$RESET%}"
 
 ## Colored auto-complete
