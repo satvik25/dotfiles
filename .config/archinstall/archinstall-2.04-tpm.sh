@@ -65,7 +65,7 @@ touch /etc/crypttab.initramfs
 echo "cryptroot ${PART_ROOT} - tpm2-device=auto" >> /etc/crypttab.initramfs
 
 # Define mkinitcpio hooks
-HOOKS_LINE='HOOKS=(systemd autodetect microcode modconf kms block keyboard sd-vconsole sd-encrypt resume filesystems fsck)'
+HOOKS_LINE='HOOKS=(systemd autodetect microcode modconf kms block plymouth keyboard sd-vconsole sd-encrypt resume filesystems fsck)'
 
 if grep -q '^HOOKS=' /etc/mkinitcpio.conf; then
     sed -i "/^HOOKS=/c\\${HOOKS_LINE}" /etc/mkinitcpio.conf
