@@ -47,7 +47,7 @@ dots config --local status.showUntrackedFiles no
 
 # Set author identity and branch
 git config --global user.email satvikchaudhary@gmail.com
-git congfig --global user.name 7vik
+git config --global user.name 7vik
 dots config --global push.autoSetupRemote true
 
 set +x
