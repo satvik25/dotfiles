@@ -299,7 +299,7 @@ label:focus {
 /*  Use this padding value when there are icons in tray and ibus is running	*/
 /*	padding: 0 0 0 8px;			*/
 /*  Use this padding value when there are icons in tray and ibus is not running	*/
-/*	padding: 0 5px 0 5px;		*/
+	padding: 0 5px 0 5px;		
 /*	margin: 0 2px 0 5px;		*/
 /*  min-width: 16px;	*/
 
