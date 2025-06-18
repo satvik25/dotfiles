@@ -73,7 +73,7 @@ case "${answer_2:-5}" in
         ;;
 esac
 
-if echo "$VALUE" | sudo tee "$BACKLIGHT_DIR/brightness" > /dev/null; then
+if echo "$VALUE" | tee "$BACKLIGHT_DIR/brightness" > /dev/null; then
     echo "Brightness set to $(( VALUE * 100 / MAX_BRIGHTNESS ))%."
 else
     echo "Failed to set brightness."
