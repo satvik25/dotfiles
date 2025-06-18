@@ -22,10 +22,6 @@ set -x
 # Set parameters
 GIT_USERNAME="satvik25"
 
-# Set author identity
-git config --global user.email satvikchaudhary@gmail.com
-git congfig --global user.name 7vik
-
 # Check for pre-existing dotfiles directory
 if [[ -d "$HOME/.dotfiles" ]]; then
   read -rp "$HOME/.dotfiles already exists. Delete it? [y/N] " answer < /dev/tty
@@ -48,6 +44,11 @@ dots checkout --force
 
 # Curb noise
 dots config --local status.showUntrackedFiles no
+
+# Set author identity and branch
+git config --global user.email satvikchaudhary@gmail.com
+git congfig --global user.name 7vik
+dots config --global push.autoSetupRemote true
 
 set +x
 echo -e "\033[32m[SUCCESS]\033[0m Dotfiles restored."
