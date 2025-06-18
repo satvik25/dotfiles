@@ -143,11 +143,11 @@
                     "weeks-pos"     : "right",
                     "on-scroll"     : 1,
                     "format": {
-                              "months":     "<span color='#ffb7c5'><b>{}</b></span>",
+                              "months":     "<span color='#9ebd9e'><b>{}</b></span>",
                               "days":       "<span color='#faf8f6'><b>{}</b></span>",
-                              "weeks":      "<span color='#a5cbc6'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#a5cbc6'><b>{}</b></span>",
-                              "today":      "<span color='#ffb7c5'><b><u>{}</u></b></span>"
+                              "weeks":      "<span color='#64727d'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#9ebd9e'><b>{}</b></span>",
+                              "today":      "<span color='#9ebd9e'><b><u>{}</u></b></span>"
                               }
                     },
         "actions":  {
