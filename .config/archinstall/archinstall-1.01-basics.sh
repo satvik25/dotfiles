@@ -12,19 +12,19 @@ read -r -p "Choose font size." answer_1 < /dev/tty
 case "${answer_1:-2}" in
     1)
         setfont ter-112n
-        echo "S font size set."
+        echo "Font size S set."
         ;;
     2)
         setfont ter-120n
-        echo "M font size set."
+        echo "Font size M set."
         ;;
     3)
         setfont ter-128n
-        echo "L font size set."
+        echo "Font size L set."
         ;;
     4)
         setfont ter-136n
-        echo "XL font size set."
+        echo "Font size XL set."
         ;;
     *)
         echo -e "\033[31m[Incorrect Input]\033[0m Choose 1, 2, 3 or 4."
