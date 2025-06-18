@@ -37,7 +37,7 @@ BACKLIGHT_DIR="/sys/class/backlight/$(ls /sys/class/backlight | head -n1)"
 
 ## If no backlight device found
 if [[ -z "$BACKLIGHT_DIR" || ! -e "$BACKLIGHT_DIR/max_brightness" ]]; then
-    echo "Failed to set brightness."
+    echo -e "\033[31m[FAILED]\033[0m to set brightness."
     exit 1
 fi
 
@@ -76,7 +76,7 @@ esac
 if echo "$VALUE" | tee "$BACKLIGHT_DIR/brightness" > /dev/null; then
     echo "Brightness set to $(( VALUE * 100 / MAX_BRIGHTNESS ))%."
 else
-    echo "\033[31m[FAILED]\033[0m to set brightness."
+    echo -e "\033[31m[FAILED]\033[0m to set brightness."
 fi
 
 echo -e "\033[32m[SUCCESS]\033[0m Basics configured."
