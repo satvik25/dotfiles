@@ -50,7 +50,7 @@ echo -e "\033[35m[1]\033[0m 0%"
 echo -e "\033[35m[2]\033[0m 25%"
 echo -e "\033[35m[3]\033[0m 50%"
 echo -e "\033[35m[4]\033[0m 75%"
-echo -e "\033[35m[4]\033[0m 100%"
+echo -e "\033[35m[5]\033[0m 100%"
 read -r -p "Choose brightness level." answer_2 < /dev/tty
 case "${answer_2:-5}" in
     1)
