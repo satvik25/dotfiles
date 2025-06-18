@@ -1,21 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Enable user units
-
+# Set parameters
 units=(
+  bluetooth.service
+)
+
+user_units=(
   hyprpolkitagent.service
   hypridle.service
   hyprsunset.service
   waybar.service
   pipewire.socket
-  p11-kit-server.socket
   wireplumber.service
   pipewire-pulse.socket
+  # p11-kit-server.socket
   # mpd.socket
 )
 
+# Enable units
 for u in "${units[@]}"; do
+  if systemctl list-unit-files | grep -q "^$u"; then
+    echo "Enabling $u ..."
+    sudo systemctl enable --now "$u"
+  else
+    echo "Warning: $u not found; skipping." >&2
+  fi
+done
+
+for u in "${user_units[@]}"; do
   if systemctl --user list-unit-files | grep -q "^$u"; then
     echo "Enabling $u ..."
     systemctl --user enable --now "$u"
