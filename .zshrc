@@ -15,6 +15,8 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
 
+alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
+
 chrome() {
 	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
 }
