@@ -43,7 +43,7 @@ AUR_PACKAGES=(
   	# Browser
    	google-chrome \
 	# Utilities
- 	pfetch
+ 	pfetch arch-update
  	# Extras
  	# preload
 )
