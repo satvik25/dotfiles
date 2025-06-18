@@ -12,7 +12,7 @@ PACKAGES=(
   # Boot & firmware
   grub efibootmgr sbctl
   # Filesystem utilities
-  btrfs-progs util-linux
+  util-linux btrfs-progs plymouth
   # Snapshots & monitoring
   snapper grub-btrfs inotify-tools
   # Shell
