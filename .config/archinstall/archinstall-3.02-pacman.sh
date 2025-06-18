@@ -17,7 +17,6 @@ OFFICIAL_PACKAGES=(
  	xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
         wl-clipboard copyq \
 	udiskie \
- 	plymouth \
 	# Utilities
  	kitty mc 7zip \
    	# Fonts
