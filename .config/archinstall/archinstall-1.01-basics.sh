@@ -76,7 +76,7 @@ esac
 if echo "$VALUE" | tee "$BACKLIGHT_DIR/brightness" > /dev/null; then
     echo "Brightness set to $(( VALUE * 100 / MAX_BRIGHTNESS ))%."
 else
-    echo "Failed to set brightness."
+    echo "\033[31m[FAILED]\033[0m to set brightness."
 fi
 
 echo -e "\033[32m[SUCCESS]\033[0m Basics configured."
