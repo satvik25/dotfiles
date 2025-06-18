@@ -12,6 +12,9 @@ offset_val=$(btrfs inspect-internal map-swapfile -r /swap/swapfile)
 
 # Update GRUB options
 sed -i 's/^#\?GRUB_ENABLE_CRYPTODISK=.*/GRUB_ENABLE_CRYPTODISK=y/' /etc/default/grub
+## Cosmetic options
+sed -i 's/^#\?GRUB_TIMEOUT=.*/GRUB_TIMEOUT=3/' /etc/default/grub
+sed -i 's/^#\?GRUB_TIMEOUT_STYLE=.*/GRUB_TIMEOUT_STYLE=hidden/' /etc/default/grub
 
 sed -i '/^#\?GRUB_CMDLINE_LINUX_DEFAULT=/c\
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID='"$root_uuid"':cryptroot:allow-discards root=/dev/mapper/cryptroot \\\
