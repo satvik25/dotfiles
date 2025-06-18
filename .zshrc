@@ -8,6 +8,16 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Keybindings
+bindkey -e
+
+bindkey '^[[1;5D' backward-word   	# Ctrl + ←
+bindkey '^[[1;5C' forward-word    	# Ctrl + →
+bindkey '^[[H' beginning-of-line  	# Fn + ←
+bindkey '^[[F' end-of-line			# Fn + →
+bindkey '^H' backward-kill-word		# Ctrl + Backspace
+
+# Aliases
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots-pull='dots pull --rebase origin master'
 
@@ -17,6 +27,7 @@ alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
 
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
 
+# Functions
 chrome() {
 	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
 }
@@ -32,3 +43,4 @@ ytm() {
     --ozone-platform=wayland \
     >/dev/null 2>&1 &
 }
+
