@@ -22,6 +22,10 @@ set -x
 # Set parameters
 GIT_USERNAME="satvik25"
 
+# Set author identity
+git config --global user.email satvikchaudhary@gmail.com
+git congfig --global user.name 7vik
+
 # Check for pre-existing dotfiles directory
 if [[ -d "$HOME/.dotfiles" ]]; then
   read -rp "$HOME/.dotfiles already exists. Delete it? [y/N] " answer < /dev/tty
