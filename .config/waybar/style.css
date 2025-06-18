@@ -296,9 +296,12 @@ label:focus {
 /*	background-color: #738678;	*/
 /*  color: #740864;		*/
 /*	color: #000000;		*/
-/*  padding: 0 5px;		*/
-/*  margin: 0 5px;		*/
-/*    min-width: 16px;	*/
+/*  Use this padding value when there are icons in tray and ibus is running	*/
+/*	padding: 0 0 0 8px;			*/
+/*  Use this padding value when there are icons in tray and ibus is not running	*/
+/*	padding: 0 5px 0 5px;		*/
+/*	margin: 0 2px 0 5px;		*/
+/*  min-width: 16px;	*/
 
     color: #9ebd9e;
 }
@@ -489,9 +492,12 @@ tooltip * {
 	margin-right: 8px;
 }
 
+/* Use when custom/ibus is active, iow, ibus-daemon is running */
+/*
 #idle_inhibitor {
   	margin: 8px -5px;
 }
+*/
 
 /*
 #custom-ibus {

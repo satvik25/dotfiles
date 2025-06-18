@@ -28,12 +28,12 @@
         "network",
         "pulseaudio",
 	//  "power-profiles-daemon",
-/*       "cpu",		*/
-/*      "memory",	*/
-/*      "temperature",		*/
+	//  "cpu",
+	//  "memory",
+	//  "temperature",
 	//	"keyboard-state",
         "battery",
-        // "battery#bat2",
+    //	"battery#bat2",
         "clock",
 	    "custom/power"
     ],
