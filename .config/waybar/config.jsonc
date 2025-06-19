@@ -206,7 +206,8 @@
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": {
-        "charging": ["", "", "", "", ""],
+        // "charging": ["", "", "", "", ""],
+        "charging": [""],
     	"discharging": ["", "", "", "", ""],
     	"plugged": [""],
     	"full": [""]

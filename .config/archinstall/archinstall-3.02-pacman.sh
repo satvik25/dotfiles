@@ -13,9 +13,9 @@ OFFICIAL_PACKAGES=(
    	ufw nftables \
 	#DE
 	hyprland hyprpolkitagent hypridle hyprlock hyprsunset \
-	uwsm qt5-wayland qt6-wayland waybar swww swaync \
+	uwsm qt5-wayland qt6-wayland waybar swww swaync sddm \
  	xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
-        wl-clipboard copyq \
+    wl-clipboard copyq \
 	udiskie \
 	# Utilities
  	kitty mc 7zip \

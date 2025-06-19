@@ -8,6 +8,7 @@ units=(
 
 user_units=(
   hyprpolkitagent.service
+  sddm.service
   hypridle.service
   hyprsunset.service
   waybar.service

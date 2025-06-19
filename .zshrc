@@ -101,6 +101,7 @@ alias edit-waybar='micro ~/.config/waybar/config.jsonc'
 alias edit-waybar-style='micro ~/.config/waybar/style.css'
 alias edit-kitty='micro ~/.config/kitty/kitty.conf'
 alias edit-zsh='micro ~/.zshrc'
+alias edit-zprof='micro ~/.zprofile'
 
 alias rs-waybar='systemctl --user restart waybar'
 
