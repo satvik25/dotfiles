@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import "Components"
+// import QtGraphicalEffects 1.15
 
 Item {
   id: root
@@ -29,6 +30,12 @@ Item {
     mipmap: true
     clip: true
   }
+  // GaussianBlur {
+	// anchors.fill: parent
+	// source: bgImage
+	// radius: 20      // Range: 0-50
+   	// samples: 16     // more samples = smoother but slower
+  // }
   Item {
     id: mainPanel
     z: 3
