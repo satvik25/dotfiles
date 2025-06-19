@@ -6,8 +6,8 @@ mkdir -p "$EXT_DIR"
 
 # List of extensions
 EXTENSIONS=(
-  "https://github.com/melianmiko/ulauncher-bluetoothd"
   "https://github.com/melianmiko/ulauncher-nmcli"
+  "https://github.com/melianmiko/ulauncher-bluetoothd"
   "https://github.com/iboyperson/ulauncher-system"
   "https://github.com/sergius02/ulauncher-colorconverter"
 )
