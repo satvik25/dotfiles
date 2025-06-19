@@ -13,6 +13,13 @@ compinit
 [[ $- != *i* ]] && return
 
 
+# Miscellanous customisations
+## Vertical space at the top
+precmd() {
+	echo	
+}
+
+
 # Colors
 autoload -U colors && colors
 
@@ -69,11 +76,6 @@ export LESS_TERMCAP_us=$'\e[4m\e[38;2;207;207;196m'     # cfcfc4 for underlined 
 export LESS_TERMCAP_me=$'\e[0m'  # end bold
 export LESS_TERMCAP_ue=$'\e[0m'  # end underline
 export LESS_TERMCAP_se=$'\e[0m'  # end standout (not used, but safe)
-
-
-# Miscellanous customisations
-## Vertical space at the top
-echo
 
 
 # Keybindings
