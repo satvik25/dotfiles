@@ -9,15 +9,17 @@ TextField {
   placeholderText: "pass  󰟵"
   palette.placeholderText: "#afa8a6"
   echoMode: TextInput.Password
-  // passwordCharacter: "•"
+  passwordCharacter: ""
   passwordMaskDelay: config.PasswordShowLastLetter
   selectionColor: config.textDefault
   renderType: Text.NativeRendering
   font.family: config.Font
   font.pixelSize: 16
   font.bold: false
-  //verticalAlignment: TextInput.AlignVCenter
-  bottomPadding: 8
+  font.weight: Font.Thin
+  font.letterSpacing: 7
+  verticalAlignment: TextInput.AlignVCenter
+  // bottomPadding: 6
   horizontalAlignment: TextInput.AlignHCenter
   background: Rectangle {
     id: passFieldBackground
