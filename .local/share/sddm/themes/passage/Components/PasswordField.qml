@@ -17,7 +17,7 @@ TextField {
   font.pixelSize: 16
   font.bold: false
   font.weight: Font.Thin
-  font.letterSpacing: 7
+  // font.letterSpacing: 7
   verticalAlignment: TextInput.AlignVCenter
   // bottomPadding: 6
   horizontalAlignment: TextInput.AlignHCenter

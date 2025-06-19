@@ -23,7 +23,8 @@ Item {
     opacity: config.opacityPanel
   }
   Column {
-    spacing: 8
+    spacing: 12
+    bottomPadding: 12
     anchors {
       bottom: parent.bottom
       left: parent.left
@@ -45,6 +46,7 @@ Item {
       bottom: parent.bottom
       right: parent.right
     }
+    bottomPadding: 12
     SessionPanel {
       id: sessionPanel
     }
@@ -52,7 +54,7 @@ Item {
   }
   Column {
     id: column
-    spacing: 8
+    spacing: 16
     z: 5
     width: inputWidth
     anchors {
