@@ -2,10 +2,10 @@
     font-family: "Quicksand", sans-serif;
 }
 
-@define-color cc-bg rgba(46, 46, 46, 0.7);
+@define-color cc-bg rgba(46, 46, 46, 1);
 /* @define-color noti-border-color rgba(255, 255, 255, 0.15); */
 @define-color noti-border-color rgba(115, 134, 120, 1);
-@define-color noti-bg rgba(48, 48, 48, 0.8);
+@define-color noti-bg rgba(48, 48, 48, 1);
 @define-color noti-bg-opaque rgb(48, 48, 48);
 @define-color noti-bg-darker rgb(38, 38, 38);
 @define-color noti-bg-hover rgb(56, 56, 56);
@@ -15,7 +15,7 @@
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
 @define-color text-color rgb(255, 255, 255);
 @define-color text-color-disabled rgb(150, 150, 150);
-@define-color bg-selected rgb(0, 128, 255);
+@define-color bg-selected #738678;
 .notification-row {
   outline: none;
 }
@@ -267,7 +267,9 @@
   /* The Control Center which contains the old notifications + widgets */
   background: @cc-bg;
   color: @text-color;
-  border-radius: 12px;
+  border-radius: 6px;
+  border: 2px solid #738678;
+  padding: 12px;
 }
 
 .control-center .control-center-list-placeholder {
@@ -281,7 +283,8 @@
 }
 
 .control-center .control-center-list .notification {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7), 0 2px 6px 2px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7), 0 2px 6px 2px rgba(0, 0, 0, 0.3); */
+  box-shadow: none;
 }
 
 .control-center .control-center-list .notification .notification-default-action,
@@ -322,7 +325,7 @@
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
-  border-radius: 12px;
+  border-radius: 6px;
 }
 
 .widget-title > button:hover {
@@ -338,7 +341,7 @@
 
 .widget-dnd > switch {
   font-size: initial;
-  border-radius: 12px;
+  border-radius: 6px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
@@ -350,7 +353,13 @@
 
 .widget-dnd > switch slider {
   background: @noti-bg-hover;
-  border-radius: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(207, 207, 196, 0.6);
+  box-shadow: none;
+}
+
+.widget-dnd > switch slider:checked {
+  border: 1px solid rgba(207, 207, 196, 0.8);
 }
 
 /* Label widget */

@@ -475,6 +475,7 @@ separator {
 #keyboard-state,
 #language,
 #custom-ibus,
+#clock,
 #workspaces button {
 /*  padding: 0 10px;	*/
 	padding: 0 5px;
@@ -488,8 +489,9 @@ tooltip * {
 	text-shadow: none;     /* optional cleanup */
 }
 
-#clock {
-	margin-right: 8px;
+#custom-notification {
+	margin-left: 5px;
+	margin-right: 12px;
 }
 
 /* Use when custom/ibus is active, iow, ibus-daemon is running */
