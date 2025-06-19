@@ -95,7 +95,12 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
 
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
+alias edit-waybar='micro ~/.config/waybar/config.jsonc'
+alias edit-waybar-style='micro ~/.config/waybar/style.css'
+alias edit-kitty='micro ~/.config/kitty/kitty.conf'
+alias edit-zsh='micro ~/.zshrc'
 
+alias rs-waybar='systemctl --user restart waybar'
 
 # Apps
 chrome() {
