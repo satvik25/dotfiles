@@ -31,10 +31,21 @@ Item {
     clip: true
   }
   // GaussianBlur {
-	// anchors.fill: parent
-	// source: bgImage
-	// radius: 20      // Range: 0-50
-   	// samples: 16     // more samples = smoother but slower
+  //   anchors.fill: parent
+  //   source: bgImage
+  //   radius: 20      // Range: 0-50
+  //   samples: 16     // more samples = smoother but slower
+  // }
+  // BrightnessContrast {
+  //     anchors.fill: parent
+  //     source: parent   // feeds on the blurred result
+  //     brightness: -0.3 // negative dims (−1.0 … 1.0)
+  //     contrast:   1.0  // leave contrast normal
+  // }
+  // Saturation {
+  //     anchors.fill: parent
+  //     source: parent    // feeds on the dimmed result
+  //     saturation: 0.0   // 0 = fully grayscale, 1 = original color
   // }
   Item {
     id: mainPanel
