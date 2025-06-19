@@ -200,7 +200,7 @@
         "format": "{icon}  {capacity}%",
         "format-full": "{icon}  {capacity}%",
         // "format-charging": "{capacity}%  ",
-        "format-charging": "{icon}  {capacity}%",
+        "format-charging": "{icon}  {capacity}%  {time}",
         "format-plugged": "{icon}  {capacity}%",
         "format-alt": "{icon}  {time}",
         // "format-good": "", // An empty format will hide the module
@@ -212,7 +212,7 @@
     	"plugged": [""],
     	"full": [""]
     	},
-    	"tooltip": false	
+    	"tooltip": false
     },
     "battery#bat2": {
         "bat": "BAT2"
