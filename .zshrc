@@ -9,6 +9,12 @@ compinit
 # End of lines added by compinstall
 
 
+# Variables
+export VISUAL="micro"
+export EDITOR="micro"
+export SYSTEMD_EDITOR="micro"
+
+
 # Avoid customisations in non-interactive shells
 [[ $- != *i* ]] && return
 
@@ -91,6 +97,26 @@ bindkey '^H' backward-kill-word		# Ctrl + Backspace
 # Aliases
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots-pull='dots pull --rebase origin master'
+
+## Push dotfiles
+dots-push() {
+  # Stage changes
+  dots add -u
+
+  # Commit changes
+  local msg="upd $(date '+%Y-%m-%d %H:%M:%S')"
+  dots commit -m "$msg"
+
+  # Push to origin
+  dots push
+}
+
+## Store ssh passphrase once for session
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  eval "$(ssh-agent -s)"
+  ssh-add
+fi
+
 
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
