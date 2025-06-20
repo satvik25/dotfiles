@@ -100,9 +100,14 @@ alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
 alias edit-waybar='micro ~/.config/waybar/config.jsonc'
 alias edit-waybar-style='micro ~/.config/waybar/style.css'
 alias edit-kitty='micro ~/.config/kitty/kitty.conf'
+alias edit-uwsm='micro ~/.config/uwsm/env'
+alias edit-uwsm-hypr='micro ~/.config/uwsm/env-hyprland'
+alias edit-gtk='micro ~/.config/gtk-3.0/gtk.css'
 alias edit-zsh='micro ~/.zshrc'
 alias edit-zprof='micro ~/.zprofile'
 
+alias src-zsh='source ~/.zshrc
+'
 alias rs-waybar='systemctl --user restart waybar'
 
 # Apps
