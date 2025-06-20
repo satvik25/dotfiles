@@ -1,2 +1,8 @@
 export HYPRCURSOR_THEME=WinSur-dark-cursors
 export HYPRCURSOR_SIZE=24
+
+# Store ssh passphrase once for session
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  eval "$(ssh-agent -s)"
+  ssh-add
+fi
