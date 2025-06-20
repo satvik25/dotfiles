@@ -111,12 +111,6 @@ dots-push() {
   dots push
 }
 
-## Store ssh passphrase once for session
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-  eval "$(ssh-agent -s)"
-  ssh-add
-fi
-
 
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
