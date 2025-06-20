@@ -1,13 +1,2 @@
 export HYPRCURSOR_THEME=WinSur-dark-cursors
 export HYPRCURSOR_SIZE=24
-
-# Start ssh-agent if needed, and load your key exactly once per session
-if [[ -z "$SSH_AUTH_SOCK" ]]; then
-  eval "$(ssh-agent -s)"
-fi
-
-# Only add the key if none are loaded yet
-if ! ssh-add -l >/dev/null 2>&1; then
-  # point to your actual key file
-  ssh-add ~/.ssh/id_ed25519 </dev/tty
-fi
