@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Set parameters
 EXT_DIR="$HOME/.local/share/ulauncher/extensions"
