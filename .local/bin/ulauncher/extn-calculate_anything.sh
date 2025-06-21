@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Patch Extension: Calculate Anything
+
 # Set parameters
 EXT_PATH="$HOME/.local/share/ulauncher/extensions/com.github.tchar.ulauncher-albert-calculate-anything/main.py"
 BACKUP="${EXT_PATH}.bak"
