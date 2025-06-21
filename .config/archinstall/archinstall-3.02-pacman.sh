@@ -30,6 +30,14 @@ OFFICIAL_PACKAGES=(
  	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
 )
 
+# Dependency packages
+DEPS_PACKAGES=(
+	# Ulauncher extns
+	# python-pip
+	# Ulauncher extn: Calculate Anything
+	python-pint python-parsedatetime python-pytz
+)
+
 # AUR packages
 AUR_PACKAGES=(
 	# Fonts
@@ -48,6 +56,12 @@ AUR_PACKAGES=(
  	# preload
 )
 
+# Dependency AUR packages
+DEPS_AUR_PACKAGES=(
+	# Ulauncher extn: Calculate Anything
+	python-simpleeval
+)
+
 # yay
 install_aur_helper() {
     if ! command -v yay &> /dev/null; then
@@ -63,7 +77,9 @@ install_aur_helper() {
 # Install
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed "${OFFICIAL_PACKAGES[@]}"
+sudo pacman -S --noconfirm --needed --asdeps "${DEPS_PACKAGES[@]}"
 install_aur_helper
 yay -S --noconfirm --needed "${AUR_PACKAGES[@]}"
+yay -S --noconfirm --needed --asdeps "${DEPS_AUR_PACKAGES[@]}"
 
 echo -e "\033[32m[SUCCESS]\033[0m Packages installed."
