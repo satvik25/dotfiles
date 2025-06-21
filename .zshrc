@@ -110,6 +110,8 @@ alias diff='diff --color=auto'
 alias ip='ip -color'
 alias lsblk='lsblk --color'
 
+export SUDO_PROMPT=$'\e[31m[sudo]\e[0m password for %u: '
+
 command_not_found_handler() {
   echo $'\e[1;31mCommand not found: \e[0m'"$1" >&2
   return 127
@@ -176,10 +178,10 @@ INFO_COLOR=$(printf "\033[38;2;158;189;158m")    		# Green
 RESET=$(printf "\033[0m")
 
 ## Color command not found
-command_not_found_handler() {
-  echo "${ERROR_COLOR} Command not found: ${RESET}$1" >&2
-  return 127
-}
+# command_not_found_handler() {
+  # echo "${ERROR_COLOR} Command not found: ${RESET}$1" >&2
+  # return 127
+# }
 
 ## Color man
 ### Enable color output in man page
