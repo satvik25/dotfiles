@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Patch Extension: Calculate Anything
+# Extension Patch: Calculate Anything
 
 # Set parameters
 EXT_PATH="$HOME/.local/share/ulauncher/extensions/com.github.tchar.ulauncher-albert-calculate-anything/main.py"
@@ -13,11 +13,11 @@ if [[ ! -f "$EXT_PATH" ]]; then
   exit 1
 fi
 
-# Make timestamped backup
+# Make backup
 cp "$EXT_PATH" "$BACKUP"
 echo "Original saved as $BACKUP."
 
-# Replacement incorrect line
+# Replace incorrect line
 sed -i "/^[[:space:]]*query = query\.replace(event\.get_keyword() + ' ', '', 1)/c\        query = event.get_argument()" "$EXT_PATH"
 # If get_argument() method does not work, replace rogue line [line 56] with these lines:
 # full = event.get_query()
