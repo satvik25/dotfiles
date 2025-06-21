@@ -1,6 +1,0 @@
-2025/06/19-00:15:50.329 4 Reusing MANIFEST /home/7vik/.local/share/applications/\$HOME/.config/ytmusic-profile/Default/Local Storage/leveldb/MANIFEST-000001
-2025/06/19-00:15:50.345 4 Recovering log #3
-2025/06/19-00:15:50.351 4 Reusing old log /home/7vik/.local/share/applications/\$HOME/.config/ytmusic-profile/Default/Local Storage/leveldb/000003.log 
-2025/06/19-00:23:08.674 5 Level-0 table #5: started
-2025/06/19-00:23:08.682 5 Level-0 table #5: 13800 bytes OK
-2025/06/19-00:23:08.696 5 Delete type=0 #3
