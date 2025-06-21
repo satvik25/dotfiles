@@ -1,0 +1,32 @@
+{
+  "8rdtgit0xqylv4kwbmiv": {
+    "added": 1750498456,
+    "cmd": "https://www.vocabulary.com/dictionary/%s",
+    "icon": "/home/7vik/.local/share/icons/hicolor/128x128/apps/dictionary.png",
+    "id": "8rdtgit0xqylv4kwbmiv",
+    "is_default_search": true,
+    "keyword": "define",
+    "name": "Dictionary",
+    "run_without_argument": false
+  },
+  "googlesearch": {
+    "added": 1750187336,
+    "cmd": "https://google.com/search?q=%s",
+    "icon": "/usr/share/ulauncher/icons/google-search.png",
+    "id": "googlesearch",
+    "is_default_search": true,
+    "keyword": "g",
+    "name": "Google Search",
+    "run_without_argument": false
+  },
+  "wikipedia": {
+    "added": 1750187336,
+    "cmd": "https://en.wikipedia.org/wiki/%s",
+    "icon": "/usr/share/ulauncher/icons/wikipedia.png",
+    "id": "wikipedia",
+    "is_default_search": false,
+    "keyword": "wiki",
+    "name": "Wikipedia",
+    "run_without_argument": false
+  }
+}

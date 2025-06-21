@@ -1,0 +1,12 @@
+{
+    "preferences": {
+        "enable_notifications": "true",
+        "hidden_type_list": "bridge",
+        "wifi_hide_out_of_range": "true"
+    },
+    "triggers": {
+        "base_keyword": {
+            "keyword": "nm"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "triggers": {
+            "browser_kw": {
+                "keyword": "go"
+            }
+        }
+    },
+    "triggers": {}
+}

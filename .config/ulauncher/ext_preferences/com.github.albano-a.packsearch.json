@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "triggers": {
+            "packsearch_kw": {
+                "keyword": "pack"
+            }
+        }
+    },
+    "triggers": {}
+}
