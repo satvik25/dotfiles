@@ -51,6 +51,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
 
+alias edit='micro'
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
 alias edit-waybar='micro ~/.config/waybar/config.jsonc'
 alias edit-waybar-style='micro ~/.config/waybar/style.css'
@@ -68,9 +69,13 @@ alias edit-iwd='sudo micro /etc/iwd/main.conf'
 alias edit-nm='sudo micro /etc/NetworkManager/NetworkManager.conf'
 alias edit-dns='sudo micro /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
 
-alias src-zsh='source ~/.zshrc
-'
+alias src-zsh='source ~/.zshrc'
+
+alias hypr-name='hyprctl dispatch renameworkspace'
+
 alias rs-waybar='systemctl --user restart waybar'
+alias rs-ulauncher='pkill ulauncher'
+
 
 # Apps
 chrome() {
@@ -113,7 +118,7 @@ alias lsblk='lsblk --color'
 export SUDO_PROMPT=$'\e[31m[sudo]\e[0m password for %u: '
 
 command_not_found_handler() {
-  echo $'\e[1;31mCommand not found: \e[0m'"$1" >&2
+  echo $'\e[33mCommand not found: \e[0m'"$1" >&2
   return 127
 }
 
@@ -259,6 +264,9 @@ DIR_ICON() {
 }
 
 
+## Hyprland icons
+alias hypr-name-music='hyprctl dispatch renameworkspace 9 󰎇'
+
 # Graphical session prompt line
 PROMPT="  %{$PROMPT_CHAR_COLOR%}${PROMPT_SYMBOL}  %{$RESET%}"
-RPROMPT='%{$HOST_COLOR%}%n %{$RESET%} %{$DIR_COLOR%}$(DIR_ICON) %{$RESET%}'
+RPROMPT='   %{$HOST_COLOR%}%n %{$RESET%} %{$DIR_COLOR%}$(DIR_ICON) %{$RESET%}'

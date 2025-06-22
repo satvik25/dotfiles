@@ -3,7 +3,7 @@
 Name=Music
 Comment=Listen to Music
 Exec=google-chrome-stable --user-data-dir="/home/7vik/.config/ytmusic-profile" --profile-directory=Default --app=https://music.youtube.com --class=YTMusic --no-first-run --new-window --enable-features=UseOzonePlatform --ozone-platform=wayland
-Icon=youtube-music
+Icon=chrome-music.youtube.com__-Default
 Terminal=false
 Type=Application
 Categories=AudioVideo;Music;

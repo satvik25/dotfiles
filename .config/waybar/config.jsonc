@@ -9,15 +9,16 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+        "hyprland/window",
     //  "sway/mode",
     //  "sway/scratchpad",
     //  "mpd",
         "custom/media",
         "mpris"
-    //  "hyprland/window"
     ],
     "modules-center": [
         "hyprland/workspaces"
+    //     "wlr/taskbar"
     ],
     "modules-right": [
         "idle_inhibitor",
@@ -57,6 +58,22 @@
     //	        "default": ""
     //	    }
     //	},
+    // "hyprland/workspaces": {
+    //   "format": "{windows}",            // one icon per window
+    //   "format-window-separator": " ",    // no spaces between them
+    //   "window-rewrite-default": "",    // show this if no rule matches
+    //   "window-rewrite": {
+    //     "class<firefox>": "",
+    //     "class<code|vscode>": "󰨞",
+    //     "class<kitty|wezterm>": ""
+    //   }
+    // },
+    // "hyprland/workspaces": {
+      // "format": "{name}",            // print just the label
+      // "on-click": "activate",        // left-click to change workspace
+      // "sort-by-monitor": true,       // optional: split per monitor
+      // }
+    // },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -77,20 +94,24 @@
         "tooltip-format": "{app}: {title}"
     },
 	"mpris": {
-		"format": "{artist}   {player_icon}   {title}",
-		"format-paused": "<i>{artist}</i>  {status_icon}  <i>{title}</i>",
+		"format": "{artist}   <span size=\"90%\">{player_icon}</span>   {title}",
+		"format-paused": "<i>{artist}</i>   <span size=\"90%\">{status_icon}</span>  <i>{title}</i>",
 		"player-icons": {
-			"default": "▶",
-			"mpv": "🎵",
+			"default": "<span size=\"90%\">▶</span>",
+			"mpv": "<span size=\"90%\">🎵</span>"
 		},
 		"status-icons": {
-			"paused": "⏸"
+			"paused": "<span size=\"90%\">⏸</span>"
 		},
 		"tooltip": false
 		// "ignored-players": ["firefox"]
 	},
     "hyprland/window": {
+		"format": "",
+		"icon": true,
+		"icon-size": 15,
         "separate-outputs": true,
+        "max-length": 30,
         "tooltip": false
     },
     "mpd": {
