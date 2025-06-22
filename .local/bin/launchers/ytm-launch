@@ -13,4 +13,4 @@ sleep 0.1
 
 # rename the *current* workspace to the music icon
 ws="$(hyprctl activeworkspace -j | jq -r '.id')"
-hyprctl dispatch renameworkspace "$ws" "󰎇"
+hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "

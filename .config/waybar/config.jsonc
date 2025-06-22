@@ -94,14 +94,14 @@
         "tooltip-format": "{app}: {title}"
     },
 	"mpris": {
-		"format": "{artist}   <span size=\"90%\">{player_icon}</span>   {title}",
-		"format-paused": "<i>{artist}</i>   <span size=\"90%\">{status_icon}</span>  <i>{title}</i>",
+		"format": "{artist}   <span size=\"80%\">{player_icon}</span>   {title}",
+		"format-paused": "<i>{artist}</i>   <span size=\"80%\">{status_icon}</span>  <i>{title}</i>",
 		"player-icons": {
-			"default": "<span size=\"90%\">▶</span>",
-			"mpv": "<span size=\"90%\">🎵</span>"
+			"default": "<span size=\"80%\">▶</span>",
+			"mpv": "<span size=\"80%\">🎵</span>"
 		},
 		"status-icons": {
-			"paused": "<span size=\"90%\">⏸</span>"
+			"paused": "<span size=\"80%\">⏸</span>"
 		},
 		"tooltip": false
 		// "ignored-players": ["firefox"]

@@ -98,7 +98,7 @@ ytm () {
     # 3) rename the *current* workspace to the music icon
     local ws
     ws="$(hyprctl activeworkspace -j | jq -r '.id')"
-    hyprctl dispatch renameworkspace "$ws" "󰎇"
+    hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "
     # └─ if you turned `hypr-name` into an executable script, you could instead do:
     #    hypr-name "$ws" music
 }
@@ -164,7 +164,7 @@ export LESS_TERMCAP_se=$'\e[0m'   # reset standout
 
 # Prompt line
 PROMPT=$'  %{\e[32m%}{ }  %{\e[0m%}'
-RPROMPT=$'%{\e[1;34m%}%n%{\e[0m%}  %{\e[37m%}%~ %{\e[0m%}'
+RPROMPT=$'   %{\e[1;34m%}%n%{\e[0m%}  %{\e[37m%}%~ %{\e[0m%}'
 
 
 # Skip graphical session customisations below this line while in tty
@@ -289,25 +289,54 @@ hypr-name () {
         print -u2 "Usage: hypr-name <workspace-number> <keyword|name> [name]"
         return 1
     fi
-	# Args
+    # Args
     local ws="$1"        # first argument: workspace number
-    shift                # $@ now starts after workspace number
+    shift
 
-    local key="$1"       # modifier to append icon to second argument: workspace name
-    shift                # $@ now holds any extra words
-    local extra="$*"     # preserve rest of the line as text (may be empty)
+    local label_parts=()
+    local icon_replaced=0
+    local icon_value=""
 
-    local label          # icon | icon + name
+    for arg in "$@"; do
+        if [[ $icon_replaced -eq 0 && -n ${HYPR_WS_ICONS[$arg]} ]]; then
+            icon_value="${HYPR_WS_ICONS[$arg]}"
+            label_parts+=("$icon_value")
+            icon_replaced=1
+        else
+            label_parts+=("$arg")
+        fi
+    done
 
-    if [[ -n ${HYPR_WS_ICONS[$key]} ]]; then
-        # Set icon if icon keyword matches
-        label="${HYPR_WS_ICONS[$key]}"
-        [[ -n $extra ]] && label+=" $extra"   # append workspace name to icon if present
-    else
-       	# Set icon when no icon keyword matches
-        label="$key"
-        [[ -n $extra ]] && label+=" $extra"
-    fi
+    # Build the label string:
+    local label=""
+	# For less space after icon and before word
+    # for ((i = 1; i <= ${#label_parts[@]}; ++i)); do
+    #     if [[ $i -eq 1 ]]; then
+    #         label="${label_parts[i]}"
+    #     elif [[ "${label_parts[i]}" == "$icon_value" ]]; then
+    #         label+="  ${label_parts[i]}"   	# two spaces before icons
+    #     else
+    #         label+=" ${label_parts[i]}"		# two spaces before words
+    #     fi
+    # done
+	# For more space after icon and before word
+    local after_icon=0
+    for ((i = 1; i <= ${#label_parts[@]}; ++i)); do
+        if [[ $i -eq 1 ]]; then
+            label="${label_parts[i]}"
+        elif [[ "${label_parts[i]}" == "$icon_value" ]]; then
+            label+="  ${label_parts[i]}"     # two spaces before the icon (if not first)
+            after_icon=1
+        elif [[ $after_icon -eq 1 ]]; then
+            label+="  ${label_parts[i]}"     # two spaces before the first word after icon
+            after_icon=0
+        else
+            label+=" ${label_parts[i]}"
+        fi
+    done
+
+    # Add one leading and one trailing space
+    label=" $label "
 
     # Command to rename workspace
     hyprctl dispatch renameworkspace "$ws" "$label"

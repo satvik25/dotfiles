@@ -16,17 +16,26 @@ window#waybar {
     border-radius: 6px;
 }
 
-.modules-left { 
+.modules-left > widget:first-child > #window { 
 	margin-left: 12px;
+}
+
+window#waybar:not(.empty) #window {   /* bar root is NOT “empty” */
+    margin-right: 12px;               /* draw the 12 px spacer   */
+}
+
+/* --- no gap on an empty workspace ------------------------------------- */
+window#waybar.empty #window {         /* bar root HAS class “empty” */
+    margin-right: -3px;                  /* collapse the spacer       */
 }
 
 .modules-right { 
 	margin-right: 15px;
 }
 
-#window {
-	padding-right: 6px;
-}
+/* #window { */
+/* 	padding-right: 12px; */
+/* } */
 
 window#waybar.hidden {
     opacity: 0.2;
@@ -111,9 +120,13 @@ button:not(.active):hover {
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 5px;
-}
+/* .modules-left > widget:first-child > #window { */
+/*     margin-right: 12px; */
+/* } */
+
+/* .modules-left > widget:first-child > #window.empty { */
+/*     margin-right: 12px; */
+/* } */
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
@@ -475,7 +488,6 @@ separator {
 #keyboard-state,
 #language,
 #custom-ibus,
-#clock,
 #workspaces button {
 /*  padding: 0 10px;	*/
 	padding: 0 5px;
@@ -512,4 +524,3 @@ tooltip * {
 #pulseaudio.muted {
 	padding: 0 0 0 4px;
 }
-
