@@ -12,19 +12,19 @@
   "googlesearch": {
     "added": 1750187336,
     "cmd": "https://google.com/search?q=%s",
-    "icon": "/usr/share/ulauncher/icons/google-search.png",
+    "icon": "/home/7vik/.local/share/icons/hicolor/128x128/apps/search.png",
     "id": "googlesearch",
     "is_default_search": true,
     "keyword": "g",
-    "name": "Google Search",
+    "name": "Search",
     "run_without_argument": false
   },
   "wikipedia": {
     "added": 1750187336,
     "cmd": "https://en.wikipedia.org/wiki/%s",
-    "icon": "/usr/share/ulauncher/icons/wikipedia.png",
+    "icon": "~/.local/share/icons/hicolor/128x128/apps/wikipedia.png",
     "id": "wikipedia",
-    "is_default_search": false,
+    "is_default_search": true,
     "keyword": "wiki",
     "name": "Wikipedia",
     "run_without_argument": false
