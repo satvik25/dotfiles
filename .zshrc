@@ -71,8 +71,6 @@ alias edit-dns='sudo micro /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
 
 alias src-zsh='source ~/.zshrc'
 
-alias hypr-name='hyprctl dispatch renameworkspace'
-
 alias rs-waybar='systemctl --user restart waybar'
 alias rs-ulauncher='pkill ulauncher'
 
@@ -82,16 +80,27 @@ chrome() {
 	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
 }
 
-ytm() {
-	setsid google-chrome-stable \
-    --user-data-dir="$HOME/.config/ytmusic-profile" \
-    --profile-directory=Default \
-    --app="https://music.youtube.com" \
-    --class=YTMusic \
-    --no-first-run --new-window \
-    --enable-features=UseOzonePlatform \
-    --ozone-platform=wayland \
-    >/dev/null 2>&1 &
+ytm () {
+    # 1) launch the app (backgrounded exactly as before)
+    setsid google-chrome-stable \
+        --user-data-dir="$HOME/.config/ytmusic-profile" \
+        --profile-directory=Default \
+        --app="https://music.youtube.com" \
+        --class=YTMusic \
+        --no-first-run --new-window \
+        --enable-features=UseOzonePlatform \
+        --ozone-platform=wayland \
+        >/dev/null 2>&1 &
+
+    # 2) give Hyprland a tiny moment so the window lands in this workspace
+    sleep 0.1   # adjust/remove to taste
+
+    # 3) rename the *current* workspace to the music icon
+    local ws
+    ws="$(hyprctl activeworkspace -j | jq -r '.id')"
+    hyprctl dispatch renameworkspace "$ws" "󰎇"
+    # └─ if you turned `hypr-name` into an executable script, you could instead do:
+    #    hypr-name "$ws" music
 }
 
 
@@ -203,7 +212,8 @@ export LESS_TERMCAP_se=$'\e[0m'  # end standout (not used, but safe)
 
 
 # Icons
-## Define icons
+## Prompt line
+### Define prompt line icons
 if [[ $EUID -eq 0 ]]; then
   PROMPT_SYMBOL="󰅴"
 else
@@ -218,7 +228,7 @@ DIRPATH_ROOT="/"
 DIRPATH_HOME="$HOME"
 DIRPATH_DL="$HOME/Downloads"
 
-## Set prompt line icons
+### Set prompt line icons
 DIR_ICON() {
   local dir=$PWD
 
@@ -264,8 +274,45 @@ DIR_ICON() {
 }
 
 
-## Hyprland icons
-alias hypr-name-music='hyprctl dispatch renameworkspace 9 󰎇'
+## Hyprland workspace icons
+### Define icon keywords
+typeset -A HYPR_WS_ICONS=(
+  # keyword   icon
+    music     "󰎇"
+    web       "󰖟"
+    code      "󰅩"
+)
+### Rename workspaces
+hypr-name () {
+    # Checks at least 2 args are present
+    if [[ $# -lt 2 ]]; then
+        print -u2 "Usage: hypr-name <workspace-number> <keyword|name> [name]"
+        return 1
+    fi
+	# Args
+    local ws="$1"        # first argument: workspace number
+    shift                # $@ now starts after workspace number
+
+    local key="$1"       # modifier to append icon to second argument: workspace name
+    shift                # $@ now holds any extra words
+    local extra="$*"     # preserve rest of the line as text (may be empty)
+
+    local label          # icon | icon + name
+
+    if [[ -n ${HYPR_WS_ICONS[$key]} ]]; then
+        # Set icon if icon keyword matches
+        label="${HYPR_WS_ICONS[$key]}"
+        [[ -n $extra ]] && label+=" $extra"   # append workspace name to icon if present
+    else
+       	# Set icon when no icon keyword matches
+        label="$key"
+        [[ -n $extra ]] && label+=" $extra"
+    fi
+
+    # Command to rename workspace
+    hyprctl dispatch renameworkspace "$ws" "$label"
+}
+
 
 # Graphical session prompt line
 PROMPT="  %{$PROMPT_CHAR_COLOR%}${PROMPT_SYMBOL}  %{$RESET%}"
