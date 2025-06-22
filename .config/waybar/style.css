@@ -21,7 +21,7 @@ window#waybar {
 }
 
 window#waybar:not(.empty) #window {   /* bar root is NOT “empty” */
-    margin-right: 12px;               /* draw the 12 px spacer   */
+    margin-right: 10px;               /* draw the 12 px spacer   */
 }
 
 /* --- no gap on an empty workspace ------------------------------------- */
