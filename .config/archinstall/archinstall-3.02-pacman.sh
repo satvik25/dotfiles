@@ -35,7 +35,9 @@ DEPS_PACKAGES=(
 	# Ulauncher extns
 	# python-pip
 	# Ulauncher extn: Calculate Anything
-	python-pint python-parsedatetime python-pytz
+	python-pint python-parsedatetime python-pytz \
+	# Hyprland plugins
+	cpio cmake git meson gcc
 )
 
 # AUR packages
