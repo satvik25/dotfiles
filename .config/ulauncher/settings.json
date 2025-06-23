@@ -13,5 +13,6 @@
   "render_on_screen": "mouse-pointer-monitor",
   "show_tray_icon": false,
   "theme_name": "Passage",
-  "tray_icon_name": "ulauncher-indicator-symbolic"
+  "tray_icon_name": "ulauncher-indicator-symbolic",
+  "hide-window-on-focus-loss": false
 }

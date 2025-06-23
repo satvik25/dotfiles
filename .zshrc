@@ -62,6 +62,7 @@ alias edit-ulauncher-style='micro ~/.config/ulauncher/user-themes/passage/theme.
 alias edit-kitty='micro ~/.config/kitty/kitty.conf'
 alias edit-uwsm='micro ~/.config/uwsm/env'
 alias edit-uwsm-hypr='micro ~/.config/uwsm/env-hyprland'
+alias edit-qtqc2='micro ~/.config/uwsm/qtquickcontrols2.conf'
 alias edit-swaync='micro ~/.config/swaync/config.json'
 alias edit-swaync-style='micro ~/.config/swaync/style.css'
 alias edit-sddm='sudo micro /etc/sddm.conf.d/sddm.conf'

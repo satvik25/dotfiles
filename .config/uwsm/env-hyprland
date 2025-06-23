@@ -1,2 +1,6 @@
 export HYPRCURSOR_THEME=WinSur-dark-cursors
 export HYPRCURSOR_SIZE=24
+
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_QUICK_CONTROLS_STYLE=FluentWinUI3
+export QT_QUICK_CONTROLS_CONF=/home/7vik/.config/uwsm/qtquickcontrols2.conf
