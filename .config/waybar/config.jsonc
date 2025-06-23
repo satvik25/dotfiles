@@ -309,7 +309,7 @@
     	"tooltip": false,
     	"format": "{icon}",
     	"format-icons": {
-    		"notification": "<span foreground=\"#9ebd9e\"><sup></sup></span>",
+    		"notification": "<span foreground=\"#9ebd9e\"><sup></sup></span>",
     		"none": "",
     		"dnd-notification": "<span foreground=\"#9ebd9e\"><sup></sup></span>",
     		"dnd-none": "",

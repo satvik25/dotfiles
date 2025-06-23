@@ -30,7 +30,7 @@ export EDITOR="micro"
 export SYSTEMD_EDITOR="micro"
 
 
-# Aliases
+# Commands
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots-pull='dots pull --rebase origin master'
 
@@ -53,8 +53,11 @@ alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
 
 alias edit='micro'
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
+alias edit-hyprlock='micro ~/.config/hypr/hyprlock.conf'
+alias edit-hypridle='micro ~/.config/hypr/hypridle.conf'
 alias edit-waybar='micro ~/.config/waybar/config.jsonc'
 alias edit-waybar-style='micro ~/.config/waybar/style.css'
+alias edit-ulauncher-style='micro ~/.config/ulauncher/user-themes/passage/theme.css'
 alias edit-kitty='micro ~/.config/kitty/kitty.conf'
 alias edit-uwsm='micro ~/.config/uwsm/env'
 alias edit-uwsm-hypr='micro ~/.config/uwsm/env-hyprland'
@@ -73,35 +76,6 @@ alias src-zsh='source ~/.zshrc'
 
 alias rs-waybar='systemctl --user restart waybar'
 alias rs-ulauncher='pkill ulauncher'
-
-
-# Apps
-chrome() {
-	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
-}
-
-ytm () {
-    # 1) launch the app (backgrounded exactly as before)
-    setsid google-chrome-stable \
-        --user-data-dir="$HOME/.config/ytmusic-profile" \
-        --profile-directory=Default \
-        --app="https://music.youtube.com" \
-        --class=YTMusic \
-        --no-first-run --new-window \
-        --enable-features=UseOzonePlatform \
-        --ozone-platform=wayland \
-        >/dev/null 2>&1 &
-
-    # 2) give Hyprland a tiny moment so the window lands in this workspace
-    sleep 0.1   # adjust/remove to taste
-
-    # 3) rename the *current* workspace to the music icon
-    local ws
-    ws="$(hyprctl activeworkspace -j | jq -r '.id')"
-    hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "
-    # └─ if you turned `hypr-name` into an executable script, you could instead do:
-    #    hypr-name "$ws" music
-}
 
 
 # Keybindings
@@ -130,7 +104,6 @@ command_not_found_handler() {
   echo $'\e[33mCommand not found: \e[0m'"$1" >&2
   return 127
 }
-
 
 # Skip all customisations below this line for non-interactive shells
 [[ $- != *i* ]] && return
@@ -164,6 +137,7 @@ export LESS_TERMCAP_se=$'\e[0m'   # reset standout
 
 # Prompt line
 PROMPT=$'  %{\e[32m%}{ }  %{\e[0m%}'
+zle_highlight=( 'default:fg=white,bold' )
 RPROMPT=$'   %{\e[1;34m%}%n%{\e[0m%}  %{\e[37m%}%~ %{\e[0m%}'
 
 
@@ -178,6 +152,35 @@ fi
 ###############################
 ## GRAPHICAL SESSION OPTIONS ##
 ###############################
+
+# Apps
+chrome() {
+	setsid google-chrome-stable "${flags[@]}" "$@" >/dev/null 2>&1 &
+}
+
+ytm () {
+    # 1) launch the app (backgrounded exactly as before)
+    setsid google-chrome-stable \
+        --user-data-dir="$HOME/.config/ytmusic-profile" \
+        --profile-directory=Default \
+        --app="https://music.youtube.com" \
+        --class=YTMusic \
+        --no-first-run --new-window \
+        --enable-features=UseOzonePlatform \
+        --ozone-platform=wayland \
+        >/dev/null 2>&1 &
+
+    # 2) give Hyprland a tiny moment so the window lands in this workspace
+    sleep 0.1   # adjust/remove to taste
+
+    # 3) rename the *current* workspace to the music icon
+    local ws
+    ws="$(hyprctl activeworkspace -j | jq -r '.id')"
+    hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "
+    # └─ if you turned `hypr-name` into an executable script, you could instead do:
+    #    hypr-name "$ws" music
+}
+
 
 # Colors
 ## Define colors
@@ -345,4 +348,5 @@ hypr-name () {
 
 # Graphical session prompt line
 PROMPT="  %{$PROMPT_CHAR_COLOR%}${PROMPT_SYMBOL}  %{$RESET%}"
+zle_highlight=( 'default:fg=#9ebd9e' )
 RPROMPT='   %{$HOST_COLOR%}%n %{$RESET%} %{$DIR_COLOR%}$(DIR_ICON) %{$RESET%}'

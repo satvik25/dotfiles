@@ -1,9 +1,18 @@
 @import url("./reset.css");
 
-@define-color primary rgb(109,180,116);
+/* @define-color primary rgba(109,180,116, 0.6); */
+
+@define-color primary rgba(115, 134, 120, 1);
 @define-color primary_t rgba(0, 0, 0, 1);
-@define-color background rgba(0, 0, 0, 1);
+@define-color background rgba(46, 46, 46, 0.8);
+/* @define-color background rgba(6, 0, 13, 0.7); */
 @define-color text_color rgba(207, 207, 196, 1);
+/* @define-color text_color rgba(115, 134, 120, 1); */
+/* Also check this block in manifest.json for matched search term colors
+"matched_text_hl_colors": {
+    "when_selected": "#6db474",
+    "when_not_selected": "#6db474"
+} */
 
 .prefs-btn {
     background-color: @background;
@@ -51,9 +60,9 @@
 }
 
 .selected .item-container {
-    background-color: #1d1c1a;
+	background-color: rgba(29, 28, 26, 0.25);
     border-radius: 5px;
-    border-bottom: 2px @primary_t solid;
+    /* border-bottom: 2px @primary_t solid; */
 }
 
 .result-box {
@@ -69,6 +78,6 @@
 .input *:selected,
 .input *:focus,
 *:selected:focus {
-    background-color: @primary_t;
-    color: @primary;
+    background: transparent;
+    color: #a4c195;
 }
