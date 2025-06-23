@@ -31,6 +31,7 @@ export SYSTEMD_EDITOR="micro"
 
 
 # Commands
+## System backup
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots-pull='dots pull --rebase origin master'
 
@@ -74,6 +75,7 @@ alias edit-dns='sudo micro /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
 
 alias src-zsh='source ~/.zshrc'
 
+alias rs-network='sudo systemctl restart iwd NetworkManager dnscrypt-proxy'
 alias rs-waybar='systemctl --user restart waybar'
 alias rs-ulauncher='pkill ulauncher'
 
