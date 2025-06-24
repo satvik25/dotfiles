@@ -4,6 +4,20 @@
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
 
+# System text editor
 VISUAL=micro
 EDITOR=micro
 SYSTEMD_EDITOR=micro
+
+# Cursor
+## WinSur-dark-cursors
+# XCURSOR_THEME=WinSur-dark-cursors
+# XCURSOR_SIZE=24
+# HYPRCURSOR_THEME=WinSur-dark-cursors
+# HYPRCURSOR_SIZE=24
+
+## GoogleDot-Black
+XCURSOR_THEME=GoogleDot-Black
+XCURSOR_SIZE=22
+HYPRCURSOR_THEME=GoogleDot-Black
+HYPRCURSOR_SIZE=22

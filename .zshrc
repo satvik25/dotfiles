@@ -34,8 +34,6 @@ export SYSTEMD_EDITOR="micro"
 ## System backup
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots-pull='dots pull --rebase origin master'
-
-## Push dotfiles
 dots-push() {
   # Stage changes
   dots add -u
@@ -54,22 +52,26 @@ alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
 
 alias edit='micro'
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
-alias edit-hyprlock='micro ~/.config/hypr/hyprlock.conf'
-alias edit-hypridle='micro ~/.config/hypr/hypridle.conf'
+alias edit-env='sudo micro /etc/environment'
+alias edit-zprof='micro ~/.zprofile'
+alias edit-uwsm='micro ~/.config/uwsm/env'
+alias edit-uwsm-hypr='micro ~/.config/uwsm/env-hyprland'
 alias edit-waybar='micro ~/.config/waybar/config.jsonc'
 alias edit-waybar-style='micro ~/.config/waybar/style.css'
 alias edit-ulauncher-style='micro ~/.config/ulauncher/user-themes/passage/theme.css'
-alias edit-kitty='micro ~/.config/kitty/kitty.conf'
-alias edit-uwsm='micro ~/.config/uwsm/env'
-alias edit-uwsm-hypr='micro ~/.config/uwsm/env-hyprland'
-alias edit-qtqc2='micro ~/.config/uwsm/qtquickcontrols2.conf'
 alias edit-swaync='micro ~/.config/swaync/config.json'
 alias edit-swaync-style='micro ~/.config/swaync/style.css'
+alias edit-hypridle='micro ~/.config/hypr/hypridle.conf'
+alias edit-hyprlock='micro ~/.config/hypr/hyprlock.conf'
+
+alias edit-qtqc2='micro ~/.config/uwsm/qtquickcontrols2.conf'
 alias edit-sddm='sudo micro /etc/sddm.conf.d/sddm.conf'
 alias edit-sddm-th='sudo micro /usr/share/sddm/themes/passage/Main.qml'
+
 alias edit-gtk='micro ~/.config/gtk-3.0/gtk.css'
+
+alias edit-kitty='micro ~/.config/kitty/kitty.conf'
 alias edit-zsh='micro ~/.zshrc'
-alias edit-zprof='micro ~/.zprofile'
 alias edit-iwd='sudo micro /etc/iwd/main.conf'
 alias edit-nm='sudo micro /etc/NetworkManager/NetworkManager.conf'
 alias edit-dns='sudo micro /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
