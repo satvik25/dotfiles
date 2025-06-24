@@ -32,7 +32,7 @@ gsettings set $SCHEMA gtk-theme 'Colloid-Green-Dark'
 
 git clone --depth 1 https://github.com/vinceliuice/Colloid-icon-theme "$TMPDIR/Colloid-icon-theme"		# GTK icon theme
 $TMPDIR/Colloid-icon-theme/install.sh --scheme default --theme green
-gsettings set $SCHEMA icon-theme 'Colloid-Green-Dark'
+gsettings set $SCHEMA icon-theme 'passage'
 
 
 # Set cursor
