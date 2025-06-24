@@ -48,7 +48,7 @@ dots-push() {
 
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
-alias restore-snapshot='sudo ./.local/bin/restore_snapshot.sh'
+alias restore-snapshot='sudo ./.local/bin/tmp/restore_snapshot.sh'
 
 alias edit='micro'
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'

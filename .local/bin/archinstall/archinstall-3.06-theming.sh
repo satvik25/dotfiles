@@ -30,7 +30,8 @@ git clone --depth 1 https://github.com/vinceliuice/Colloid-gtk-theme "$TMPDIR/Co
 $TMPDIR/Colloid-gtk-theme/install.sh --theme green --color dark --tweaks normal
 gsettings set $SCHEMA gtk-theme 'Colloid-Green-Dark'
 
-gsettings set $SCHEMA icon-theme 'Adwaita'									# Icon theme
+git clone --depth 1 https://github.com/vinceliuice/Colloid-icon-theme "$TMPDIR/Colloid-icon-theme"		# GTK icon theme
+gsettings set $SCHEMA icon-theme 'Colloid-Green-Dark'
 
 
 # Set cursor

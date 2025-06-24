@@ -25,8 +25,9 @@ OFFICIAL_PACKAGES=(
     	# Language
  	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
      	# Development
- 	base-devel git openssh
+ 	base-devel git openssh \
  	# Extras
+ 	gnome-themes-extra gtk-engine-murrine
  	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
 )
 
