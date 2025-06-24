@@ -18,7 +18,7 @@ OFFICIAL_PACKAGES=(
     wl-clipboard copyq \
 	udiskie \
 	# Utilities
- 	kitty mc 7zip \
+ 	kitty mc 7z jq \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
