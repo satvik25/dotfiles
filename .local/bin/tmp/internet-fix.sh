@@ -38,7 +38,7 @@ fi
 
 # Bring it down, restart services, bring it back up
 nmcli con down "$CHOSEN"
-sudo systemctl restart iwd NetworkManager dnscrypt-proxy
+sudo systemctl restart iwd NetworkManager dnscrypt-proxy		# % rs-network
 nmcli con up "$CHOSEN"
 
 # Connectivity test
