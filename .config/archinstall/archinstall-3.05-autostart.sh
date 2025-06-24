@@ -15,6 +15,7 @@ user_units=(
   pipewire.socket
   wireplumber.service
   pipewire-pulse.socket
+  swaync.service
   arch-update.timer
   # p11-kit-server.socket
   # mpd.socket
