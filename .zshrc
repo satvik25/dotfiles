@@ -75,6 +75,7 @@ alias edit-zsh='micro ~/.zshrc'
 alias edit-iwd='sudo micro /etc/iwd/main.conf'
 alias edit-nm='sudo micro /etc/NetworkManager/NetworkManager.conf'
 alias edit-dns='sudo micro /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
+alias edit-fonts='micro ~/.config/fontconfig/fonts.conf'
 
 alias src-zsh='source ~/.zshrc'
 
