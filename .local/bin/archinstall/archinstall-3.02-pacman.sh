@@ -10,7 +10,7 @@ OFFICIAL_PACKAGES=(
    	# Audio
  	pipewire wireplumber pipewire-pulse \
 	# Battery
-	tlp \
+	acpi tlp \
   	# Security
    	ufw nftables \
 	#DE

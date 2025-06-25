@@ -8,9 +8,12 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+
 # Pre-requisites
 autoload -U colors && colors			# Required by Colors
 setopt prompt_subst						# Required by Icons
+autoload -Uz vcs_info 					# Enable git directory formatting
+zstyle ':vcs_info:*' enable git			# Track git
 
 
 ####################
@@ -19,9 +22,7 @@ setopt prompt_subst						# Required by Icons
 
 # Miscellanous customisations
 ## Vertical space at the top
-precmd() {
-	echo	
-}
+function blank_line() { echo }
 
 
 # Variables
@@ -229,7 +230,7 @@ else
   PROMPT_SYMBOL=""
 fi
  
-ICON_ROOT=""
+ICON_ROOT="󰴊"
 ICON_HOME="󰴖"
 ICON_DL="󰄠"
 
@@ -353,6 +354,35 @@ hypr-name () {
 
 
 # Graphical session prompt line
+
+## Left prompt
 PROMPT="  %{$PROMPT_CHAR_COLOR%}${PROMPT_SYMBOL}  %{$RESET%}"
+
+## Input
 zle_highlight=( 'default:fg=#9ebd9e' )
-RPROMPT='   %{$HOST_COLOR%}%n %{$RESET%} %{$DIR_COLOR%}$(DIR_ICON) %{$RESET%}'
+
+## Right prompt
+
+	# Define colors
+	zstyle ':vcs_info:git:*' formats '%F{#9EBD9E} %s%f  %F{#C9A0DC} %r%f  %F{#CFCFC4} %b%f  %F{#FFC067}󰷏 %S%f  %F{#AFA8A6}%f %F{#FFEE8C}%m%f%F{#AFA8A6}|%f%F{#FF964F}%u%f%F{#AFA8A6}|%f%F{#73BF74}%c%f'
+
+
+	# Update vcs_info before each prompt
+	function git_prompt() { vcs_info }
+
+	# Outside git
+	typeset -g ZSH_RPROMPT_DEFAULT='   %{$HOST_COLOR%}%n %{$RESET%} %{$DIR_COLOR%}$(DIR_ICON) %{$RESET%}'
+	# Inside git
+	typeset -g ZSH_RPROMPT_GIT=' ${vcs_info_msg_0_} '
+	# Check inside/outside
+	function zle_prompt() {
+	  if [[ -n $vcs_info_msg_0_ ]]; then
+	    RPROMPT=$ZSH_RPROMPT_GIT
+	  else
+	    RPROMPT=$ZSH_RPROMPT_DEFAULT
+	  fi
+	}
+
+
+# Hooks to check before each command
+precmd_functions+=( blank_line git_prompt zle_prompt )
