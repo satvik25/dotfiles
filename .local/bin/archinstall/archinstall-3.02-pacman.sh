@@ -56,8 +56,9 @@ AUR_PACKAGES=(
   	# Browser
    	google-chrome \
 	# Utilities
- 	pfetch arch-update
+ 	pfetch arch-update \
  	# Extras
+ 	hyprshot-git hyprshot-gui
  	# preload
 )
 
