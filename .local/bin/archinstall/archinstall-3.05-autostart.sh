@@ -4,6 +4,7 @@ set -euo pipefail
 # Set parameters
 units=(
   bluetooth.service
+  tlp.service
 )
 
 user_units=(

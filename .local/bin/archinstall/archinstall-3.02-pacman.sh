@@ -9,6 +9,8 @@ OFFICIAL_PACKAGES=(
   	intel-media-driver libva-intel-driver mesa vulkan-intel \
    	# Audio
  	pipewire wireplumber pipewire-pulse \
+	# Battery
+	tlp \
   	# Security
    	ufw nftables \
 	#DE
