@@ -1,5 +1,6 @@
 [Desktop Entry]
-Name=Dolphin
+; Name=Dolphin
+Name=File Manager
 Name[ar]=دولفين
 Name[ast]=Dolphin
 Name[az]=Dolphin
@@ -11,7 +12,8 @@ Name[cs]=Dolphin
 Name[da]=Dolphin
 Name[de]=Dolphin
 Name[el]=Dolphin
-Name[en_GB]=Dolphin
+; Name[en_GB]=Dolphin
+Name[en_GB]=File Manager
 Name[eo]=Dolfin
 Name[es]=Dolphin
 Name[et]=Dolphin
@@ -62,6 +64,7 @@ Name[zh_CN]=Dolphin 文件管理器
 Name[zh_TW]=Dolphin
 Exec=dolphin %u
 Icon=org.kde.dolphin
+; Icon=~/.local/share/icons/hicolor/128x128/apps/org.kde.dolphin.png
 Type=Application
 X-DocPath=dolphin/index.html
 Categories=Qt;KDE;System;FileTools;FileManager;
@@ -182,3 +185,5 @@ Keywords[zh_TW]=files;file management;file browsing;samba;network shares;Explore
 X-DBUS-ServiceName=org.kde.dolphin
 X-KDE-Shortcuts=Meta+E
 StartupWMClass=dolphin
+
+Comment=Manage files
