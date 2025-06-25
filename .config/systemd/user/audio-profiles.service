@@ -1,9 +1,0 @@
-[Unit]
-Description=Set onboard & Bluetooth audio profiles
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/autostart/audio-profiles.sh
-
-[Install]
-WantedBy=default.target
