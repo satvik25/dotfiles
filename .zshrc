@@ -90,7 +90,7 @@ alias rs-swaync'swaync-client -R'
 # Apps
 ## Bw login
 login-bw() {
-  export BW_SESSION="$(bw login satvikchaudhary@gmail.com)"
+  export BW_SESSION="$(bw login --raw satvikchaudhary@gmail.com)"
 }
 
 
