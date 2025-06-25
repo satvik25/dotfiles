@@ -17,6 +17,7 @@ user_units=(
   pipewire-pulse.socket
   swaync.service
   arch-update.timer
+  audio-profiles.service
   # p11-kit-server.socket
   # mpd.socket
 )
