@@ -21,7 +21,7 @@ OFFICIAL_PACKAGES=(
  	kitty mc 7z jq \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
-	otf-font-awesome ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
+	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
     	# Language
  	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
      	# Development
