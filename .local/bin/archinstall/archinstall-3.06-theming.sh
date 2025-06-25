@@ -21,8 +21,8 @@ DST="/etc/environment"
 ## Set preferences
 gsettings set $SCHEMA color-scheme 'prefer-dark'							# System light/dark mode
 gsettings set $SCHEMA accent-color 'green'									# Accent colour
-gsettings set $SCHEMA font-name 'Quicksand Medium 12 @wght=500'				# Interface font
-gsettings set $SCHEMA document-font-name 'Quicksand Medium 12 @wght=500'	# Document text font
+gsettings set $SCHEMA font-name 'Quicksand Medium 11.5 @wght=500'				# Interface font
+gsettings set $SCHEMA document-font-name 'Quicksand Medium 11.5 @wght=500'	# Document text font
 gsettings set $SCHEMA monospace-font-name 'Cutive Mono 13'					# Monospace font
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 
