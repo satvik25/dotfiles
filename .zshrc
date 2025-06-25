@@ -52,6 +52,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias restore-snapshot='sudo ./.local/bin/tmp/restore_snapshot.sh'
 
 alias edit='micro'
+alias edit-grub='micro /etc/default/grub'
 alias edit-hypr='micro ~/.config/hypr/hyprland.conf'
 alias edit-env='sudo micro /etc/environment'
 alias edit-zprof='micro ~/.zprofile'

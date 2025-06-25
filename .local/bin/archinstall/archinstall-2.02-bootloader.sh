@@ -7,7 +7,7 @@ set -x
 
 # Set parameters
 root_uuid=$(blkid -s UUID -o value /dev/sda2)
-crypt_uuid=$(blkid -s UUID -o value /dev/mapper/cryptroot)
+# crypt_uuid=$(blkid -s UUID -o value /dev/mapper/cryptroot)
 offset_val=$(btrfs inspect-internal map-swapfile -r /swap/swapfile)
 
 # Update GRUB options
@@ -18,7 +18,7 @@ sed -i 's/^#\?GRUB_TIMEOUT_STYLE=.*/GRUB_TIMEOUT_STYLE=hidden/' /etc/default/gru
 
 sed -i '/^#\?GRUB_CMDLINE_LINUX_DEFAULT=/c\
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID='"$root_uuid"':cryptroot:allow-discards root=/dev/mapper/cryptroot \\\
-resume=UUID='"$crypt_uuid"' resume_offset='"$offset_val"' \\\
+resume=UUID='"$root_uuid"' resume_offset='"$offset_val"' \\\
 zswap.enabled=1 \\\
 loglevel=3 quiet splash"' \
 /etc/default/grub
