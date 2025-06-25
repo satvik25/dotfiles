@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=File Manager
+Comment=Manage files
+Exec=fm %U
+Icon=io.github.fm
+Categories=Utility;FileManager;
+Terminal=false
+MimeType=inode/directory;
