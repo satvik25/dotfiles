@@ -7,3 +7,5 @@ Icon=io.github.fm
 Categories=Utility;FileManager;
 Terminal=false
 MimeType=inode/directory;
+
+NoDisplay=true
