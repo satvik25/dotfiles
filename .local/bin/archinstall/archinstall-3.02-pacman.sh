@@ -20,7 +20,7 @@ OFFICIAL_PACKAGES=(
     wl-clipboard copyq \
 	udiskie \
 	# Utilities
- 	kitty mc 7z jq \
+ 	kitty mc 7z jq dolphin qt6ct kvantum \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
