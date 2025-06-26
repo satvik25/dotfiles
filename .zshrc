@@ -154,7 +154,34 @@ export LESS_TERMCAP_se=$'\e[0m'   # reset standout
 # Prompt line
 PROMPT=$'  %{\e[32m%}{ }  %{\e[0m%}'
 zle_highlight=( 'default:fg=white,bold' )
-RPROMPT=$'   %{\e[1;34m%}%n%{\e[0m%}  %{\e[37m%}%~ %{\e[0m%}'
+# RPROMPT=$'   %{\e[1;34m%}%n%{\e[0m%}  %{\e[37m%}%~ %{\e[0m%}'
+
+
+## Right prompt
+
+	# Define colors
+	zstyle ':vcs_info:git:*' formats '%F{green}%s%f %F{magenta}%r%f %F{white}%b%f %F{yellow}%S%f commit %F{orange}%m%f|%F{red}%u%f|%F{green}%c%f'
+		
+	# Update vcs_info before each prompt
+	function git_prompt() { vcs_info }
+
+	# Outside git
+	typeset -g ZSH_RPROMPT_DEFAULT=$'   %{\e[1;34m%}%n%{\e[0m%}  %{\e[37m%}%~ %{\e[0m%}'
+	# Inside git
+	typeset -g ZSH_RPROMPT_GIT=' ${vcs_info_msg_0_} '
+	# Check inside/outside
+	function zle_prompt() {
+	  if [[ -n $vcs_info_msg_0_ ]]; then
+	    RPROMPT=$ZSH_RPROMPT_GIT
+	  else
+	    RPROMPT=$ZSH_RPROMPT_DEFAULT
+	  fi
+	}
+
+
+# Hooks to check before each command
+precmd_functions+=( blank_line git_prompt zle_prompt )
+
 
 
 # Skip graphical session customisations below this line while in tty
@@ -394,4 +421,4 @@ zle_highlight=( 'default:fg=#9ebd9e' )
 
 
 # Hooks to check before each command
-precmd_functions+=( blank_line git_prompt zle_prompt )
+# precmd_functions+=( blank_line git_prompt zle_prompt )

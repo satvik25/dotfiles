@@ -22,6 +22,7 @@
     ],
     "modules-right": [
         "idle_inhibitor",
+    //  "sni",
         "tray",
         "custom/ibus",
 	//	"hyprland/language",	
@@ -149,6 +150,10 @@
             "deactivated": ""
         },
     	"tooltip": false        
+    },
+    "sni": {
+      "icon-size": 16,
+      "scroll": false
     },
     "tray": {
         "icon-size": 18,

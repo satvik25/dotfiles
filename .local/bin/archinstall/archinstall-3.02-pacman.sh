@@ -12,25 +12,26 @@ OFFICIAL_PACKAGES=(
 	# Battery
 	acpi tlp \
   	# Security
-   	ufw nftables \
+   	ufw nftables bitwarden-cli \
 	#DE
 	hyprland hyprpolkitagent hypridle hyprlock hyprsunset \
 	uwsm qt5-wayland qt6-wayland waybar swww swaync sddm \
  	xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
     wl-clipboard copyq \
+    grim slurp \
 	udiskie \
 	# Utilities
- 	kitty mc 7z jq dolphin qt6ct kvantum \
+ 	kitty mc 7z jq thunderbird \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
-    	# Language
+    # Language
  	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
-     	# Development
+    # Development
  	base-devel git openssh \
  	# Extras
- 	gnome-themes-extra gtk-engine-murrine
- 	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
+ 	gnome-tweaks lxappearance qt6ct kvantum
+	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
 )
 
 # Dependency packages
@@ -40,7 +41,11 @@ DEPS_PACKAGES=(
 	# Ulauncher extn: Calculate Anything
 	python-pint python-parsedatetime python-pytz \
 	# Hyprland plugins
-	cpio cmake git meson gcc
+	cpio cmake git meson gcc \
+	# Colloid GTK Theme
+	gnome-themes-extra gtk-engine-murrine \
+	# librepods
+	qt6-base qt6-connectivity qt6-multimedia-ffmpeg qt6-multimedia
 )
 
 # AUR packages
@@ -52,20 +57,23 @@ AUR_PACKAGES=(
   	# Security
   	apparmor \
    	# DE
-    	hyprland-per-window-layout ulauncher-git \
+    hyprland-per-window-layout ulauncher-git \
+ 	hyprshot-git hyprshot-gui \
+ 	packet \
   	# Browser
    	google-chrome \
 	# Utilities
- 	pfetch arch-update \
+ 	pfetch arch-update
  	# Extras
- 	hyprshot-git hyprshot-gui
  	# preload
 )
 
 # Dependency AUR packages
 DEPS_AUR_PACKAGES=(
 	# Ulauncher extn: Calculate Anything
-	python-simpleeval
+	python-simpleeval \
+	# packet: Optional
+	python-dbus nautilus-python
 )
 
 # yay
@@ -89,3 +97,5 @@ yay -S --noconfirm --needed "${AUR_PACKAGES[@]}"
 yay -S --noconfirm --needed --asdeps "${DEPS_AUR_PACKAGES[@]}"
 
 echo -e "\033[32m[SUCCESS]\033[0m Packages installed."
+echo -e "\033[33mBuild the following packages manually:\033[0m"
+echo "librepods \nadd-more-here"

@@ -81,5 +81,16 @@ systemctl daemon-reexec
 systemctl daemon-reload
 systemctl enable --now ufw-blocklist.timer
 
+
+# Setup bw-cli
+sudo ufw disable
+sudo systemctl stop nftables
+bw config server https://vault.bitwarden.eu
+bw login satvikchaudhary@gmail.com
+bw sync
+sudo ufw enable
+sudo systemctl start nftables
+
+
 set +x
 echo -e "\033[32m[SUCCESS]\033[0m Security config complete."
