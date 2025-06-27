@@ -1,3 +1,3 @@
 [Icon Theme]
 Name=passage
-Inherits=hicolor,Adwaita
+Inherits=Adwaita,hicolor
