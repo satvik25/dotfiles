@@ -6,7 +6,8 @@ TextField {
   focus: true
   selectByMouse: true
   palette.text: "#ffffcc"
-  placeholderText: "pass  󰟵"
+  // placeholderText: "pass  󰟵"
+  placeholderText: qsTr("pass  󰟵")
   palette.placeholderText: "#afa8a6"
   echoMode: TextInput.Password
   passwordCharacter: ""
@@ -18,6 +19,7 @@ TextField {
   font.bold: false
   font.weight: Font.Thin
   // font.letterSpacing: 7
+  font.letterSpacing: text.length > 0 ? 12 : 0
   verticalAlignment: TextInput.AlignVCenter
   // bottomPadding: 6
   horizontalAlignment: TextInput.AlignHCenter
