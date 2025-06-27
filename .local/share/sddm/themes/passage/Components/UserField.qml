@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 TextField {
   id: userField
   selectByMouse: true
+  anchors.verticalCenterOffset: 400    // move it 40px down
   echoMode: TextInput.Normal
   selectionColor: config.textDefault
   renderType: Text.NativeRendering
@@ -12,11 +13,12 @@ TextField {
     pixelSize: 16
     bold: false
   }
-  palette.text: "#ffffcc"
-  palette.placeholderText: "#9ebd9e"
+  palette.text: "#efeded"
+  palette.placeholderText: "#b6ceb6"
   verticalAlignment: Text.AlignVCenter
   horizontalAlignment: Text.AlignHCenter
   placeholderText: "user  "
+  font.letterSpacing: text.length > 0 ? 4 : 0
   text: userModel.lastUser
   background: Rectangle {
     id: userFieldBackground

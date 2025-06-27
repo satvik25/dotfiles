@@ -69,6 +69,7 @@ Item {
     LoginPanel {
       id: loginPanel
       anchors.fill: parent
+	// anchors.topMargin: 250    // move everything inside LoginPanel down 50px
     }
   }
 }

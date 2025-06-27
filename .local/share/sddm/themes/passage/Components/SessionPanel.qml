@@ -21,7 +21,7 @@ Item {
         font.bold: false
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: "#ffffcc"
+        color: "#ffffee"
         text: name
       }
       background: Rectangle {

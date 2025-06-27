@@ -142,9 +142,9 @@ export LESS='-R'
 export MANROFFOPT='-c'
 export MANPAGER='less -R'
 ### Define colors
-export LESS_TERMCAP_md=$'\e[1;32m'			# Bold → Green
-export LESS_TERMCAP_us=$'\e[4;33m'			# Underline → Yellow
-export LESS_TERMCAP_so=$'\e[7;34m'			# Standout/reverse → Blue
+export LESS_TERMCAP_md=$'\e[32m'			# Bold → Green
+export LESS_TERMCAP_us=$'\e[33m'			# Underline → Yellow
+export LESS_TERMCAP_so=$'\e[40;1;34m'		# Standout/reverse → fg:Blue/ bg:Black
 ### Reset styles
 export LESS_TERMCAP_me=$'\e[0m'   # reset bold/standout
 export LESS_TERMCAP_ue=$'\e[0m'   # reset underline
@@ -249,12 +249,13 @@ export LESS='-R'
 export MANROFFOPT='-c'
 export MANPAGER='less -R'
 ### Define colors
-export LESS_TERMCAP_md=$'\e[38;2;158;189;158m'         	# 9ebd9e for emboldened items
-export LESS_TERMCAP_us=$'\e[4m\e[38;2;207;207;196m'     # cfcfc4 for underlined items
+export LESS_TERMCAP_so=$'\e[49m\e[38;2;255;192;103m'	# c9a0dc for standout items
+export LESS_TERMCAP_md=$'\e[38;2;180;206;182m'         	# 9ebd9e for emboldened items
+export LESS_TERMCAP_us=$'\e[4m\e[38;2;201;160;220m'     # cfcfc4 for underlined items
 ### Reset styles
+export LESS_TERMCAP_se=$'\e[0m'  # end standout
 export LESS_TERMCAP_me=$'\e[0m'  # end bold
 export LESS_TERMCAP_ue=$'\e[0m'  # end underline
-export LESS_TERMCAP_se=$'\e[0m'  # end standout (not used, but safe)
 
 
 # Icons

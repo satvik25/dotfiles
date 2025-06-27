@@ -60,6 +60,8 @@ Item {
     anchors {
       verticalCenter: parent.verticalCenter
       horizontalCenter: parent.horizontalCenter
+      verticalCenterOffset: 130
+      horizontalCenterOffset: -26
     }
     UserField {
       id: userField
@@ -93,8 +95,8 @@ Item {
       	Text {
           id: submitIcon
           text: ""
-          color: "#9ebd9e"
-          font.pixelSize: 16
+          color: "#b6ceb6"
+          font.pixelSize: 14
           anchors.centerIn: parent
           bottomPadding: 2
           // leftPadding: 1	
@@ -173,7 +175,7 @@ Item {
     target: sddm
 
     function onLoginFailed() {
-      passwordField.text = ""
+      passwordField.text = "Incorrect Password"
       passwordField.focus = true
     }
   }

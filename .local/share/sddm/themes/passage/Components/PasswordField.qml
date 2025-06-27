@@ -4,11 +4,12 @@ import QtQuick.Controls 2.15
 TextField {
   id: passwordField
   focus: true
+  // anchors.top: usernameField.bottom
   selectByMouse: true
-  palette.text: "#ffffcc"
+  palette.text: "#dfdcda"
   // placeholderText: "pass  󰟵"
   placeholderText: qsTr("pass  󰟵")
-  palette.placeholderText: "#afa8a6"
+  palette.placeholderText: "#dfdcda"
   echoMode: TextInput.Password
   passwordCharacter: ""
   passwordMaskDelay: config.PasswordShowLastLetter
