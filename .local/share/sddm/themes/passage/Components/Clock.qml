@@ -28,7 +28,7 @@ Column {
     id: container
 
     property date dateTime: new Date()
-    property color color: "white"
+    property color color: "#c1bebe"
     property alias timeFont: time.font
     property alias dateFont: date.font
 
@@ -43,9 +43,9 @@ Column {
 
         color: container.color
 
-        text : Qt.formatTime(container.dateTime, "hh:mm")
+        text : Qt.formatTime(container.dateTime, "hh:mm AP")
 
-        font.pointSize: 72
+        font.pointSize: 48
 
         font.weight: Font.Thin
     }
