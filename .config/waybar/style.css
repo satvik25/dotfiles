@@ -533,3 +533,7 @@ tooltip * {
 #clock {
 	margin-right: 4px;
 }
+
+#workspaces button {
+  padding-bottom: 2px;
+}
