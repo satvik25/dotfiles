@@ -2,32 +2,19 @@
 set -euo pipefail
 
 
-# Install tools
-yay -S --noconfirm i8kutils dell-bios-fan-control-git
+# Control fan
 
-# Add systemd services
-# Fan control service
-cat <<EOF | sudo tee /etc/systemd/system/dell-bios-fan-control.service > /dev/null
-[Unit]
-Description=Disable Dell BIOS fan control
-After=multi-user.target
+# Install tool
+yay -S --noconfirm i8kutils
 
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/dell-bios-fan-control 0
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-## Processor service
+# Add systemd service to control fan
 cat <<EOF | sudo tee /etc/systemd/system/i8kmon.service > /dev/null
 [Unit]
 Description=Auto Fan Control using i8kmon
 After=multi-user.target
 
 [Service]
-ExecStart=/usr/bin/i8kmon -d
+ExecStart=/usr/bin/i8kmon -t 2 -o
 Restart=always
 
 [Install]
@@ -36,4 +23,4 @@ EOF
 
 # Enable systemd services
 sudo systemctl daemon-reload
-sudo systemctl enable --now dell-bios-fan-control i8kmon
+sudo systemctl enable --now i8kmon

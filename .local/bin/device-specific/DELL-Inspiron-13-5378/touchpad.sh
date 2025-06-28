@@ -3,6 +3,5 @@
 set -euo pipefail
 
 modprobe -r hid_multitouch i2c_hid_acpi i2c_hid || true
-# sleep 0.3
-modprobe    i2c_hid_acpi
-# logger -t touchpad-helper "HID modules reloaded after rogue-gesture burst"
+sleep 1
+modprobe i2c_hid_acpi

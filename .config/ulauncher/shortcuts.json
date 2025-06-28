@@ -19,10 +19,20 @@
     "name": "Search",
     "run_without_argument": false
   },
+  "p5str0dzeo2nr4qr0zsy": {
+    "added": 1751132054,
+    "cmd": "https://%s",
+    "icon": "~/.local/share/icons/hicolor/128x128/apps/website.png",
+    "id": "p5str0dzeo2nr4qr0zsy",
+    "is_default_search": true,
+    "keyword": "site",
+    "name": "Website",
+    "run_without_argument": false
+  },
   "wikipedia": {
     "added": 1750187336,
     "cmd": "https://en.wikipedia.org/wiki/%s",
-    "icon": "~/.local/share/icons/hicolor/128x128/apps/wikipedia.png",
+    "icon": "/home/7vik/.local/share/icons/hicolor/128x128/apps/wikipedia.png",
     "id": "wikipedia",
     "is_default_search": true,
     "keyword": "wiki",
