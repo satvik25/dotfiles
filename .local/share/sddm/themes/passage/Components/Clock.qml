@@ -43,7 +43,7 @@ Column {
 
         color: container.color
 
-        text : Qt.formatTime(container.dateTime, "hh:mm AP")
+        text : Qt.formatTime(container.dateTime, "hh:mm ap")
 
         font.pointSize: 48
 
