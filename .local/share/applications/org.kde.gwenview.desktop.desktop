@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/home/7vik/.local/share/applications/org.kde.gwenview.desktop
+MimeType=image/png;
+Name=org.kde.gwenview.desktop
+NoDisplay=true
+Type=Application

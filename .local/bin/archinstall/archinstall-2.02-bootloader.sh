@@ -18,7 +18,7 @@ sed -i 's/^#\?GRUB_TIMEOUT_STYLE=.*/GRUB_TIMEOUT_STYLE=hidden/' /etc/default/gru
 
 sed -i '/^#\?GRUB_CMDLINE_LINUX_DEFAULT=/c\
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID='"$root_uuid"':cryptroot:allow-discards root=/dev/mapper/cryptroot \\\
-resume=UUID='"$root_uuid"' resume_offset='"$offset_val"' \\\
+resume=/dev/mapper/cryptroot resume_offset='"$offset_val"' \\\
 zswap.enabled=1 \\\
 loglevel=3 quiet splash"' \
 /etc/default/grub
