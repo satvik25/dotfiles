@@ -95,8 +95,10 @@ login-bw() {
 
 
 # Keybindings
-bindkey -e
+WORDCHARS=${WORDCHARS//\/}			# Treat slash as a WORD boundary
+WORDCHARS=${WORDCHARS//\-}			# Treat slash as a WORD boundary
 
+bindkey -e
 bindkey '^[[1;5D' backward-word   	# Ctrl + ←
 bindkey '^[[1;5C' forward-word    	# Ctrl + →
 bindkey '^[[H' beginning-of-line  	# Fn + ←

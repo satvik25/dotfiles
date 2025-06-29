@@ -160,11 +160,11 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
-		"format": "{:%OI:%OM %p}",
+        "timezone": "Asia/Kolkata",
+		"format": "{:%a %b %Od  |  %OI:%OM %p}",
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "tooltip-format": "<tt><big>{calendar}</big></tt>",
-        "format-alt": "{:%a | W%OW | %b %Od '%Oy}",
+        // "format-alt": "{:%a | W%OW | %b %Od '%Oy}",
         "calendar": {
                     "mode"          : "month",
                     "mode-mon-col"  : 3,
@@ -293,7 +293,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["\uf026", "\uf027", "\uf028"],            
+            "default": ["\uf026", "\uf027", "\uf028"]            
         },
         "tooltip": false,
         "on-click": "pavucontrol"
