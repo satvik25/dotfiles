@@ -7,12 +7,12 @@
   "disable_desktop_filters": false,
   "enable_application_mode": true,
   "grab_mouse_pointer": false,
+  "hide_window_on_focus_loss": false,
   "jump_keys": "1234567890abcdefghijklmnopqrstuvwxyz",
   "max_recent_apps": 3,
   "raise_if_started": false,
   "render_on_screen": "mouse-pointer-monitor",
   "show_tray_icon": false,
   "theme_name": "Passage",
-  "tray_icon_name": "ulauncher-indicator-symbolic",
-  "hide-window-on-focus-loss": false
+  "tray_icon_name": "ulauncher-indicator-symbolic"
 }

@@ -96,7 +96,8 @@ login-bw() {
 
 # Keybindings
 WORDCHARS=${WORDCHARS//\/}			# Treat slash as a WORD boundary
-WORDCHARS=${WORDCHARS//\-}			# Treat slash as a WORD boundary
+WORDCHARS=${WORDCHARS//\-}			# Treat dash as a WORD boundary
+WORDCHARS=${WORDCHARS//\.}			# Treat dot as a WORD boundary
 
 bindkey -e
 bindkey '^[[1;5D' backward-word   	# Ctrl + ←
