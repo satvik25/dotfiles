@@ -63,7 +63,7 @@ Item {
       // pin to top-right corner:
       anchors.top: parent.top
       anchors.right: parent.right
-      anchors.topMargin: Screen.height * 0.022
+      anchors.topMargin: Screen.height * 0.030
       anchors.rightMargin: Screen.width  * 0.01
     }
     LoginPanel {

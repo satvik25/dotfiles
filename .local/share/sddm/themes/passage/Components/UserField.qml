@@ -18,7 +18,7 @@ TextField {
   verticalAlignment: Text.AlignVCenter
   horizontalAlignment: Text.AlignHCenter
   placeholderText: "user  "
-  font.letterSpacing: text.length > 0 ? 4 : 0
+  // font.letterSpacing: text.length > 0 ? 4 : 0
   text: userModel.lastUser
   background: Rectangle {
     id: userFieldBackground
