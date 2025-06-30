@@ -1,6 +1,8 @@
 [Desktop Entry]
-Name=Thunderbird
-Comment=Send and receive mail with Thunderbird
+; Name=Thunderbird
+Name=Mail
+; Comment=Send and receive mail with Thunderbird
+Comment=Send and receive mail
 Comment[ast]=Lleer y escribir corréu electrónicu
 Comment[ca]=Llegiu i escriviu correu
 Comment[cs]=Čtení a psaní pošty

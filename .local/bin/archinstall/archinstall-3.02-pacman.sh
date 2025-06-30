@@ -21,7 +21,7 @@ OFFICIAL_PACKAGES=(
     grim slurp \
 	udiskie \
 	# Utilities
- 	kitty mc 7z jq nemo gthumb thunderbird \
+ 	kitty inxi jq 7z mc nemo gthumb thunderbird libreoffice-fresh \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \

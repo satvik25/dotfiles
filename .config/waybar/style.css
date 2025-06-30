@@ -141,10 +141,10 @@ button:not(.active):hover {
 #clock {
 /*  background-color: #64727d;	*/
 /*  background-color: #f4f1d6;	*/
-    background-color: #faf8f6;
-    color: #000000;
+    /* background-color: #faf8f6; */
+    /* color: #000000; */
 
-/*  color: #9ebd9e;				*/
+/* color: #9ebd9e;				 */
     color: #faf8f6;
 }
 
