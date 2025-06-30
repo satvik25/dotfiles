@@ -12,7 +12,7 @@ OFFICIAL_PACKAGES=(
 	# Battery
 	acpi tlp \
   	# Security
-   	ufw nftables bitwarden-cli \
+   	ufw nftables bitwarden-cli clamav lynis \
 	#DE
 	hyprland hyprpolkitagent hypridle hyprlock hyprsunset \
 	uwsm qt5-wayland qt6-wayland waybar swww swaync sddm \
@@ -21,7 +21,7 @@ OFFICIAL_PACKAGES=(
     grim slurp \
 	udiskie \
 	# Utilities
- 	kitty mc 7z jq thunderbird \
+ 	kitty mc 7z jq nemo gthumb thunderbird \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
@@ -29,8 +29,9 @@ OFFICIAL_PACKAGES=(
  	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
     # Development
  	base-devel git openssh \
+ 	# Theming
+ 	gnome-tweaks lxappearance dconf-editor qt6ct kvantum
  	# Extras
- 	gnome-tweaks lxappearance qt6ct kvantum
 	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
 )
 

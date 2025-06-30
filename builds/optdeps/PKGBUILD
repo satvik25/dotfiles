@@ -1,0 +1,36 @@
+# Maintainer: Your Name <you@example.com>
+# This is a meta-package to bind orphan packages as dependencies of optdeps
+
+pkgname=optdeps
+pkgver=1.0
+pkgrel=1
+pkgdesc="Meta-package for extra dependencies"
+arch=('any')
+url=""
+license=('GPL')
+
+# List the orphan packages you want to "bind" here
+depends=(
+  cmake-extras
+  hyprland-per-window-layout-debug
+  ibus-m17n-debug
+  ibus-typing-booster
+  go
+  rust
+  yarn
+  packet-debug
+  python-parsedatetime
+  python-pint
+  python-pytz
+  python-simpleeval
+  python-pillow
+)
+
+# No source files, this is a meta-package
+source=()
+md5sums=()
+
+package() {
+  # Nothing to do, this is a meta-package
+  return 0
+}
