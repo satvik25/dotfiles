@@ -40,16 +40,18 @@ OFFICIAL_PACKAGES=(
 
 # Dependency packages
 DEPS_PACKAGES=(
+	# Nemo File Manager
+	python-pillow \
 	# Ulauncher extns
 	# python-pip
-	# Ulauncher extn: Calculate Anything
+	## Ulauncher extn: Calculate Anything
 	python-pint python-parsedatetime python-pytz \
 	# Hyprland plugins
 	cpio cmake git meson gcc \
 	# Colloid GTK Theme
 	gnome-themes-extra gtk-engine-murrine \
 	# librepods
-	qt6-base qt6-connectivity qt6-multimedia-ffmpeg qt6-multimedia
+	qt6-base qt6-connectivity qt6-multimedia-ffmpeg qt6-multimedia	
 )
 
 # AUR packages
