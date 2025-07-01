@@ -114,7 +114,7 @@ Comment[zh_CN]=访问和组织文件
 Comment[zh_HK]=存取與組織檔案
 Comment[zh_TW]=存取並組織檔案
 Exec=nemo %U
-Icon=system-file-manager
+Icon=nemo
 # Translators: these are keywords of the file manager
 Keywords=folders;filesystem;explorer;
 Terminal=false

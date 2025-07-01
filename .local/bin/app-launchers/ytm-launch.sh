@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # --- start YT Music ------------------------------------------
-google-chrome-stable \
-  --user-data-dir="$HOME/.config/ytmusic-profile" \
-  --profile-directory=Default \
-  --app=https://music.youtube.com \
-  --class=YTMusic --no-first-run --new-window \
-  --enable-features=UseOzonePlatform --ozone-platform=wayland &
+google-chrome-stable --app=https://music.youtube.com
 # --------------------------------------------------------------
 
 # give Hyprland ~100 ms so the window lands

@@ -12,6 +12,7 @@ EXTENSIONS=(
   "https://github.com/iboyperson/ulauncher-system"
   "https://github.com/sergius02/ulauncher-colorconverter"
   "https://github.com/tchar/ulauncher-albert-calculate-anything"
+  "https://github.com/lighttigerXIV/ulauncher-terminal-runner-extension"
 )
 
 # Clone extensions locally

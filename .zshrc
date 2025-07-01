@@ -93,6 +93,8 @@ login-bw() {
   export BW_SESSION="$(bw login --raw satvikchaudhary@gmail.com)"
 }
 
+alias 'sync-gdrive'="rclone bisync gdrive: ~/Drive-Google --resync"
+
 
 # Keybindings
 WORDCHARS=${WORDCHARS//\/}			# Treat slash as a WORD boundary
@@ -206,15 +208,7 @@ chrome() {
 
 ytm () {
     # 1) launch the app (backgrounded exactly as before)
-    setsid google-chrome-stable \
-        --user-data-dir="$HOME/.config/ytmusic-profile" \
-        --profile-directory=Default \
-        --app="https://music.youtube.com" \
-        --class=YTMusic \
-        --no-first-run --new-window \
-        --enable-features=UseOzonePlatform \
-        --ozone-platform=wayland \
-        >/dev/null 2>&1 &
+    setsid google-chrome-stable --app="https://music.youtube.com" >/dev/null 2>&1 &
 
     # 2) give Hyprland a tiny moment so the window lands in this workspace
     sleep 0.1   # adjust/remove to taste
@@ -327,20 +321,22 @@ DIR_ICON() {
 ## Hyprland workspace icons
 ### Define icon keywords
 typeset -A HYPR_WS_ICONS=(
-  # keyword   icon
-    music     "󰎇"
-    web       "󰖟"
-    code      "󰅩"
+  # keyword   	icon
+    music     	"󰎇"
+    web       	"󰖟"
+    code      	"󰅩"
+    msg			"󱜾"
+    mail		""
 )
+
 ### Rename workspaces
 hypr-name () {
-    # Checks at least 2 args are present
     if [[ $# -lt 2 ]]; then
         print -u2 "Usage: hypr-name <workspace-number> <keyword|name> [name]"
         return 1
     fi
-    # Args
-    local ws="$1"        # first argument: workspace number
+
+    local ws="$1"
     shift
 
     local label_parts=()
@@ -357,38 +353,23 @@ hypr-name () {
         fi
     done
 
-    # Build the label string:
+    # Build the label string
     local label=""
-	# For less space after icon and before word
-    # for ((i = 1; i <= ${#label_parts[@]}; ++i)); do
-    #     if [[ $i -eq 1 ]]; then
-    #         label="${label_parts[i]}"
-    #     elif [[ "${label_parts[i]}" == "$icon_value" ]]; then
-    #         label+="  ${label_parts[i]}"   	# two spaces before icons
-    #     else
-    #         label+=" ${label_parts[i]}"		# two spaces before words
-    #     fi
-    # done
-	# For more space after icon and before word
-    local after_icon=0
     for ((i = 1; i <= ${#label_parts[@]}; ++i)); do
         if [[ $i -eq 1 ]]; then
             label="${label_parts[i]}"
         elif [[ "${label_parts[i]}" == "$icon_value" ]]; then
-            label+="  ${label_parts[i]}"     # two spaces before the icon (if not first)
-            after_icon=1
-        elif [[ $after_icon -eq 1 ]]; then
-            label+="  ${label_parts[i]}"     # two spaces before the first word after icon
-            after_icon=0
+            label+="  ${label_parts[i]}"
+        elif [[ "${label_parts[i]}" =~ ^[0-9]+$ ]]; then
+            label+="  ${label_parts[i]}"
         else
             label+=" ${label_parts[i]}"
         fi
     done
 
-    # Add one leading and one trailing space
+    # Add one leading and one trailing space, per your original
     label=" $label "
 
-    # Command to rename workspace
     hyprctl dispatch renameworkspace "$ws" "$label"
 }
 
