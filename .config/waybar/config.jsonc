@@ -157,7 +157,7 @@
     },
     "tray": {
         "icon-size": 18,
-        "spacing": 10
+        "spacing": 15
     },
     "clock": {
         "timezone": "Asia/Kolkata",
@@ -257,14 +257,14 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-		"family": "ipv4",
+		// "family": "ipv4",
         // "format-wifi": "{essid} ({signalStrength}%) \uf1eb",
         "format-wifi": "\udb82\udd28",
         "format-ethernet": "{ipaddr}/{cidr}  ",
         // "tooltip-format": "{ifname} via {gwaddr}  ",
         "tooltip-format": "{essid}\n\udb82\ude60  {ipaddr}\n\udb81\udc69  {gwaddr}",
         // "format-linked": "{ifname} (No IP)  ",
-        "format-linked": "{ifname} (No IP)  ",
+        "format-linked": "",
         "format-disconnected": "\udb82\udd2e",
 		"tooltip-format-disconnected": "Disconnected"
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"

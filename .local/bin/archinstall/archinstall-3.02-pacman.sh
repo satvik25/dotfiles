@@ -12,7 +12,7 @@ OFFICIAL_PACKAGES=(
 	# Battery
 	acpi tlp \
   	# Security
-   	ufw nftables bitwarden-cli clamav lynis \
+   	ufw nftables bitwarden-cli clamav lynis proton-vpn-gtk-app \
 	#DE
 	hyprland hyprpolkitagent hypridle hyprlock hyprsunset \
 	uwsm qt5-wayland qt6-wayland waybar swww swaync sddm \
@@ -21,10 +21,13 @@ OFFICIAL_PACKAGES=(
     grim slurp \
 	udiskie \
 	# Utilities
- 	kitty inxi jq 7z mc nemo gthumb thunderbird libreoffice-fresh \
+ 	jq wget kitty inxi 7z mc nemo gthumb thunderbird rclone \
+	# Office
+	evince libreoffice-fresh \
    	# Fonts
   	noto-fonts noto-fonts-cjk noto-fonts-extra \
 	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
+	ebgaramond-otf \
     # Language
  	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
     # Development
