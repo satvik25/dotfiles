@@ -7,12 +7,14 @@ mkdir -p "$EXT_DIR"
 
 # List of extensions
 EXTENSIONS=(
-  "https://github.com/melianmiko/ulauncher-nmcli"
-  "https://github.com/melianmiko/ulauncher-bluetoothd"
-  "https://github.com/iboyperson/ulauncher-system"
-  "https://github.com/sergius02/ulauncher-colorconverter"
-  "https://github.com/tchar/ulauncher-albert-calculate-anything"
-  "https://github.com/lighttigerXIV/ulauncher-terminal-runner-extension"
+  "https://github.com/melianmiko/ulauncher-nmcli" 									# Network Menu
+  "https://github.com/melianmiko/ulauncher-bluetoothd" 								# Bluetooth Menu
+  "https://github.com/iboyperson/ulauncher-system" 									# Logout Menu
+  "https://github.com/sergius02/ulauncher-colorconverter" 							# Color Converter
+  "https://github.com/tchar/ulauncher-albert-calculate-anything" 					# Universal Converter
+  "https://github.com/lighttigerXIV/ulauncher-terminal-runner-extension" 			# Command Runner
+  "https://github.com/kbialek/ulauncher-bitwarden" 									# Passwords
+  "https://github.com/Ulauncher/ulauncher-emoji" 									# Emoji
 )
 
 # Clone extensions locally

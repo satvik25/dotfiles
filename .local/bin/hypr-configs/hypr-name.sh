@@ -4,11 +4,12 @@
 ### Define icon keywords
 typeset -A HYPR_WS_ICONS=(
   # keyword   	icon
-    music     	"󰎇"
-    web       	"󰖟"
     code      	"󰅩"
-    msg			"󱜾"
+    web       	"󰖟"
     mail		""
+    msg			"󱜾"
+    music     	"󰎇"
+    work 		""
 )
 
 ### Rename workspaces
