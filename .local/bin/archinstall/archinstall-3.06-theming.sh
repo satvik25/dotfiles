@@ -49,6 +49,9 @@ sudo awk '
 ' "$DST" "$SRC" | sudo tee -a "$DST" >/dev/null
 # sudo sh -c "grep -vxFf '$DST' '$SRC' >> '$DST'"							# If awk logic does not works
 
-
 ## Cleanup
 rm -rf "$TMPDIR"
+
+
+# Misc settings
+gsettings set org.gnome.desktop.wm.preferences button-layout :

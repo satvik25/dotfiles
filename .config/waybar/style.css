@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: Quicksand, Roboto, sans-serif, "Symbols Nerd Font", "FontAwesome 6 Free Solid", "Font Awesome 6 Free";
-	/* font-size: 14px; */
+	font-size: 14.5px;
 }
 
 window#waybar {

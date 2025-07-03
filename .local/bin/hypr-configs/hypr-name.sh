@@ -14,13 +14,13 @@ typeset -A HYPR_WS_ICONS=(
 
 ### Rename workspaces
 hypr-name () {
-    if [[ $# -lt 2 ]]; then
-        print -u2 "Usage: hypr-name <workspace-number> <keyword|name> [name]"
-        return 1
-    fi
+    # if [[ $# -lt 2 ]]; then
+    #     print -u2 "Usage: hypr-name <workspace-number> <keyword|name> [name]"
+    #     return 1
+    # fi
 
-    local ws="$1"
-    shift
+    local ws="$(hyprctl -j activewindow | jq -r '.workspace.id')"
+    # shift
 
     local label_parts=()
     local icon_replaced=0
@@ -53,7 +53,7 @@ hypr-name () {
     # Add one leading and one trailing space, per your original
     label=" $label "
 
-    hyprctl dispatch renameworkspace "$ws" "$label"
+    hyprctl dispatch renameworkspace "$ws" "$label" "$ws" ""
 }
 
 # If someone invokes this file directly, call the function with all args:

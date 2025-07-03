@@ -211,14 +211,12 @@ ytm () {
     setsid google-chrome-stable --app="https://music.youtube.com" >/dev/null 2>&1 &
 
     # 2) give Hyprland a tiny moment so the window lands in this workspace
-    sleep 0.1   # adjust/remove to taste
+    # sleep 0.1   # adjust/remove to taste
 
     # 3) rename the *current* workspace to the music icon
-    local ws
-    ws="$(hyprctl activeworkspace -j | jq -r '.id')"
-    hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "
-    # └─ if you turned `hypr-name` into an executable script, you could instead do:
-    #    hypr-name "$ws" music
+    # local ws
+    # ws="$(hyprctl activeworkspace -j | jq -r '.id')"
+    # hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "
 }
 
 

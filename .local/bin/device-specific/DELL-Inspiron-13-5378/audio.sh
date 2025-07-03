@@ -7,11 +7,11 @@
 set -euo pipefail
 
 # 1. Disable HDA power-save
-MODPROBE_CONF='/etc/modprobe.d/audio_powersave.conf'
-echo "Writing $MODPROBE_CONF…"
-sudo tee "$MODPROBE_CONF" > /dev/null <<EOF
-options snd_hda_intel power_save=0 power_save_controller=N
-EOF
+# MODPROBE_CONF='/etc/modprobe.d/audio_powersave.conf'
+# echo "Writing $MODPROBE_CONF…"
+# sudo tee "$MODPROBE_CONF" > /dev/null <<EOF
+# options snd_hda_intel power_save=0 power_save_controller=N
+# EOF
 
 # 2. Create udev rule to pin IRQ 130 to CPUs 0-3
 UDEV_RULE='/etc/udev/rules.d/85-audio-irq.rules'
