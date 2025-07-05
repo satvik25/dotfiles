@@ -1,5 +1,4 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: Quicksand, Roboto, sans-serif, "Symbols Nerd Font", "FontAwesome 6 Free Solid", "Font Awesome 6 Free";
 	font-size: 14.5px;
 }
@@ -28,14 +27,6 @@ window#waybar {
 	margin-left: 12px;
 }
 
-window#waybar:not(.empty) #window {   /* bar root is NOT “empty” */
-    margin-right: 10px;               /* draw the 12 px spacer   */
-}
-
-/* --- no gap on an empty workspace ------------------------------------- */
-window#waybar.empty #window {         /* bar root HAS class “empty” */
-    margin-right: -3px;                  /* collapse the spacer       */
-}
 
 .modules-right { 
 	margin-right: 15px;
@@ -141,6 +132,11 @@ button:not(.active):hover {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 15px;
+}
+
+.modules-left > widget:first-child > #workspaces.special {
+	margin-left: 6px;
+    margin-right: 4px;
 }
 
 #clock {
@@ -373,6 +369,15 @@ label:focus {
     background-color: #51a37a;
 }
 
+#bluetooth {
+    color: #9ebd9e;
+    font-size: 17px;
+}
+
+#systemd-failed-units {
+	color: #ffee8c;
+}
+
 #language {
 /*  background: #00b093;	*/
 	background-color: #738678;
@@ -383,6 +388,11 @@ label:focus {
     min-width: 16px;
 
     color: #9ebd9e;
+}
+
+#privacy button {
+	background: transparent;
+	color: #9ebd9e;	
 }
 
 #custom-ibus {
@@ -472,6 +482,7 @@ separator {
 }
 
 #clock,
+#privacy,
 #battery,
 #battery.warning,
 #battery.charging,
@@ -496,6 +507,8 @@ separator {
 #power-profiles-daemon,
 #mpd,
 #keyboard-state,
+#systemd-failed-units,
+#bluetooth,
 #language,
 #custom-ibus,
 #workspaces button {
@@ -541,4 +554,18 @@ tooltip * {
 
 #workspaces button {
   padding-bottom: 2px;
+}
+
+#workspaces.special button {
+  padding-top: 2px;
+}
+
+
+window#waybar:not(.empty) #window {   /* bar root is NOT “empty” */
+    margin-right: 10px;               /* draw the 12 px spacer   */
+}
+
+/* --- no gap on an empty workspace ------------------------------------- */
+window#waybar.empty #window {         /* bar root HAS class “empty” */
+    margin-right: -3px;                  /* collapse the spacer       */
 }

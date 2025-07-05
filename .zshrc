@@ -222,21 +222,20 @@ ytm () {
 
 # Colors
 ## Define colors
-HOST_COLOR=$(printf "\033[38;2;158;189;158m")			# Green
+HOST_COLOR=$(printf "\033[38;2;201;160;220m")			# Wisteria
 PROMPT_CHAR_COLOR=$(printf "\033[38;2;158;189;158m")	# Green
 DIR_COLOR=$(printf "\033[38;2;180;180;180m")  			# Gray
-
-ERROR_COLOR=$(printf "\033[38;2;245;60;60m")     		# Red
+ERROR_COLOR=$(printf "\e[49m\e[38;2;255;192;103m")     	# Red
 WARNING_COLOR=$(printf "\033[38;2;255;238;140m") 		# Yellow
 INFO_COLOR=$(printf "\033[38;2;158;189;158m")    		# Green
 
 RESET=$(printf "\033[0m")
 
-## Color command not found
-# command_not_found_handler() {
-  # echo "${ERROR_COLOR} Command not found: ${RESET}$1" >&2
-  # return 127
-# }
+# Color command not found
+command_not_found_handler() {
+  echo "${ERROR_COLOR} Command not found: ${RESET}$1" >&2
+  return 127
+}
 
 ## Color man
 ### Enable color output in man page
@@ -251,6 +250,9 @@ export LESS_TERMCAP_us=$'\e[4m\e[38;2;201;160;220m'     # cfcfc4 for underlined 
 export LESS_TERMCAP_se=$'\e[0m'  # end standout
 export LESS_TERMCAP_me=$'\e[0m'  # end bold
 export LESS_TERMCAP_ue=$'\e[0m'  # end underline
+
+### Color sudo
+export SUDO_PROMPT=$'\e[38;2;255;192;103m[sudo]\e[0m password for %u: '
 
 
 # Icons

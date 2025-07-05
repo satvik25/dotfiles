@@ -11,12 +11,12 @@ gtk-launch whatsapp
 gtk-launch ytm
 
 ## Break to ensure everything is up and running
-sleep 10
+sleep 15
 
 # Move to special workspace
-hyprctl dispatch movetoworkspacesilent special:mail,address:0x$(hyprctl clients | grep -E '^Window .*Mozilla Thunderbird:$' | awk '{print $2}')
-hyprctl dispatch movetoworkspacesilent special:whatsapp,address:0x$(hyprctl clients | grep -E '^Window .*web.whatsapp.com:$' | awk '{print $2}')
-hyprctl dispatch movetoworkspacesilent special:music,address:0x$(hyprctl clients | grep -E '^Window .*YouTube Music:$' | awk '{print $2}')
+hyprctl dispatch movetoworkspacesilent special:,address:0x$(hyprctl clients | grep -E '^Window .*Mozilla Thunderbird:$' | awk '{print $2}')
+hyprctl dispatch movetoworkspacesilent special:󱜾,address:0x$(hyprctl clients | grep -E '^Window .*web.whatsapp.com:$' | awk '{print $2}')
+hyprctl dispatch movetoworkspacesilent special:󰎇,address:0x$(hyprctl clients | grep -E '^Window .*YouTube Music:$' | awk '{print $2}')
 
 # Return to first workspace
 hyprctl dispatch workspace 1
