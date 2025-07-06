@@ -1,0 +1,12 @@
+[Unit]
+Description=Auto-rename hyprland workspaces
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/hypr-configs/hypr-name-auto.sh
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

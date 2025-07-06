@@ -51,10 +51,12 @@
         "format": "{icon}  {capacity}%",
         "format-alt": "{icon}  {time}",
         "format-charging": "{icon}  {capacity}%  {time}",
+        "format-full": "{icon}  {capacity}%",
         "format-plugged": "{icon}  {capacity}%",
         "format-icons": {
     		"discharging": ["", "", "", "", ""],
         	"charging": [""],
+	    	"full": [""],
     		"plugged": [""]
     	},
     	"tooltip": false

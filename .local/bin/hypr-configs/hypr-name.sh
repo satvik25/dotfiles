@@ -51,8 +51,10 @@ hypr-name () {
     done
 
     # Add one leading and one trailing space, per your original
-    label=" $label "
-
+    if (( $# > 0 )); then
+        label=" $label "
+    fi
+    
     hyprctl dispatch renameworkspace "$ws" "$label" "$ws" ""
 }
 
