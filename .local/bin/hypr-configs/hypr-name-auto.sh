@@ -7,5 +7,6 @@ while true; do
     hyprctl dispatch renameworkspace 10 ""
     break
   fi
-  sleep 0.5
+  # Save battery
+  sleep 2
 done
