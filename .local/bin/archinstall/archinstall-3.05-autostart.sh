@@ -18,6 +18,7 @@ user_units=(
   pipewire-pulse.socket
   swaync.service
   arch-update.timer
+  rclone-bisync.timer
   # p11-kit-server.socket
   # mpd.socket
 )

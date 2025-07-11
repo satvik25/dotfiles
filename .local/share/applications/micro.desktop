@@ -2,7 +2,7 @@
 
 Name=Text Editor
 GenericName=Text Editor
-Comment=Edit plain text files/ code
+Comment=Edit plain text files/ code using micro
 
 Icon=micro
 Type=Application

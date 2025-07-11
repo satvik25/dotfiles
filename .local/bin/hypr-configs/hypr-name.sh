@@ -10,6 +10,7 @@ typeset -A HYPR_WS_ICONS=(
     msg			"󱜾"
     music     	"󰎇"
     work 		""
+    'case'		""
 )
 
 ### Rename workspaces

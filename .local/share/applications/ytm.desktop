@@ -1,7 +1,8 @@
 [Desktop Entry]
 ; Name=YouTube Music
 Name=Music
-Comment=Listen to Music
+GenericName=YouTube Music/ YT Music/ ytm
+Comment=Listen to Music using YouTube Music
 Exec=google-chrome-stable --app=https://music.youtube.com
 ; Exec=google-chrome-stable --user-data-dir="/home/7vik/.config/ytmusic-profile" --profile-directory=Default --app=https://music.youtube.com --class=YTMusic --no-first-run --new-window --enable-features=UseOzonePlatform --ozone-platform=wayland
 ; Exec=/home/7vik/.local/bin/apps/ytm.sh %u

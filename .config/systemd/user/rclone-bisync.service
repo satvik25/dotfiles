@@ -1,0 +1,6 @@
+[Unit]
+Description=Sync Google Drive
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone bisync gdrive: Drive-Google --resync

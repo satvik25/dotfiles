@@ -21,7 +21,7 @@
     "modules-right": [
         "idle_inhibitor",
         "tray",
-        "systemd-failed-units",
+        // "systemd-failed-units",
         // "privacy",
         "custom/ibus",
         "backlight",
@@ -30,6 +30,7 @@
         "pulseaudio",
         "battery",
         "clock",
+        // "user",
         "custom/notification",
 	    "custom/power"
     ],
