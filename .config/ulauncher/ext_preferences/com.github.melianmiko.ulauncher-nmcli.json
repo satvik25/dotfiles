@@ -1,6 +1,6 @@
 {
     "preferences": {
-        "enable_notifications": "true",
+        "enable_notifications": "false",
         "hidden_type_list": "bridge",
         "wifi_hide_out_of_range": "true"
     },
