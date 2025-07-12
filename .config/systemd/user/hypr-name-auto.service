@@ -6,12 +6,6 @@ After=graphical-session.target
 Type=simple
 Environment="XDG_RUNTIME_DIR=/run/user/%U"
 Environment="DISPLAY=:0"
-ExecStartPre=/usr/bin/bash -c 'for i in {1..30}; do \
-    [ -S "$XDG_RUNTIME_DIR/hyprland/hyprland.sock" ] && exit 0; \
-    sleep 1; \
-  done; \
-  echo "Timed out waiting for Hyprland socket" >&2; \
-  exit 1'
 ExecStart=%h/.local/bin/hypr-configs/hypr-name-auto.sh
 Restart=always
 RestartSec=2
