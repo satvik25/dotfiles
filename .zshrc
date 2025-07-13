@@ -94,8 +94,9 @@ login-bw() {
   export BW_SESSION="$(bw login --raw satvikchaudhary@gmail.com)"
 }
 
-alias 'sync-gdrive'="rclone bisync gdrive: ~/Drive-Google --resync"
-
+alias 'sync-2way-gdrive'="rclone bisync gdrive: ~/Drive-Google --resync"
+alias 'sync-from-gdrive'='rclone copy gdrive: ~/Drive-Google --update --progress'
+alias 'sync-to-gdrive'='rclone sync ~/Drive-Google gdrive: --progress'
 
 # Keybindings
 WORDCHARS=${WORDCHARS//\/}			# Treat slash as a WORD boundary
