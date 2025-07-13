@@ -1,0 +1,9 @@
+[pyprland]
+plugins = [
+	"toggle_special",
+	"shift_monitors"
+]
+
+[toggle_special]
+
+[shift_monitors]
