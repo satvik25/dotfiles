@@ -8,8 +8,8 @@ items_per_row = 5
 
 [windows.overview]
 strip_html_from_workspace_title = true
-# key = "Tab"
-# modifier = "super"
+key = "Tab"
+modifier = "super"
 filter_by = []
 hide_filtered = false
 
