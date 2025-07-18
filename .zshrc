@@ -95,8 +95,8 @@ login-bw() {
   export BW_SESSION="$(bw login --raw satvikchaudhary@gmail.com)"
 }
 
-alias 'sync-2way-gdrive'="rclone bisync gdrive: ~/Drive-Google --resync"
-alias 'sync-from-gdrive'='rclone copy gdrive: ~/Drive-Google --update --progress'
+alias 'sync-2way-gdrive'='rclone bisync gdrive: ~/Drive-Google --progress'
+alias 'sync-from-gdrive'='rclone sync gdrive: ~/Drive-Google --progress'
 alias 'sync-to-gdrive'='rclone sync ~/Drive-Google gdrive: --progress'
 
 # Keybindings

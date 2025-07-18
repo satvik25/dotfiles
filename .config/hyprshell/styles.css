@@ -1,0 +1,65 @@
+:root {
+    --border-color: rgba(115, 134, 120, 0.7);
+    --border-color-active: rgba(158, 189, 158, 0.9);
+
+    --bg-color: rgba(46, 46, 46, 1);
+    --bg-color-hover: rgba(28, 28, 28, 1);
+
+    --border-radius: 6px;
+    --border-size: 2px;
+    --border-style: solid;
+    --border-style-secondary: dashed;
+
+    --text-color: rgba(245, 245, 245, 1);
+
+    --window-padding: 10px;
+}
+
+.window {
+	margin-top: 100px;
+}
+
+.monitor {
+}
+
+.workspace {
+    font-size: 16px;
+}
+
+.client {
+    font-size: 15px;
+}
+
+.client-image {
+}
+
+
+.launcher {
+}
+
+.launcher-input {
+    font-size: 16px;
+}
+
+.launcher-results {
+}
+
+.launcher-item {
+    font-size: 16px;
+}
+
+.launcher-exec {
+    font-size: 15px;
+}
+
+.launcher-key {
+    font-size: 12px;
+}
+
+.launcher-plugins {
+    font-size: 15px;
+}
+
+.launcher-plugin {
+    font-size: 12px;
+}

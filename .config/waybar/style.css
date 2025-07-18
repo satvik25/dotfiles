@@ -450,7 +450,6 @@ menu {
 }
 
 menuitem {
-
 }
 
 menuitem:hover {
@@ -461,6 +460,7 @@ menuitem:hover {
 
 	background: transparent;
 	color: #8f9779;
+	color: #9ebd9e;
 }
 
 separator {
@@ -535,10 +535,6 @@ tooltip * {
 	padding: 0 0 0 4px;
 }
 
-#clock {
-	margin-right: 4px;
-}
-
 #workspaces button {
   padding-bottom: 2px;
 }
@@ -555,4 +551,17 @@ window#waybar:not(.empty) #window {   /* bar root is NOT “empty” */
 /* --- no gap on an empty workspace ------------------------------------- */
 window#waybar.empty #window {         /* bar root HAS class “empty” */
     margin-right: -3px;                  /* collapse the spacer       */
+}
+
+#clock.calendar {
+    margin-left: 0px;                  /* collapse the spacer       */	
+    margin-right: 4px;                  /* collapse the spacer       */	
+}
+
+#clock {
+    margin-left: 0px;
+}
+
+#pulseaudio {
+    margin-right: -1px;
 }

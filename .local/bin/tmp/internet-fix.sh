@@ -25,6 +25,8 @@ read -p "Configure manually or auto? (m/a): " MODE
 if [[ "$MODE" == "a" ]]; then
   nmcli con mod "$CHOSEN" \
     ipv4.method auto \
+	ipv4.addressess "" \
+	ipv4.gateway "" \
     ipv4.dns ""
   echo "Applied auto settings to $CHOSEN."
   exit 0

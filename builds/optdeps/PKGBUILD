@@ -11,14 +11,17 @@ license=('GPL')
 
 # List the orphan packages you want to "bind" here
 depends=(
+  captdriver-git-debug
   cmake-extras
   hyprland-per-window-layout-debug
+  hyprshell-debug
   ibus-m17n-debug
   ibus-typing-booster
   go
   rust
   yarn
   packet-debug
+  pyprland-debug
   python-parsedatetime
   python-pint
   python-pytz

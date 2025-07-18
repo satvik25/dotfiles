@@ -1,7 +1,7 @@
 {
-    "layer": "top",
+    "layer": "bottom",
     "position": "bottom",
-    "margin": "10 8 8 8",
+    "margin": "10 8 6 8",
     // "margin": "16 20 20 20", 			// Rules for overlapping waybar
     // "mode": "overlay",
 

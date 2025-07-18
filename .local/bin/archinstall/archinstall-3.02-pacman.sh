@@ -66,6 +66,7 @@ AUR_PACKAGES=(
     hyprland-per-window-layout ulauncher-git \
  	hyprshot-git hyprshot-gui \
  	packet \
+ 	sunsetr-bin \
   	# Browser
    	google-chrome \
 	# Utilities

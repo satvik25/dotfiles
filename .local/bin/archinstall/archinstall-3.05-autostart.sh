@@ -11,14 +11,15 @@ user_units=(
   hyprpolkitagent.service
   sddm.service
   hypridle.service
-  hyprsunset.service
   waybar.service
   pipewire.socket
   wireplumber.service
   pipewire-pulse.socket
   swaync.service
   arch-update.timer
-  rclone-bisync.timer
+  sunsetr.service
+  hyprshell.service
+  # rclone-bisync.timer
   # p11-kit-server.socket
   # mpd.socket
 )
