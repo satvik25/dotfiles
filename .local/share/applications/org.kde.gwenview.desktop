@@ -200,3 +200,5 @@ X-DocPath=gwenview/index.html
 # so that Gwenview is not the primary applications for folders.
 InitialPreference=8
 X-DBUS-ServiceName=org.kde.gwenview
+
+Hidden=true

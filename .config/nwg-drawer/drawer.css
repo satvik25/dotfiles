@@ -1,6 +1,6 @@
 window {
-    background-color: rgba(36, 47, 79, 0.95);
-    color: #eeeeee
+    background-color: rgba(46, 46, 46, 1);
+    color: #9ebd9e
 }
 
 /* search entry */
@@ -19,7 +19,7 @@ button:hover {
 
 /* in case you wanted to give category buttons a different look */
 #category-button {
-    margin: 0 10px 0 10px
+    margin: 5px 10px 5px 10px
 }
 
 #pinned-box {
