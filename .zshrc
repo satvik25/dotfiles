@@ -39,10 +39,9 @@ dots-push() {
   # Stage tracked changes
   dots add -u
 
-  # Prompt for commit message, allow empty input
-  read -r "msg?Commit name (leave blank for timestamp): "
-
-  # If empty, generate timestamped message
+  # Name commit
+  read -r "msg?Commit Name (Default = Timestamp): "
+  # Name commit with timestamp by default
   if [[ -z "$msg" ]]; then
     msg="upd $(date '+%Y-%m-%d %H:%M:%S')"
   fi
