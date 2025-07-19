@@ -88,6 +88,8 @@ alias edit-fonts='micro ~/.config/fontconfig/fonts.conf'
 alias src-zsh='source ~/.zshrc'
 
 alias rs-network='sudo systemctl restart iwd NetworkManager dnscrypt-proxy'
+alias rs-sddm='sudo systemctl restart sddm'
+alias rs-hypr='hyprctl reload'
 alias rs-waybar='systemctl --user restart waybar'
 alias rs-ulauncher='pkill ulauncher'
 alias rs-swaync='swaync-client -rs; swaync-client -R'
