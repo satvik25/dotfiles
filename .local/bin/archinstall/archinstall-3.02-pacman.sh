@@ -8,7 +8,7 @@ OFFICIAL_PACKAGES=(
  	# Video (Drivers)
   	intel-media-driver libva-intel-driver mesa vulkan-intel \
    	# Audio
- 	pipewire wireplumber pipewire-pulse \
+ 	pipewire wireplumber pipewire-pulse easyeffects lsp-plugins\
 	# Battery
 	acpi tlp \
   	# Security
@@ -20,6 +20,7 @@ OFFICIAL_PACKAGES=(
     wl-clipboard copyq \
     grim slurp \
 	udiskie \
+	osdlyrics \
 	# Utilities
  	jq wget kitty inxi 7z mc nemo gthumb thunderbird rclone \
 	# Office
