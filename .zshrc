@@ -36,14 +36,19 @@ export SYSTEMD_EDITOR="micro"
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots-pull='dots pull --rebase origin master'
 dots-push() {
-  # Stage changes
+  # Stage tracked changes
   dots add -u
 
-  # Commit changes
-  local msg="upd $(date '+%Y-%m-%d %H:%M:%S')"
-  dots commit -m "$msg"
+  # Prompt for commit message, allow empty input
+  read -r "msg?Commit name (leave blank for timestamp): "
 
-  # Push to origin
+  # If empty, generate timestamped message
+  if [[ -z "$msg" ]]; then
+    msg="upd $(date '+%Y-%m-%d %H:%M:%S')"
+  fi
+
+  # Commit and push
+  dots commit -m "$msg"
   dots push
 }
 
