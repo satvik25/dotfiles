@@ -21,6 +21,8 @@ OFFICIAL_PACKAGES=(
     grim slurp \
 	udiskie \
 	osdlyrics \
+	# Touchscreen
+	iio-sensor-proxy iio-hyprland nwg-drawer sqeekboard \
 	# Utilities
  	jq wget kitty inxi 7z mc nemo gthumb thunderbird rclone \
 	# Office
@@ -36,7 +38,7 @@ OFFICIAL_PACKAGES=(
  	# Theming
  	gnome-tweaks lxappearance dconf-editor qt6ct kvantum
  	# Extras
-	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire iio-sensor-proxy mpd
+	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire
 )
 
 # Dependency packages
@@ -67,8 +69,9 @@ AUR_PACKAGES=(
     hyprland-per-window-layout ulauncher-git \
  	hyprshot-git hyprshot-gui \
  	packet \
- 	sunsetr-bin \
-  	# Browser
+ 	libinput-gestures \
+ 	pyprland \
+ 	# Browser
    	google-chrome \
 	# Utilities
  	pfetch arch-update
@@ -81,7 +84,9 @@ DEPS_AUR_PACKAGES=(
 	# Ulauncher extn: Calculate Anything
 	python-simpleeval \
 	# packet: Optional
-	python-dbus nautilus-python
+	python-dbus nautilus-python \
+	# Hyprland plugin deps
+	glm
 )
 
 # yay
