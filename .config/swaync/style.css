@@ -9,7 +9,7 @@
 @define-color noti-border-color rgba(115, 134, 120, 1);
 @define-color noti-bg rgba(46, 46, 46, 1);
 @define-color noti-bg-opaque rgba(48, 48, 48, 1);
-@define-color noti-bg-darker rgba(38, 38, 38, 1);
+@define-color noti-bg-darker rgba(38, 38, 38, 0);
 @define-color noti-bg-hover rgba(56, 56, 56, 1);
 @define-color noti-bg-hover-opaque rgba(56, 56, 56, 1);
 @define-color noti-bg-focus rgba(68, 68, 68, 1);
@@ -530,4 +530,102 @@
 
 .notification-group .notification-group-buttons > button:hover {
   color: #52575d;          /* lighter olive when hovered */
+}
+
+/* disable GTK’s default hover/focus rectangle on the row and its children */
+.notification-row,
+.notification-row:hover,
+.notification-row:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* if the default-action button gets the rectangle instead */
+.notification-default-action:hover,
+.notification-default-action:focus {
+  outline: none;
+  box-shadow: none;
+  background: none;
+}
+
+/* === disable GTK’s hover/focus rectangle inside the Control Center === */
+
+/* Target the rows themselves */
+.control-center .notification-row,
+.control-center .notification-row:hover,
+.control-center .notification-row:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Target the notification container */
+.control-center .notification,
+.control-center .notification:hover,
+.control-center .notification:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* And also the default-action button inside CC */
+.control-center .notification-default-action:hover,
+.control-center .notification-default-action:focus {
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* === disable GTK’s hover/focus rectangle on grouped notifications in Control Center === */
+
+/* The group box itself */
+.control-center .notification-group,
+.control-center .notification-group:hover,
+.control-center .notification-group:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* The group header row (icon + title) */
+.control-center .notification-group .notification-group-headers,
+.control-center .notification-group .notification-group-headers:hover,
+.control-center .notification-group .notification-group-headers:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* The group button row (collapse/expand buttons) */
+.control-center .notification-group .notification-group-buttons,
+.control-center .notification-group .notification-group-buttons:hover,
+.control-center .notification-group .notification-group-buttons:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Any notification rows *inside* a group */
+.control-center .notification-group .notification-row,
+.control-center .notification-group .notification-row:hover,
+.control-center .notification-group .notification-row:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* And the default action button inside grouped notifications */
+.control-center .notification-group .notification-default-action:hover,
+.control-center .notification-group .notification-default-action:focus {
+  background: none;
+  outline: none;
+  box-shadow: none;
 }
