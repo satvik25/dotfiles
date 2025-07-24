@@ -228,6 +228,7 @@ ytm () {
     # hyprctl dispatch renameworkspace "$ws" " $ws  󰎇 "
 }
 
+alias hypr-move=~/.local/bin/hypr-configs/hypr-move.sh
 
 # Colors
 ## Define colors
