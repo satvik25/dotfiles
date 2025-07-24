@@ -532,6 +532,10 @@
   color: #52575d;          /* lighter olive when hovered */
 }
 
+
+
+
+
 /* disable GTK’s default hover/focus rectangle on the row and its children */
 .notification-row,
 .notification-row:hover,
@@ -626,6 +630,53 @@
 .control-center .notification-group .notification-default-action:hover,
 .control-center .notification-group .notification-default-action:focus {
   background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* === disable hover/focus rectangle on action buttons in notifications === */
+
+/* In normal notifications */
+.notification-row .notification-background .notification .notification-action,
+.notification-row .notification-background .notification .notification-action:hover,
+.notification-row .notification-background .notification .notification-action:focus,
+.notification-row .notification-background .notification .notification-default-action,
+.notification-row .notification-background .notification .notification-default-action:hover,
+.notification-row .notification-background .notification .notification-default-action:focus,
+.notification-row .notification-background .notification .close-button,
+.notification-row .notification-background .notification .close-button:hover,
+.notification-row .notification-background .notification .close-button:focus {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* In the Control Center */
+.control-center .notification-row .notification-action,
+.control-center .notification-row .notification-action:hover,
+.control-center .notification-row .notification-action:focus,
+.control-center .notification-row .notification-default-action,
+.control-center .notification-row .notification-default-action:hover,
+.control-center .notification-row .notification-default-action:focus,
+.control-center .notification-row .close-button,
+.control-center .notification-row .close-button:hover,
+.control-center .notification-row .close-button:focus {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Grouped notifications in Control Center */
+.control-center .notification-group .notification-row .notification-action,
+.control-center .notification-group .notification-row .notification-action:hover,
+.control-center .notification-group .notification-row .notification-action:focus,
+.control-center .notification-group .notification-row .notification-default-action,
+.control-center .notification-group .notification-row .notification-default-action:hover,
+.control-center .notification-group .notification-row .notification-default-action:focus {
+  background: none;
+  border: none;
   outline: none;
   box-shadow: none;
 }

@@ -10,7 +10,7 @@ systemctl enable --now apparmor auditd nftables ufw
 
 # Update GRUB
 sed -z -E -i \
-  's|(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*)(")|\1 \\\napparmor=1 security=apparmor\2|' \
+  's|(GRUB_CMDLINE_LINUX_DEFAULT="[^"]*)(")|\1 \\\napparmor=1 security=apparmor audit=0\2|' \
   /etc/default/grub
 
 bash -c 'printf "\nlsm=landlock,lockdown,yama,integrity,apparmor,bpf\n" >> /etc/default/grub'
@@ -26,6 +26,7 @@ ufw enable
 ## Create firewall rules
 tee /usr/local/bin/update-ufw-blocklist.sh > /dev/null << 'EOF'
 #!/bin/bash
+set -euo pipefail
 
 # FireHOL Level 1 blocklist
 BLOCKLIST_URL="https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset"
@@ -49,6 +50,8 @@ done
 grep -vE '^\s*$|^#' "$TMP_FILE" | while read -r ip; do
     ufw deny from "$ip" comment "$UFW_TAG"
 done
+
+exit 0
 EOF
 
 ## Create firewall service unit
