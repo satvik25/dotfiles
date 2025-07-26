@@ -63,7 +63,7 @@ button:not(.active):hover {
 
 /* you can set a sty le on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #696969;
+    /* background-color: #696969; */
 }
 
 #workspaces button {
@@ -485,7 +485,7 @@ separator {
 #pulseaudio,
 #pulseaudio.zero,
 #pulseaudio.muted,
-#pulseaudio:hover,
+/* #pulseaudio:hover, */
 #wireplumber,
 #custom-media,
 #mode,

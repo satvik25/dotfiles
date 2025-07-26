@@ -248,7 +248,7 @@
     	"states": {
     		"zero": 0
     	},
-        "on-click": "pavucontrol",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "tooltip": false
     },
 

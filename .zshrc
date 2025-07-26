@@ -230,6 +230,7 @@ ytm () {
 
 alias hypr-move=~/.local/bin/hypr-configs/hypr-move.sh
 
+
 # Colors
 ## Define colors
 HOST_COLOR=$(printf "\033[38;2;201;160;220m")			# Wisteria

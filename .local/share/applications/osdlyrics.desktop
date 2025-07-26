@@ -1,0 +1,31 @@
+[Desktop Entry]
+Exec=osdlyrics
+Version=1.0
+Name=OSD Lyrics
+Name[de]=OSD Lyrics
+Name[es]=Letras de canciones OSD
+Name[fr]=Paroles OSD
+Name[it]=Testi OSD
+Name[ms]=Lirik OSD
+Name[pt_BR]=Letras OSD (exibição na tela)
+Name[ro]=OSD Lyrics
+Name[ru]=OSD-показ текстов.
+Name[tr]=OSD Lyrics
+Name[uk]=OSD Lyrics
+Name[zh_CN]=OSD Lyrics
+Name[zh_HK]=OSD Lyrics
+Name[zh_TW]=OSD Lyrics
+GenericName=Lyrics Show
+GenericName[cs]=Přehrávač textů
+GenericName[zh_CN]=歌词秀
+Comment=Download and show lyrics for your favorite media player
+Comment[cs]=Stahuje a zobrazuje časovaný text k přehrávaným skladbám
+Comment[zh_CN]=让你的音乐播放器支持下载和显示歌词
+Icon=osdlyrics
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=GTK;AudioVideo;Audio;Player;X-Ximian-Main;X-Novell-Main;X-Red-Hat-Base;
+X-Ubuntu-Gettext-Domain=osdlyrics
+
+Hidden=true

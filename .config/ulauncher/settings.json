@@ -9,7 +9,7 @@
   "grab_mouse_pointer": false,
   "hide_window_on_focus_loss": false,
   "jump_keys": "1234567890abcdefghijklmnopqrstuvwxyz",
-  "max_recent_apps": 3,
+  "max_recent_apps": 5,
   "raise_if_started": false,
   "render_on_screen": "mouse-pointer-monitor",
   "show_tray_icon": false,
