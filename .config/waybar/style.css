@@ -558,6 +558,7 @@ window#waybar.empty #window {         /* bar root HAS class “empty” */
 }
 
 #pulseaudio {
+	margin-left: 0px;
     margin-right: -1px;
 }
 

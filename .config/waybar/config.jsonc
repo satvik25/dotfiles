@@ -32,7 +32,7 @@
         "clock",
         "clock#calendar",
         // "user",
-        // "custom/notification",
+        "custom/notification",
 	    "custom/power"
     ],
 

@@ -28,7 +28,7 @@
 }
 
 .notification-row .notification-background {
-  padding: 20px 20px 5px 5px;
+  padding: 30px 30px 5px 5px;
 }
 
 .notification-row .notification-background .close-button {
@@ -38,8 +38,8 @@
   text-shadow: none;
   padding: 0;
   border-radius: 25%;
-  margin-top: 8px;
-  margin-right: 6px;
+  margin-top: 12px;
+  margin-right: 12px;
   box-shadow: none;
   min-width: 20px;
   min-height: 20px;
@@ -275,9 +275,16 @@
   padding: 12px;
 }
 
+.control-center .clear-all {
+  /* override the default 1px solid border */
+  border: 2px #9ebd9e;
+  /* you can also tweak the radius */
+  border-radius: 6px;
+}
+
 .control-center .control-center-list-placeholder {
   /* The placeholder when there are no notifications */
-  opacity: 0.5;
+  opacity: 0;
 }
 
 .control-center .control-center-list {
@@ -532,6 +539,15 @@
   color: #52575d;          /* lighter olive when hovered */
 }
 
+.control-center .close-button {
+  color: #9ebd9e;          /* olive-sage example */
+  background: @noti-bg;
+  border: 1px solid #9ebd9e;
+  border-radius: 6px;
+  padding: 4px;
+  margin: 16px;                   /* keeps icon from touching the edge */
+  box-shadow: none;  
+}
 
 
 
@@ -567,14 +583,14 @@
 }
 
 /* Target the notification container */
-.control-center .notification,
-.control-center .notification:hover,
-.control-center .notification:focus {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
+/* .control-center .notification, */
+/* .control-center .notification:hover, */
+/* .control-center .notification:focus { */
+/*   background-color: transparent; */
+/*   border: none; */
+/*   outline: none; */
+/*   box-shadow: none; */
+/* } */
 
 /* And also the default-action button inside CC */
 .control-center .notification-default-action:hover,
@@ -637,20 +653,20 @@
 /* === disable hover/focus rectangle on action buttons in notifications === */
 
 /* In normal notifications */
-.notification-row .notification-background .notification .notification-action,
-.notification-row .notification-background .notification .notification-action:hover,
-.notification-row .notification-background .notification .notification-action:focus,
-.notification-row .notification-background .notification .notification-default-action,
-.notification-row .notification-background .notification .notification-default-action:hover,
-.notification-row .notification-background .notification .notification-default-action:focus,
-.notification-row .notification-background .notification .close-button,
-.notification-row .notification-background .notification .close-button:hover,
-.notification-row .notification-background .notification .close-button:focus {
-  background: none;
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
+/* .notification-row .notification-background .notification .notification-action, */
+/* .notification-row .notification-background .notification .notification-action:hover, */
+/* .notification-row .notification-background .notification .notification-action:focus, */
+/* .notification-row .notification-background .notification .notification-default-action, */
+/* .notification-row .notification-background .notification .notification-default-action:hover, */
+/* .notification-row .notification-background .notification .notification-default-action:focus, */
+/* .notification-row .notification-background .notification .close-button, */
+/* .notification-row .notification-background .notification .close-button:hover, */
+/* .notification-row .notification-background .notification .close-button:focus { */
+/*   background: none; */
+/*   border: none; */
+/*   outline: none; */
+/*   box-shadow: none; */
+/* } */
 
 /* In the Control Center */
 .control-center .notification-row .notification-action,

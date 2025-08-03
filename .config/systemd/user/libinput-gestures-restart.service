@@ -1,0 +1,11 @@
+[Unit]
+Description=Watch lid and restart libinput-gestures on open
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/hypr-configs/libinput-gestures-restart.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

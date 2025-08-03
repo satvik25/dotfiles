@@ -20,8 +20,8 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] last=$last" >>"$LOG"
 # 5) Do the toggle via ‘dispatch’ (works when launched under Hyprland)
 if [[ "$last" == "1" ]]; then
   echo "→ reducing opacity to 0.9/0.825" >>"$LOG"
-  "$HYPRCTL" keyword decoration:active_opacity 0.925
-  "$HYPRCTL" keyword decoration:inactive_opacity 0.825
+  "$HYPRCTL" keyword decoration:active_opacity 0.9
+  "$HYPRCTL" keyword decoration:inactive_opacity 0.8
   echo 0 >"$STATE_FILE"
 else
   echo "→ restoring opacity to 1.0/1.0" >>"$LOG"

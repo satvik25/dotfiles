@@ -92,7 +92,7 @@ alias rs-sddm='sudo systemctl restart sddm'
 alias rs-hypr='hyprctl reload'
 alias rs-waybar='systemctl --user restart waybar'
 alias rs-ulauncher='pkill ulauncher'
-alias rs-swaync='systemctl --user restart swaync.service; swaync-client -rs; swaync-client -R'
+alias rs-swaync='swaync-client -rs; swaync-client -R'
 alias rs-gestures='libinput-gestures-setup restart'
 
 
