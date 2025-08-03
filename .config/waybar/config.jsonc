@@ -32,7 +32,7 @@
         "clock",
         "clock#calendar",
         // "user",
-        "custom/notification",
+        // "custom/notification",
 	    "custom/power"
     ],
 
@@ -174,10 +174,10 @@
 		"format": "{artist}   <span size=\"85%\">{player_icon}</span>   {title}",
 		"format-paused": "<i>{artist}</i>   <span size=\"85%\">{status_icon}</span>  <i>{title}</i>",
 		"player-icons": {
-			"default": "<span size=\"85%\">▶</span>"
+			"default": "<span size=\"90%\" rise=\"1000\"></span>"
 		},
 		"status-icons": {
-			"paused": "<span size=\"85%\">⏸</span>"
+			"paused": "<span size=\"90%\" rise=\"1000\"></span>"
 		},
 		"max-length": 50,
 		"tooltip": false

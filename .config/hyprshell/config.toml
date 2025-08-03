@@ -25,9 +25,9 @@ run_cache_weeks = 4
 show_execs = true
 show_actions_submenu = false
 
-[windows.overview.launcher.plugins.terminal]
-
-[windows.overview.launcher.plugins.shell]
+# [windows.overview.launcher.plugins.terminal]
+ 
+# [windows.overview.launcher.plugins.shell]
 
 [[windows.overview.launcher.plugins.websearch.engines]]
 url = "https://www.google.com/search?q={}"

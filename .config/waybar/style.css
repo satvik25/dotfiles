@@ -530,11 +530,6 @@ tooltip * {
 }
 */
 
-#pulseaudio.zero,
-#pulseaudio.muted {
-	padding: 0 0 0 4px;
-}
-
 #workspaces button {
   padding-bottom: 2px;
 }
@@ -564,4 +559,10 @@ window#waybar.empty #window {         /* bar root HAS class “empty” */
 
 #pulseaudio {
     margin-right: -1px;
+}
+
+#pulseaudio.zero,
+#pulseaudio.muted {
+    margin-left: 2px;
+    margin-right: -8px;
 }

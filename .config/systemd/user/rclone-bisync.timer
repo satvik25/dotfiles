@@ -2,7 +2,7 @@
 Description=Google Drive Sync Timer
 
 [Timer]
-OnCalendar=*:0/10
+OnCalendar=*:0/15
 Persistent=true
 
 [Install]

@@ -1,0 +1,14 @@
+on-button-left=dismiss
+on-button-right=invoke-default-action
+font=Quicksand
+height=300
+background-color=#464646ff
+text-color=#9ebd9eff
+border-color=#738678ff
+border-radius=6
+margin=25
+padding=10, 15, 10, 15
+icons=0
+max-icon-size=28
+icon-location=right
+icon-path=/home/7vik/.local/share/icons/passage

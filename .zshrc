@@ -92,7 +92,8 @@ alias rs-sddm='sudo systemctl restart sddm'
 alias rs-hypr='hyprctl reload'
 alias rs-waybar='systemctl --user restart waybar'
 alias rs-ulauncher='pkill ulauncher'
-alias rs-swaync='swaync-client -rs; swaync-client -R'
+alias rs-swaync='systemctl --user restart swaync.service; swaync-client -rs; swaync-client -R'
+alias rs-gestures='libinput-gestures-setup restart'
 
 
 # Apps
@@ -229,7 +230,7 @@ ytm () {
 }
 
 alias hypr-move=~/.local/bin/hypr-configs/hypr-move.sh
-
+alias st-ibus='/usr/lib/ibus/ibus-ui-gtk3 --enable-wayland-im --exec-daemon --daemon-args "--xim --panel disable"'
 
 # Colors
 ## Define colors
