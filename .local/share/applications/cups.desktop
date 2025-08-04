@@ -1,5 +1,5 @@
 [Desktop Entry]
-Categories=System;Settings;Printing;HardwareSettings;X-Red-Hat-Base;
+Categories=Printing;HardwareSettings;X-Red-Hat-Base;Utility;
 Exec=xdg-open http://localhost:631/
 Icon=cups
 StartupNotify=false

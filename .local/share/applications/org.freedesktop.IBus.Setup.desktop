@@ -102,7 +102,7 @@ Icon=ibus-setup
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Settings;
+Categories=Utility;
 # GNOME uses its own "input source" settings instead
 NotShowIn=GNOME;Unity;
 X-AppStream-Ignore=true

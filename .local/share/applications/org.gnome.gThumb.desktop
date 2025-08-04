@@ -219,7 +219,7 @@ Keywords[uk]=Image;Viewer;зображення;перегляд;перегляд
 Keywords[zh_CN]=Image;Viewer;图像;浏览器;查看;照片;
 Keywords[zh_TW]=Image;Viewer;影像;圖像;圖片;檢視器;
 Keywords=Image;Viewer;
-Categories=GNOME;GTK;Graphics;Viewer;RasterGraphics;2DGraphics;Photography;
+Categories=GNOME;GTK;Viewer;RasterGraphics;2DGraphics;Photography;Utility;
 Exec=gthumb %U
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=org.gnome.gThumb

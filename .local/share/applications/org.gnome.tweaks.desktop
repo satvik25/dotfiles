@@ -104,7 +104,7 @@ Terminal=false
 Type=Application
 StartupNotify=true
 StartupWMClass=gnome-tweaks
-Categories=GNOME;GTK;Utility;
+Categories=GNOME;GTK;System;Settings;
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords[cs]=nastavení;pokročilé;předvolby;písma;písmo;fonty;motiv;XKB;klávesnice;psaní;spuštění;
 Keywords[da]=Indstillinger;Avanceret;Egenskaber;Skrifttyper;Tema;XKB;Tastatur;Indtastning;Opstart;
