@@ -1,0 +1,20 @@
+{
+    "preferences": {
+        "email": "satvikchaudhary@gmail.com",
+        "inactivity-lock-timeout": "300",
+        "max-results": "6",
+        "mfa": "no",
+        "server-url": "https://vault.bitwarden.eu"
+    },
+    "triggers": {
+        "lock": {
+            "keyword": "bwlock"
+        },
+        "search": {
+            "keyword": "bw"
+        },
+        "sync": {
+            "keyword": "bwsync"
+        }
+    }
+}

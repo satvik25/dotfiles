@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "enable_notifications": "false"
+    },
+    "triggers": {
+        "base_keyword": {
+            "keyword": "bt"
+        }
+    }
+}

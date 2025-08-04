@@ -1,0 +1,13 @@
+{
+    "preferences": {
+        "exec": "--",
+        "icon": "white",
+        "shell": "others",
+        "term": "/usr/bin/kitty"
+    },
+    "triggers": {
+        "kw": {
+            "keyword": ">"
+        }
+    }
+}

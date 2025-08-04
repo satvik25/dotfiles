@@ -1,0 +1,12 @@
+{
+  "preferences": {
+    "display_char": "yes",
+    "search_limit": "8",
+    "skin_tone": "\ud83d\udc4c\ud83c\udffc medium-light"
+  },
+  "triggers": {
+    "emoji_kw": {
+      "keyword": "em"
+    }
+  }
+}

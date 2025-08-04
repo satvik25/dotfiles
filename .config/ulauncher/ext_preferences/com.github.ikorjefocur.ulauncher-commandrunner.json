@@ -1,0 +1,15 @@
+{
+    "preferences": {
+        "commands": "zsh -i -c alias | sed -e 's/alias\\s*//; s/=.*//'",
+        "shell": "zsh -i -c %",
+        "terminal": "kitty -e zsh -i -c %"
+    },
+    "triggers": {
+        "keyword": {
+            "keyword": "r"
+        },
+        "keyword_terminal": {
+            "keyword": "t"
+        }
+    }
+}
