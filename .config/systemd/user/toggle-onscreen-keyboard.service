@@ -1,11 +1,11 @@
 [Unit]
-Description=Toggle on‑screen keyboard when tablet‑mode changes
-After=graphical-session.target
+Description=Toggle on-screen keyboard when tablet-mode changes
 
 [Service]
 Type=simple
 ExecStart=%h/.local/bin/device-specific/DELL-Inspiron-13-5378/toggle-onscreen-keyboard.sh
 Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=graphical-session.target

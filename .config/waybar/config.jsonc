@@ -40,6 +40,9 @@
 	"backlight": {
         "format": "{icon}",
         "format-icons": ["󰽤", "󰽥", "󰽣", "󰽦", "󰽢"],
+        // "on-scroll-up": "brightnessctl -e4 -n2 set 1%-",
+        // "on-scroll-down": "brightnessctl -e4 -n2 set 1%+",
+        "reverse-scrolling": true,
         "tooltip-format": "{percent}%",
         "tooltip": true
     },
@@ -249,6 +252,9 @@
     		"zero": 0
     	},
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		// "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+		// "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "reverse-scrolling": true,
         "tooltip": false
     },
 

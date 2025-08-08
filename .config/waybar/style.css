@@ -455,7 +455,7 @@ menuitem {
 menuitem:hover {
 	background: #738678;
 	border-radius: 6px;
-	margin: 0 3px;
+	/* margin: 0 3px; */
 	color: #000000;
 
 	background: transparent;
