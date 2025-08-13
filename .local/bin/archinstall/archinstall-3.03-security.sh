@@ -23,55 +23,47 @@ ufw default deny incoming
 ufw default allow outgoing
 ufw enable
 
-## Create firewall rules
-tee /usr/local/bin/update-ufw-blocklist.sh > /dev/null << 'EOF'
-#!/bin/bash
-set -euo pipefail
+## Add firewall ruleset
+sudo cp "/etc/nftables.conf" "/etc/nftables.conf.bak.$(date +%F_%H-%M-%S)"
 
-# FireHOL Level 1 blocklist
-BLOCKLIST_URL="https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset"
+sudo sed -i '/table inet filter {/a\
+set blacklist4 {\
+        type ipv4_addr\
+        flags interval\
+        auto-merge\
+}\
+set blacklist6 {\
+        type ipv6_addr\
+        flags interval\
+        auto-merge\
+}' /etc/nftables.conf
+echo "Added blacklist ruleset."
 
-# Temporary file to hold IPs
-TMP_FILE="/tmp/firehol_blocklist.txt"
-
-# UFW comment tag to track entries
-UFW_TAG="auto-blocklist"
-
-# Download the latest list
-curl -s "$BLOCKLIST_URL" -o "$TMP_FILE" || exit 1
-
-# Remove existing rules tagged as 'auto-blocklist'
-ufw status numbered | grep "$UFW_TAG" | tac | while read -r line; do
-	RULE_NUM=$(echo "$line" | awk -F'[][]' '{print $2}')
-	ufw --force delete "$RULE_NUM"
-done
-
-# Add new rules
-grep -vE '^\s*$|^#' "$TMP_FILE" | while read -r ip; do
-    ufw deny from "$ip" comment "$UFW_TAG"
-done
-
-exit 0
-EOF
+sudo sed -i '/policy drop/a\
+ip saddr @blacklist4 drop\
+ip6 saddr @blacklist6 drop' /etc/nftables.conf
+echo "Added blacklist drop rule."
 
 ## Create firewall service unit
-tee /etc/systemd/system/ufw-blocklist.service > /dev/null << 'EOF'
+tee /etc/systemd/system/user-firewall.service > /dev/null << 'EOF'
 [Unit]
-Description=Update UFW Blocklist
+Description=Update nft blacklist4 from FireHOL Level 1
+After=nftables.service network-online.target
+Wants=nftables.service network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/update-ufw-blocklist.sh
+ExecStart=/bin/bash -lc '%h/.local/bin/hypr-configs/user-firewall.sh'
 EOF
 
 ## Create firewall timer
-tee /etc/systemd/system/ufw-blocklist.timer > /dev/null << 'EOF'
+tee /etc/systemd/system/user-firewall.timer > /dev/null << 'EOF'
 [Unit]
-Description=Run UFW Blocklist Updater Daily
+Description=Run FireHOL blacklist update daily at 11 PM
 
 [Timer]
-OnBootSec=5min
-OnUnitActiveSec=24h
+OnCalendar=*-*-* 00:00:00
+RandomizedDelaySec=15m
 Persistent=true
 
 [Install]
@@ -79,10 +71,9 @@ WantedBy=timers.target
 EOF
 
 ## Enable firewall rules and reload
-chmod +x /usr/local/bin/update-ufw-blocklist.sh
 systemctl daemon-reexec
 systemctl daemon-reload
-systemctl enable --now ufw-blocklist.timer
+systemctl enable --now user-firewall.timer
 
 
 # Setup bw-cli

@@ -11,7 +11,7 @@ gtk-launch whatsapp
 gtk-launch ytm
 
 ## Break to ensure everything is up and running
-sleep 25
+sleep 20
 
 # Move to special workspace
 hyprctl dispatch movetoworkspacesilent special:,address:0x$(hyprctl clients | grep -E '^Window .*Mozilla Thunderbird:$' | awk '{print $2}')
