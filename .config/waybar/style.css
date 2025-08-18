@@ -549,7 +549,7 @@ window#waybar.empty #window {         /* bar root HAS class “empty” */
 }
 
 #clock.calendar {
-    margin-left: 0px;                  /* collapse the spacer       */	
+    margin-left: -6px;                  /* collapse the spacer       */	
     margin-right: 4px;                  /* collapse the spacer       */	
 }
 

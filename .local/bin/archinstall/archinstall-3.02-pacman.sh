@@ -32,7 +32,7 @@ OFFICIAL_PACKAGES=(
 	otf-font-awesome ttf-firacode-nerd ttf-nerd-fonts-symbols ttf-opensans ttf-roboto \
 	ebgaramond-otf \
     # Language
- 	ibus ibus-typing-booster aspell hunspell hspell nuspell libvoikko \
+ 	ibus ibus-typing-booster aspell hunspell hunspell-en_gb hspell nuspell libvoikko \
     # Development
  	base-devel git openssh \
  	# Theming

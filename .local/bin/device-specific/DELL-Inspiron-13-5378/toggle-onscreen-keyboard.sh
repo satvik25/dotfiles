@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
 # ── CONFIG ──────────────────────────────────────────────
 DEV_TABLET_STATE="/dev/input/by-path/pci-0000:00:1f.0-platform-INT33D6:00-event"
