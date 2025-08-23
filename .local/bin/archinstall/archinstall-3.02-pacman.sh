@@ -24,7 +24,7 @@ OFFICIAL_PACKAGES=(
 	# Touchscreen
 	iio-sensor-proxy iio-hyprland nwg-drawer sqeekboard \
 	# Utilities
- 	jq wget kitty inxi 7z mc nemo gthumb thunderbird rclone \
+ 	jq wget kitty inxi 7z mc nemo gthumb thunderbird rclone fd fzf \
 	# Office
 	evince libreoffice-fresh \
    	# Fonts

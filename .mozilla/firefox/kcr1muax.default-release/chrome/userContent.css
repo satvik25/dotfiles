@@ -1,0 +1,13 @@
+@-moz-document url("about:home"), url("about:newtab") {
+  .logo-and-wordmark .logo {
+    background-image: url("firefox.svg") !important;
+  }
+  .logo-and-wordmark .wordmark {
+    display: none !important;
+    /* background-image: url("firefox-text.png") !important; */
+    /* background-size: contain !important; */
+    /* width: 164px !important; */
+    /* height: 80px !important; */
+    /* text-indent: -9999px !important; */
+  }
+}
