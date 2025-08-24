@@ -2,10 +2,11 @@
 #
 # chrome-incog.sh — launch Chrome incognito & force full opacity
 
-# 1) Launch Chrome in incognito on the background
-google-chrome-stable --incognito "$@" &
+# 1) Launch Browser in incognito on the background
+# google-chrome-stable --incognito "$@" &
+firefox --private-window "$@" &
 # 2) Give it a moment to map and focus
-sleep 0.5
+sleep 1.5
 
 # 3) Grab the active window’s address via JSON
 winid=$(hyprctl activewindow -j | jq -r .address)

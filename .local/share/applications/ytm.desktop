@@ -3,8 +3,8 @@
 Name=Music
 GenericName=YouTube Music/ YT Music/ ytm
 Comment=Listen to Music using YouTube Music
-Exec=google-chrome-stable --app=https://music.youtube.com
-; Exec=firefox -P apps --class ytm --new-window music.youtube.com
+Exec=firefox -P apps --new-window music.youtube.com
+; Exec=google-chrome-stable --app=https://music.youtube.com
 Icon=chrome-music.youtube.com__-Default
 Terminal=false
 Type=Application

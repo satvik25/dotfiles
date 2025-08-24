@@ -1,6 +1,7 @@
 @-moz-document url("about:home"), url("about:newtab") {
   .logo-and-wordmark .logo {
-    background-image: url("firefox.svg") !important;
+    /* background-image: url("firefox.svg") !important; */
+    display: none !important;
   }
   .logo-and-wordmark .wordmark {
     display: none !important;
@@ -10,4 +11,8 @@
     /* height: 80px !important; */
     /* text-indent: -9999px !important; */
   }
+}
+
+::selection {
+    background-color: #738678 !important; /* highlight color */
 }

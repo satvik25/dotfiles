@@ -1,7 +1,8 @@
 [Desktop Entry]
 Name=Messaging
 Comment=using WhatsApp
-Exec=/usr/bin/google-chrome-stable --app=https://web.whatsapp.com
+Exec=firefox -P apps --new-window web.whatsapp.com
+; Exec=/usr/bin/google-chrome-stable --app=https://web.whatsapp.com
 Icon=chrome-web.whatsapp.com__-Default
 Terminal=false
 Type=Application
