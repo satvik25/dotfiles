@@ -15,8 +15,8 @@ sleep 20
 
 # Move to special workspace
 hyprctl dispatch movetoworkspacesilent special:,address:0x$(hyprctl clients | grep -E '^Window .*Mozilla Thunderbird:$' | awk '{print $2}')
-hyprctl dispatch movetoworkspacesilent special:󱜾,address:0x$(hyprctl clients | grep -E '^Window .*web.whatsapp.com:$' | awk '{print $2}')
-hyprctl dispatch movetoworkspacesilent special:󰎇,address:0x$(hyprctl clients | grep -E '^Window .*YouTube Music:$' | awk '{print $2}')
+hyprctl dispatch movetoworkspacesilent special:󱜾,address:0x$(hyprctl clients | grep -E '.*Window .*WhatsApp.*' | awk '{print $2}')
+hyprctl dispatch movetoworkspacesilent special:󰎇,address:0x$(hyprctl clients | grep -E '.*Window .*YouTube Music.*' | awk '{print $2}')
 
 # Return to first workspace
 hyprctl dispatch workspace 1

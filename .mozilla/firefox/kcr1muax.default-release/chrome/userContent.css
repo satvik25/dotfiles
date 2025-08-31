@@ -14,5 +14,6 @@
 }
 
 ::selection {
-    background-color: #738678 !important; /* highlight color */
+    background-color: #A9D9AB !important; /* highlight color */
+    color: #2A3439 !important;
 }
