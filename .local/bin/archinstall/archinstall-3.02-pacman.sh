@@ -36,7 +36,9 @@ OFFICIAL_PACKAGES=(
     # Development
  	base-devel git openssh \
  	# Theming
- 	gnome-tweaks lxappearance dconf-editor qt6ct kvantum
+ 	gnome-tweaks lxappearance dconf-editor qt6ct kvantum \
+ 	# Entertainment
+ 	steam
  	# Extras
 	# gst-libav pipewire-alsa pipewire-jack lib32-pipewire
 )
